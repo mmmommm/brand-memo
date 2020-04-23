@@ -11,7 +11,6 @@ Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'memo-login',
     component: memoLogin,
     // beforeEnter(to, from, next) {
     //   if (store.getters.idToken) {
@@ -23,7 +22,6 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/memoAdd',
-    name: 'memo-add',
     component: memoAdd,
     // beforeEnter(to, from, next) {
     //   if(store.getters.idToken) {
@@ -35,7 +33,6 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/memoHome',
-    name: 'home',
     component: memoHome,
     // beforeEnter(to, from, next) {
     //   if (store.getters.idToken) {
@@ -47,7 +44,6 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/memoRegister',
-    name: 'memo-register',
     component: memoRegister,
     // beforeEnter(to, from, next) {
     //   if (store.getters.idToken) {
@@ -59,7 +55,6 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/memoEdit',
-    name: 'memo-edit',
     component: memoEdit,
     // beforeEnter(to, from, next) {
     //   if (store.getters.idToken) {

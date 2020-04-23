@@ -1,6 +1,6 @@
 <template>
 <v-app>
-  <form @submit.prevent="saveMemo">
+  <form>
   <v-container>
     <v-layout>
       <div class="memo">

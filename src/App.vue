@@ -1,11 +1,7 @@
 <template>
   <v-app>
     <Header/>
-    <v-content>
-      <transition name="fade" mode="out-in" appear>
-        <router-view/>
-      </transition>
-    </v-content>
+    <router-view/>
   </v-app>
 </template>
 <script lang="ts">
