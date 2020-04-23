@@ -1,22 +1,77 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
+import memoAdd from "@/views/memoAdd.vue";
+import memoHome from "@/views/memoHome.vue";
+import memoLogin from "@/views/memoLogin.vue";
+import memoRegister from "@/views/memoRegister.vue";
+import memoEdit from "@/views/memoEdit.vue";
 
 Vue.use(VueRouter)
 
-  const routes: Array<RouteConfig> = [
+const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'memo-login',
+    component: memoLogin,
+    // beforeEnter(to, from, next) {
+    //   if (store.getters.idToken) {
+    //     next('/memoHome');
+    //   } else {
+    //     next();
+    //   }
+    // }
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/memoAdd',
+    name: 'memo-add',
+    component: memoAdd,
+    // beforeEnter(to, from, next) {
+    //   if(store.getters.idToken) {
+    //     next();
+    //   } else {
+    //     next('/');
+    //   }
+    // }
+  },
+  {
+    path: '/memoHome',
+    name: 'home',
+    component: memoHome,
+    // beforeEnter(to, from, next) {
+    //   if (store.getters.idToken) {
+    //     next();
+    //   } else {
+    //     next('/');
+    //   }
+    // }
+  },
+  {
+    path: '/memoRegister',
+    name: 'memo-register',
+    component: memoRegister,
+    // beforeEnter(to, from, next) {
+    //   if (store.getters.idToken) {
+    //     next('/memoHome');
+    //   } else {
+    //     next();
+    //   }
+    // }
+  },
+  {
+    path: '/memoEdit',
+    name: 'memo-edit',
+    component: memoEdit,
+    // beforeEnter(to, from, next) {
+    //   if (store.getters.idToken) {
+    //     next();
+    //   } else {
+    //     next('/');
+    //   }
+    // }
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 
