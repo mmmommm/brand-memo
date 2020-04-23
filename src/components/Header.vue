@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <span>Trade brand memo</span>
@@ -25,7 +25,7 @@
         </div>
       </template>
     </v-app-bar>
-  </v-app>
+  </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';

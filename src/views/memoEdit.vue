@@ -4,32 +4,32 @@
   <v-container>
     <v-layout>
       <div class="memo">
-            <v-card width="600px">
-              <v-layout>
-                <v-card-title>日付</v-card-title>
-                <input v-model="date" type="text" placeholder="2020/04/01">
-              </v-layout>
-              <v-layout>
-                <v-card-title>銘柄名</v-card-title>
-                <input v-model="code" type="text" placeholder="コード/銘柄名">
-                <v-card-title>時価総額</v-card-title>
-                <input v-model.number="capitalization" type="number">
-                <v-card-title>浮動株式数</v-card-title>
-                <input v-model.number="floating" type="number">
-                <v-card-title>テーマ</v-card-title>
-                <input v-model="theme">
-                <v-card-title>株価</v-card-title>
-                <input v-model.number="price" type="number">
-                <v-card-title>会社URL</v-card-title>
-                <input v-model="url">
-              </v-layout>
-            </v-card>
-            <v-card width="600px">
-              <v-card-title>感想・反省</v-card-title>
-              <textarea v-model="reason" cols="60" rows="25" class="ml-4" placeholder="なぜこの株を選んだのか"></textarea>
-              <br>
-              <v-btn type="submit" x-large class="ml-12">Addmemo</v-btn>
-            </v-card>
+        <v-card width="600px">
+          <v-layout>
+            <v-card-title>日付</v-card-title>
+            <input v-model="date" type="text" placeholder="2020/04/01">
+          </v-layout>
+          <v-layout>
+            <v-card-title>銘柄名</v-card-title>
+            <input v-model="code" type="text" placeholder="コード/銘柄名">
+            <v-card-title>時価総額</v-card-title>
+            <input v-model.number="capitalization" type="number">
+            <v-card-title>浮動株式数</v-card-title>
+            <input v-model.number="floating" type="number">
+            <v-card-title>テーマ</v-card-title>
+            <input v-model="theme">
+            <v-card-title>株価</v-card-title>
+            <input v-model.number="price" type="number">
+            <v-card-title>会社URL</v-card-title>
+            <input v-model="url">
+          </v-layout>
+        </v-card>
+        <v-card width="600px">
+          <v-card-title>感想・反省</v-card-title>
+          <textarea v-model="reason" cols="60" rows="25" class="ml-4" placeholder="なぜこの株を選んだのか"></textarea>
+          <br>
+          <v-btn type="submit" x-large class="ml-12">Addmemo</v-btn>
+        </v-card>
       </div>
     </v-layout>
   </v-container>
