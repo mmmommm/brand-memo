@@ -10,18 +10,20 @@
             <input v-model="date" type="text" placeholder="2020/04/01">
           </v-layout>
           <v-layout>
-            <v-card-title>銘柄名</v-card-title>
-            <input v-model="code" type="text" placeholder="コード/銘柄名">
-            <v-card-title>時価総額</v-card-title>
-            <input v-model.number="capitalization" type="number">
-            <v-card-title>浮動株式数</v-card-title>
-            <input v-model.number="floating" type="number">
-            <v-card-title>テーマ</v-card-title>
-            <input v-model="theme">
-            <v-card-title>株価</v-card-title>
-            <input v-model.number="price" type="number">
-            <v-card-title>会社URL</v-card-title>
-            <input v-model="url">
+            <v-flex class="ml-4">
+              <v-card-title>銘柄名</v-card-title>
+              <input v-model="code" type="text" placeholder="コード/銘柄名">
+              <v-card-title>時価総額</v-card-title>
+              <input v-model.number="capitalization" type="number">
+              <v-card-title>浮動株式数</v-card-title>
+              <input v-model.number="floating" type="number">
+              <v-card-title>テーマ</v-card-title>
+              <input v-model="theme">
+              <v-card-title>株価</v-card-title>
+              <input v-model.number="price" type="number">
+              <v-card-title>会社URL</v-card-title>
+              <input v-model="url">
+            </v-flex>
           </v-layout>
         </v-card>
         <v-card width="600px">
