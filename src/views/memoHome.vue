@@ -8,7 +8,7 @@
             <v-card-title class="ml-2">{{ memo.name }}</v-card-title>
             <v-card-text>
               <v-layout>
-                <!-- <v-btn outlined class="button ml-2 mt-6" :to="{ name: 'memo-detail', params: { memo: memo.slug }}">viewmemo</v-btn> -->
+                <v-btn outlined class="button ml-2 mt-6" :to="{ name: 'memo-detail', params: { memo: memo.slug }}">viewmemo</v-btn>
                 <v-btn outlined class="button ml-12 mt-6"></v-btn>
               </v-layout>
             </v-card-text>

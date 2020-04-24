@@ -7,7 +7,23 @@
         <v-card width="600px">
           <v-layout>
             <v-card-title>日付</v-card-title>
-            <input v-model="date" type="text" placeholder="2020/04/01">
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              max-width="290"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                  v-model="date"
+                  label="date"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="date" no-title @input="menu = false"></v-date-picker>
+            </v-menu>
           </v-layout>
           <v-layout>
             <v-flex class="ml-4">
@@ -45,12 +61,13 @@ import { firestore } from "@/firebase/fireStore";
 export default class MemoAdd extends Vue {
   capitalization: number | null = 0
   code: string | null = ""
-  date: string | null = ""
+  date = new Date().toISOString().substr(0, 10)
   floating: number | null = 0
   price: number | null = null
   reason: string | null = ""
   theme: string | null = ""
   url: string | null = ""
+  menu = false
   saveMemo(){
     const slug = this.generateUUID()
     firestore.collection('memos').add({

@@ -5,6 +5,7 @@ import memoHome from "@/views/memoHome.vue";
 import memoLogin from "@/views/memoLogin.vue";
 import memoRegister from "@/views/memoRegister.vue";
 import memoEdit from "@/views/memoEdit.vue";
+import memoDetail from '@/components/memoDetail.vue';
 
 Vue.use(VueRouter)
 
@@ -56,6 +57,17 @@ const routes: Array<RouteConfig> = [
   {
     path: '/memoEdit',
     component: memoEdit,
+    // beforeEnter(to, from, next) {
+    //   if (store.getters.idToken) {
+    //     next();
+    //   } else {
+    //     next('/');
+    //   }
+    // }
+  },
+  {
+    path: '/:memo',
+    component: memoDetail,
     // beforeEnter(to, from, next) {
     //   if (store.getters.idToken) {
     //     next();
