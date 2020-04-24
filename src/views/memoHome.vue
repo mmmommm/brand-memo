@@ -1,18 +1,19 @@
 <template>
   <v-img src="@/assets/portfolio.jpg" height="770">
     <v-container>
-      <v-layout justify-space-around wrap>
-        <div v-for="(memo, index) in memos" :key="index">
-          <v-card width="350" height="150" class="my-5">
-            <v-card-title class="ml-6">{{ memo.date }}</v-card-title>
+      <v-layout wrap>
+        <v-flex xs12 sm6 md4 v-for="(memo, index) in memos" :key="index">
+          <v-card width="350" height="200" class="my-5">
+            <v-card-title class="ml-2">{{ memo.code }}</v-card-title>
+            <v-card-title class="ml-2">{{ memo.name }}</v-card-title>
             <v-card-text>
               <v-layout>
                 <!-- <v-btn outlined class="button ml-2 mt-6" :to="{ name: 'memo-detail', params: { memo: memo.slug }}">viewmemo</v-btn> -->
-                <v-btn outlined class="button ml-12 mt-6">deletememo</v-btn>
+                <v-btn outlined class="button ml-12 mt-6"></v-btn>
               </v-layout>
             </v-card-text>
           </v-card>
-        </div>
+        </v-flex>
       </v-layout>
     </v-container>
   </v-img>

@@ -10,6 +10,9 @@
           <v-btn to="/memoHome" text x-large>Home</v-btn>
         </div>
         <div class="my-2">
+          <v-btn text x-large>Search</v-btn>
+        </div>
+        <div class="my-2">
           <v-btn to="/memoAdd" text x-large>Add</v-btn>
         </div>
         <div class="my-2">
