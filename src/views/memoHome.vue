@@ -25,7 +25,7 @@ import { firestore } from "@/firebase/fireStore";
 import { MemoItem } from '@/interface/memoItem';
 @Component
 export default class MemoHome extends Vue {
-  public memos: MemoItem[] = []
+  memos: MemoItem[] = []
   created() {
     // eslint-disable-next-line
     firestore.collection('memos').get().then((querySnapshot: any) => {
