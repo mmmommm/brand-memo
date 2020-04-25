@@ -19,7 +19,7 @@
                 <v-text-field
                   v-model="date"
                   v-on="on"
-                  class="mt-8 ml-4"
+                  class="mt-4 ml-4"
                 ></v-text-field>
               </template>
               <v-date-picker v-model="date" no-title @input="menu = false"></v-date-picker>
@@ -27,8 +27,10 @@
           </v-layout>
           <v-layout>
             <v-flex class="ml-4">
+              <v-card-title>コード</v-card-title>
+              <input v-model="code" type="text" placeholder="7203" class="py-2">
               <v-card-title>銘柄名</v-card-title>
-              <input v-model="code" type="text" placeholder="トヨタ自動車" class="py-2">
+              <input v-model="name" type="text" placeholder="トヨタ自動車" class="py-2">
               <v-card-title>時価総額</v-card-title>
               <input v-model.number="capitalization" type="number" class="py-2">
               <v-card-title>浮動株式数</v-card-title>
@@ -45,7 +47,7 @@
         <v-card width="600px">
           <v-card-title>理由</v-card-title>
           <textarea v-model="reason" cols="60" rows="25" class="ml-4" placeholder="この会社はどのような会社か、投資をするに値するか、業績等からみてどうか。"></textarea>
-          <v-btn type="submit" x-large class="ml-12 mb-2" text outlined>Addmemo</v-btn>
+          <v-btn type="submit" x-large class="ml-12 mt-12" text outlined>Addmemo</v-btn>
         </v-card>
       </div>
     </v-layout>
@@ -59,9 +61,10 @@ import { firestore } from "@/firebase/fireStore";
 @Component
 export default class MemoAdd extends Vue {
   capitalization: number | null = 0
-  code: string | null = ""
+  code: number | null = 0
   date = new Date().toISOString().substr(0, 10)
   floating: number | null = 0
+  name: string | null = ""
   price: number | null = null
   reason: string | null = ""
   theme: string | null = ""
