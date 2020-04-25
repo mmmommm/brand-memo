@@ -28,17 +28,17 @@
           <v-layout>
             <v-flex class="ml-4">
               <v-card-title>銘柄名</v-card-title>
-              <input v-model="code" type="text" placeholder="コード/銘柄名">
+              <input v-model="code" type="text" placeholder="トヨタ" class="py-2">
               <v-card-title>時価総額</v-card-title>
-              <input v-model.number="capitalization" type="number">
+              <input v-model.number="capitalization" type="number" class="py-2">
               <v-card-title>浮動株式数</v-card-title>
-              <input v-model.number="floating" type="number">
+              <input v-model.number="floating" type="number" class="py-2">
               <v-card-title>テーマ</v-card-title>
-              <input v-model="theme">
+              <input v-model="theme" placeholder="5G" class="py-2">
               <v-card-title>株価</v-card-title>
-              <input v-model.number="price" type="number">
+              <input v-model.number="price" type="number" placeholder="1000" class="py-2">
               <v-card-title>会社URL</v-card-title>
-              <input v-model="url">
+              <input v-model="url" placeholder="https://company.co.jp" class="py-2">
             </v-flex>
           </v-layout>
         </v-card>
