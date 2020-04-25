@@ -52,14 +52,14 @@ export default class MemoLogin extends Vue {
   email = ''
   password = ''
   // eslint-disable-next-line
-  private emailRules: any = [
+  emailRules: any = [
     // eslint-disable-next-line
     (v: any) => !!v || 'E-mail is required',
     // eslint-disable-next-line
     (v: any) => /.+@.+/.test(v) || 'E-mail must be valid',
   ];
   // eslint-disable-next-line
-  private passwordRules: any = [
+  passwordRules: any = [
     // eslint-disable-next-line
     (v: any) => !!v || 'Password is required',
     // eslint-disable-next-line

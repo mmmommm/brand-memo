@@ -44,7 +44,7 @@ import { firestore } from "@/firebase/fireStore";
 import { MemoItem } from '@/interface/memoItem';
 @Component
 export default class MemoDetail extends Vue {
-  public memos: MemoItem[] = []
+  memos: MemoItem[] = []
   created() {
     // eslint-disable-next-line
     firestore.collection('memos').get().then((querySnapshot: any) => {
@@ -73,23 +73,24 @@ export default class MemoDetail extends Vue {
       })
     })
   }
-  // fetchData(){
-  //   firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot)=>{
-  //     querySnapshot.forEach((doc)=>{
-  //       // eslint-disable-next-line no-console
-  //       console.log(doc.id, '==', doc.data())
-  //         this.capitalization = doc.data().capitalization
-  //         this.code = doc.data().code
-  //         this.date = doc.data().date
-  //         this.floating = doc.data().floating
-  //         this.name = doc.data().name
-  //         this.price = doc.data().price
-  //         this.reason = doc.data().reason
-  //         this.theme = doc.data().theme
-  //         this.url = doc.data().url
-  //     })
-  //   })
-  // }
+  fetchData(){
+    firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot)=>{
+      querySnapshot.forEach((doc)=>{
+        // eslint-disable-next-line no-console
+        console.log(doc.id, '==', doc.data())
+          this.capitalization = doc.data().capitalization
+          this.code = doc.data().code
+          this.date = doc.data().date
+          this.floating = doc.data().floating
+          this.name = doc.data().name
+          this.price = doc.data().price
+          this.reason = doc.data().reason
+          this.theme = doc.data().theme
+          this.url = doc.data().url
+      })
+    })
+  }
+  @Watch('')
 }
 </script>
 
