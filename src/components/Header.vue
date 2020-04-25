@@ -16,7 +16,7 @@
           <v-btn to="/memoAdd" text x-large>Add</v-btn>
         </div>
         <div class="my-2">
-          <v-btn to="/memoLogin" text x-large>logout</v-btn>
+          <v-btn to="/" text x-large>logout</v-btn>
         </div>
       </template>
       <template>

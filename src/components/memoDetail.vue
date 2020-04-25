@@ -7,28 +7,34 @@
         <v-card width="600px">
           <v-layout>
             <v-card-title>日付</v-card-title>
-            <input v-model="date" type="text" placeholder="2020/04/01">
+            <v-card-title>{{ date }}</v-card-title>
           </v-layout>
           <v-layout>
-            <v-flex class="ml-4">
-              <v-card-title>銘柄名</v-card-title>
-              <v-card-title>{{ date }}</v-card-title>
-              <v-card-title>時価総額</v-card-title>
-              <input v-model.number="capitalization" type="number">
-              <v-card-title>浮動株式数</v-card-title>
-              <input v-model.number="floating" type="number">
-              <v-card-title>テーマ</v-card-title>
-              <input v-model="theme">
-              <v-card-title>株価</v-card-title>
-              <input v-model.number="price" type="number">
-              <v-card-title>会社URL</v-card-title>
-              <input v-model="url">
+            <v-flex class="ml-4" xs12 sm12 md12>
+              <v-card-title>
+                <p>コード</p>
+                <p>{{ code }}</p>
+                <p>銘柄名</p>
+                <p>{{ name }}</p>
+                <p>時価総額</p>
+                <p>{{ capitalization }}</p>
+                <p>浮動株式数</p>
+                <p>{{ floating }}</p>
+                <p>テーマ</p>
+                <p>{{ theme }}</p>
+                <p>株価</p>
+                <p>{{ price }}</p>
+                <p>会社URL</p>
+                <p>{{ url }}</p>
+              </v-card-title>
             </v-flex>
           </v-layout>
         </v-card>
         <v-card width="600px">
-          <v-card-title>理由</v-card-title>
-          <textarea v-model="reason" cols="60" rows="25" class="ml-4" placeholder="なぜこの株を選んだのか"></textarea>
+          <v-card-title>
+            <p>理由</p>
+          </v-card-title>
+          <textarea v-model="reason" cols="60" rows="25" class="ml-4" readonly></textarea>
           <br>
           <v-btn type="submit" x-large class="ml-12">Addmemo</v-btn>
         </v-card>
@@ -44,6 +50,16 @@ import { firestore } from "@/firebase/fireStore";
 import { MemoItem } from '@/interface/memoItem';
 @Component
 export default class MemoDetail extends Vue {
+  capitalization: number | null = 0
+  code: number | null = 0
+  date = new Date().toISOString().substr(0, 10)
+  floating: number | null = 0
+  name: string | null = ""
+  price: number | null = null
+  reason: string | null = ""
+  theme: string | null = ""
+  url: string | null = ""
+  menu = false
   memos: MemoItem[] = []
   created() {
     // eslint-disable-next-line
@@ -73,11 +89,10 @@ export default class MemoDetail extends Vue {
       })
     })
   }
-  fetchData(){
-    firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot)=>{
+  @Watch('$route')
+    fetchData() {
+      firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot)=>{
       querySnapshot.forEach((doc)=>{
-        // eslint-disable-next-line no-console
-        console.log(doc.id, '==', doc.data())
           this.capitalization = doc.data().capitalization
           this.code = doc.data().code
           this.date = doc.data().date
@@ -89,9 +104,8 @@ export default class MemoDetail extends Vue {
           this.url = doc.data().url
       })
     })
+    }
   }
-  @Watch('')
-}
 </script>
 
 <style scoped>
