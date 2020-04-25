@@ -18,8 +18,8 @@
               <template v-slot:activator="{ on }">
                 <v-text-field
                   v-model="date"
-                  label="date"
                   v-on="on"
+                  class="mt-8 ml-4"
                 ></v-text-field>
               </template>
               <v-date-picker v-model="date" no-title @input="menu = false"></v-date-picker>
@@ -28,15 +28,15 @@
           <v-layout>
             <v-flex class="ml-4">
               <v-card-title>銘柄名</v-card-title>
-              <input v-model="code" type="text" placeholder="トヨタ" class="py-2">
+              <input v-model="code" type="text" placeholder="トヨタ自動車" class="py-2">
               <v-card-title>時価総額</v-card-title>
               <input v-model.number="capitalization" type="number" class="py-2">
               <v-card-title>浮動株式数</v-card-title>
               <input v-model.number="floating" type="number" class="py-2">
               <v-card-title>テーマ</v-card-title>
-              <input v-model="theme" placeholder="5G" class="py-2">
+              <input v-model="theme" placeholder="自動運転" class="py-2">
               <v-card-title>株価</v-card-title>
-              <input v-model.number="price" type="number" placeholder="1000" class="py-2">
+              <input v-model.number="price" type="number" placeholder="6500" class="py-2">
               <v-card-title>会社URL</v-card-title>
               <input v-model="url" placeholder="https://company.co.jp" class="py-2">
             </v-flex>
@@ -44,9 +44,8 @@
         </v-card>
         <v-card width="600px">
           <v-card-title>理由</v-card-title>
-          <textarea v-model="reason" cols="60" rows="25" class="ml-4" placeholder="なぜこの株を選んだのか"></textarea>
-          <br>
-          <v-btn type="submit" x-large class="ml-12">Addmemo</v-btn>
+          <textarea v-model="reason" cols="60" rows="25" class="ml-4" placeholder="この会社はどのような会社か、投資をするに値するか、業績等からみてどうか。"></textarea>
+          <v-btn type="submit" x-large class="ml-12 mb-2" text outlined>Addmemo</v-btn>
         </v-card>
       </div>
     </v-layout>
