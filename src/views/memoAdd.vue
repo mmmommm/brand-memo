@@ -47,7 +47,7 @@
         <v-card width="600px">
           <v-card-title>理由</v-card-title>
           <textarea v-model="reason" cols="60" rows="25" class="ml-4" placeholder="この会社はどのような会社か、投資をするに値するか、業績等からみてどうか。"></textarea>
-          <v-btn type="submit" x-large class="ml-12 mt-12" text outlined>Addmemo</v-btn>
+          <v-btn type="submit" x-large class="ml-12 mt-12" outlined>Addmemo</v-btn>
         </v-card>
       </div>
     </v-layout>

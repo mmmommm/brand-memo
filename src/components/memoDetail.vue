@@ -1,46 +1,57 @@
 <template>
   <v-app>
     <v-container>
-    <v-layout>
-    <div class="index">
-      <div class ="memo">
-        <v-card width="600px">
-          <v-layout>
-            <v-card-title>日付</v-card-title>
-            <v-card-title>{{ date }}</v-card-title>
-          </v-layout>
-          <v-layout>
-            <v-flex class="ml-4" xs12 sm12 md12>
-              <v-card-title>
-                <p>コード</p>
-                <p>{{ code }}</p>
-                <p>銘柄名</p>
-                <p>{{ name }}</p>
-                <p>時価総額</p>
-                <p>{{ capitalization }}</p>
-                <p>浮動株式数</p>
-                <p>{{ floating }}</p>
-                <p>テーマ</p>
-                <p>{{ theme }}</p>
-                <p>株価</p>
-                <p>{{ price }}</p>
-                <p>会社URL</p>
-                <p>{{ url }}</p>
-              </v-card-title>
-            </v-flex>
-          </v-layout>
-        </v-card>
-        <v-card width="600px">
-          <v-card-title>
-            <p>理由</p>
-          </v-card-title>
-          <textarea v-model="reason" cols="60" rows="25" class="ml-4" readonly></textarea>
-          <br>
-          <v-btn type="submit" x-large class="ml-12">Addmemo</v-btn>
-        </v-card>
+      <v-layout>
+      <div class="index">
+        <div class ="memo">
+          <v-card width="600px">
+            <v-layout>
+              <v-card-title>日付</v-card-title>
+              <v-card-title>{{ date }}</v-card-title>
+            </v-layout>
+            <v-layout wrap>
+                <v-card-title>
+                  <v-flex class="ml-4 my-4" xs6 sm6 md6 row>
+                    <p>コード</p>
+                    <p class="ml-12">{{ code }}</p>
+                  </v-flex>
+                  <v-flex class="ml-4 my-4" xs6 sm6 md6 row>
+                  <p>銘柄名</p>
+                  <p class="ml-12">{{ name }}</p>
+                  </v-flex>
+                  <v-flex class="ml-4 my-4" xs6 sm6 md6 row>
+                  <p>時価総額</p>
+                  <p class="ml-12">{{ capitalization }}</p>
+                  </v-flex>
+                  <v-flex class="ml-4 my-4" xs6 sm6 md6 row>
+                  <p>浮動株式数</p>
+                  <p class="ml-12">{{ floating }}</p>
+                  </v-flex>
+                  <v-flex class="ml-4 my-4" xs6 sm6 md6 row>
+                  <p>テーマ</p>
+                  <p class="ml-12">{{ theme }}</p>
+                  </v-flex>
+                  <v-flex class="ml-4 my-4" xs6 sm6 md6 row>
+                  <p>株価</p>
+                  <p class="ml-12">{{ price }}</p>
+                  </v-flex>
+                  <v-flex class="ml-4 my-4" xs6 sm6 md6 row>
+                  <p>会社URL</p>
+                  <p class="ml-12">{{ url }}</p>
+                  </v-flex>
+                </v-card-title>
+            </v-layout>
+          </v-card>
+          <v-card width="600px">
+            <v-card-title>
+              <p>理由</p>
+            </v-card-title>
+            <textarea v-model="reason" cols="60" rows="25" class="ml-4" readonly></textarea>
+            <v-btn type="submit" x-large class="ml-12 mb-4" outlined :to="{ name: 'memo-edit', params: { memo: slug }}">Editmemo</v-btn>
+          </v-card>
+        </div>
       </div>
-    </div>
-    </v-layout>
+      </v-layout>
     </v-container>
   </v-app>
 </template>

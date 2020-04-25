@@ -55,7 +55,8 @@ const routes: Array<RouteConfig> = [
     // }
   },
   {
-    path: '/memoEdit',
+    path: '/:memo/edit',
+    name: 'memo-edit',
     component: memoEdit,
     // beforeEnter(to, from, next) {
     //   if (store.getters.idToken) {
@@ -67,6 +68,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/:memo',
+    name: 'memo-detail',
     component: memoDetail,
     // beforeEnter(to, from, next) {
     //   if (store.getters.idToken) {
