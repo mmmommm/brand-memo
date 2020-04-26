@@ -1,34 +1,54 @@
 <template>
 <v-app>
-  <form>
+  <form @submit.prevent="updateMemo">
   <v-container>
     <v-layout>
       <div class="memo">
         <v-card width="600px">
           <v-layout>
             <v-card-title>日付</v-card-title>
-            <input v-model="date" type="text" placeholder="2020/04/01">
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              max-width="290"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                  v-model="date"
+                  v-on="on"
+                  class="mt-4 ml-4"
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="date" no-title @input="menu = false"></v-date-picker>
+            </v-menu>
           </v-layout>
           <v-layout>
-            <v-card-title>銘柄名</v-card-title>
-            <input v-model="code" type="text" placeholder="コード/銘柄名">
-            <v-card-title>時価総額</v-card-title>
-            <input v-model.number="capitalization" type="number">
-            <v-card-title>浮動株式数</v-card-title>
-            <input v-model.number="floating" type="number">
-            <v-card-title>テーマ</v-card-title>
-            <input v-model="theme">
-            <v-card-title>株価</v-card-title>
-            <input v-model.number="price" type="number">
-            <v-card-title>会社URL</v-card-title>
-            <input v-model="url">
+            <v-flex class="ml-4">
+              <v-card-title>コード</v-card-title>
+              <input v-model="code" type="text" class="py-2">
+              <v-card-title>銘柄名</v-card-title>
+              <input v-model="name" type="text" class="py-2">
+              <v-card-title>時価総額</v-card-title>
+              <input v-model.number="capitalization" type="number" class="py-2">
+              <v-card-title>浮動株式数</v-card-title>
+              <input v-model.number="floating" type="number" class="py-2">
+              <v-card-title>テーマ</v-card-title>
+              <input v-model="theme" class="py-2">
+              <v-card-title>株価</v-card-title>
+              <input v-model.number="price" type="number" class="py-2">
+              <v-card-title>会社URL</v-card-title>
+              <input v-model="url" class="py-2">
+            </v-flex>
           </v-layout>
         </v-card>
         <v-card width="600px">
           <v-card-title>感想・反省</v-card-title>
-          <textarea v-model="reason" cols="60" rows="25" class="ml-4" placeholder="なぜこの株を選んだのか"></textarea>
+          <textarea v-model="reason" cols="60" rows="25" class="ml-4"></textarea>
           <br>
-          <v-btn type="submit" x-large class="ml-12">Addmemo</v-btn>
+          <v-btn type="submit" x-large class="ml-12" outlined>update</v-btn>
         </v-card>
       </div>
     </v-layout>
@@ -39,31 +59,32 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from "@/firebase/fireStore";
+import { MemoItem } from '@/interface/memoItem';
 @Component
 export default class MemoEdit extends Vue {
   capitalization: number | null = 0
-  code: string | null = ""
-  date: string | null = ""
+  code: number | null = 0
+  date = new Date().toISOString().substr(0, 10)
   floating: number | null = 0
+  name: string | null = ""
   price: number | null = null
   reason: string | null = ""
   theme: string | null = ""
   url: string | null = ""
-  saveMemo(){
-    const slug = this.generateUUID()
-    firestore.collection('memos').add({
-      slug: slug
+  menu = false
+  updateMemo() {
+    firestore.collection('memos').where('slug', '==', this.$route.params.memo).update({
+      capitalization: this.capitalization,
+      code: this.code,
+      date: this.date,
+      floating: this.floating,
+      name: this.name,
+      price: this.price,
+      reason: this.reason,
+      theme: this.theme,
+      url: this.url
     })
       this.$router.push({path: "/"})
-  }
-  generateUUID () {
-    let d = new Date().getTime();
-    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = (d + Math.random() * 16) % 16 | 0
-    d = Math.floor(d / 16)
-    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
-  });
-    return uuid;
   }
 }
 
