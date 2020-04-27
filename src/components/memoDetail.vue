@@ -61,28 +61,16 @@ import { firestore } from "@/firebase/fireStore";
 import { MemoItem } from '@/interface/memoItem';
 @Component
 export default class MemoDetail extends Vue {
-  capitalization: number | null = 0
-  code: number | null = 0
+  capitalization: number | null = null
+  code: number | null = null
   date = new Date().toISOString().substr(0, 10)
-  floating: number | null = 0
-  name: string | null = ""
+  floating: number | null = null
+  name: string | null = null
   price: number | null = null
-  reason: string | null = ""
-  theme: string | null = ""
-  url: string | null = ""
+  reason: string | null = null
+  theme: string | null = null
+  url: string | null = null
   menu = false
-  memos: MemoItem[] = []
-  created() {
-    // eslint-disable-next-line
-    firestore.collection('memos').get().then((querySnapshot: any) => {
-      const array: MemoItem[] = [];
-      // eslint-disable-next-line
-      querySnapshot.forEach((doc: any) => {
-        array.push(doc.data())
-      });
-        this.memos = array
-    });
-  }
   beforeRouteEnter(to: any, from: any, next: any){
     firestore.collection('memos').where('slug', '==', to.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc) =>{
@@ -118,9 +106,3 @@ export default class MemoDetail extends Vue {
     }
   }
 </script>
-
-<style scoped>
-.memo{
-  display: flex;
-}
-</style>

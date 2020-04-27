@@ -1,5 +1,5 @@
 <template>
-  <v-img src="@/assets/portfolio.jpg" height="770">
+  <v-img src="@/assets/portfolio.jpg" height="1000">
     <v-container>
       <v-layout wrap>
         <v-flex xs12 sm6 md4 v-for="(memo, index) in memos" :key="index">
