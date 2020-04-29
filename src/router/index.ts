@@ -5,7 +5,7 @@ import memoHome from "@/views/memoHome.vue";
 import memoLogin from "@/views/memoLogin.vue";
 import memoRegister from "@/views/memoRegister.vue";
 import memoEdit from "@/views/memoEdit.vue";
-import memoDetail from '@/components/memoDetail.vue';
+import memoDetail from '@/views/memoDetail.vue';
 
 Vue.use(VueRouter)
 

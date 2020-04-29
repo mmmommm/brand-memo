@@ -46,7 +46,7 @@
             <v-card-title>
               <p>理由</p>
             </v-card-title>
-            <textarea v-model="reason" cols="60" rows="25" class="ml-4" readonly></textarea>
+            <v-textarea v-model="reason" cols="60" rows="25" class="ml-4" readonly></v-textarea>
             <v-btn type="submit" x-large class="ml-12 mb-4" outlined :to="{ name: 'memo-edit', params: { memo: slug }}">Editmemo</v-btn>
           </v-card>
         </div>
@@ -69,6 +69,7 @@ export default class MemoDetail extends Vue {
   price: number | null = null
   reason: string | null = null
   theme: string | null = null
+  slug: any
   url: string | null = null
   menu = false
   beforeRouteEnter(to: any, from: any, next: any){
