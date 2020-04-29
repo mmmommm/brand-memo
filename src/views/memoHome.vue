@@ -9,7 +9,7 @@
             <v-card-text>
               <v-layout>
                 <v-btn outlined class="button ml-2 mt-6" :to="{ name: 'memo-detail', params: { memo: memo.slug }}">viewmemo</v-btn>
-                <v-btn outlined class="button ml-12 mt-6"></v-btn>
+                <!-- <v-btn outlined class="button ml-12 mt-6">deletememo</v-btn> -->
               </v-layout>
             </v-card-text>
           </v-card>
