@@ -23,7 +23,7 @@
                 <v-card-title>株価</v-card-title>
                 <v-text-field type="text" class="py-2" readonly :value="price" />
                 <v-card-title>会社URL</v-card-title>
-                <v-text-field type="text" class="py-2" readonly :value="url" />
+                <v-btn text :href="url" target="_blank">{{ url }}</v-btn>
               </v-flex>
             </v-layout>
           </v-card>
