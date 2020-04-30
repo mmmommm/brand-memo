@@ -14,7 +14,7 @@
                 <v-btn to="/memoHome" text :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">Home</v-btn>
               </div>
               <div class="my-2">
-                <v-btn text :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">Search</v-btn>
+                <v-btn to="/memoSearch" text :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">Search</v-btn>
               </div>
               <div class="my-2">
                 <v-btn to="/memoAdd" text :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">Add</v-btn>
