@@ -48,7 +48,7 @@
         <v-flex xs12 sm12 md6>
           <v-card :width="cardWidth" flat>
             <v-card-title>理由</v-card-title>
-            <v-textarea v-model="reason" cols="60" rows="25" outlined placeholder="この会社はどのような会社か、投資をするに値するか、業績等からみてどうか。" :width="cardWidth" />
+            <v-textarea v-model="reason" cols="60" rows="25" outlined placeholder="この会社はどのような会社か、投資をするに値するか、業績等からみてどうか。"/>
             <v-btn type="submit" x-large class="ml-12 my-12" outlined>Addmemo</v-btn>
           </v-card>
         </v-flex>
@@ -111,16 +111,4 @@ export default class MemoAdd extends Vue {
     }
   }
 }
-
 </script>
-<style scoped>
-.memo{
-  display: flex;
-}
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-</style>

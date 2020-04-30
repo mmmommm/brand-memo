@@ -54,18 +54,18 @@ const routes: Array<RouteConfig> = [
     //   }
     // }
   },
-  {
-    path: '/:memo/edit',
-    name: 'memo-edit',
-    component: memoEdit,
-    // beforeEnter(to, from, next) {
-    //   if (store.getters.idToken) {
-    //     next();
-    //   } else {
-    //     next('/');
-    //   }
-    // }
-  },
+  // {
+  //   path: '/:memo/edit',
+  //   name: 'memo-edit',
+  //   component: memoEdit,
+  //   // beforeEnter(to, from, next) {
+  //   //   if (store.getters.idToken) {
+  //   //     next();
+  //   //   } else {
+  //   //     next('/');
+  //   //   }
+  //   // }
+  // },
   {
     path: '/:memo',
     name: 'memo-detail',
