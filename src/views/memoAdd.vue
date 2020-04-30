@@ -75,9 +75,17 @@ export default class MemoAdd extends Vue {
   saveMemo() {
     const slug = this.generateUUID()
     firestore.collection('memos').add({
+      date: this.date,
+      code: this.code,
+      name: this.name,
+      capitalization: this.capitalization,
+      floating: this.floating,
+      theme: this.theme,
+      price: this.price,
+      url: this.url,
       slug: slug
     })
-      this.$router.push({path: "/"})
+      this.$router.push({path: "/memoHome"})
   }
   generateUUID(): string {
     let d = new Date().getTime();
