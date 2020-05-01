@@ -6,7 +6,8 @@ import memoLogin from "@/views/memoLogin.vue";
 import memoRegister from "@/views/memoRegister.vue";
 // import memoEdit from "@/views/memoEdit.vue";
 import memoDetail from '@/views/memoDetail.vue';
-import memoSearch from '@/views/memoSearch.vue';
+import memoSearch from '@/components/memoSearch.vue';
+import search from '@/components/search.vue';
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,10 @@ const routes: Array<RouteConfig> = [
   //   //   }
   //   // }
   // },
+  {
+    path: '/search',
+    component: search
+  },
   {
     path: '/:memo',
     name: 'memo-detail',
