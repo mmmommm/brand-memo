@@ -1,7 +1,7 @@
 export interface MemoItem {
   capitalization: number;
-  code: number;
-  date: string;
+  code: number | null;
+  date: Date | null;
   floating: number;
   name: string;
   price: number;
