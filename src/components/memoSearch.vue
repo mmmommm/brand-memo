@@ -5,7 +5,7 @@
       <v-btn @click="filteredList()">検索</v-btn>
     </v-layout>
     <v-layout wrap>
-      <v-flex xs12 sm6 md4 v-for="(memo, index) in filteredList" :key="index">
+      <v-flex xs12 sm6 md4 v-for="(memo, index) in filteredMemo" :key="index">
         <v-card width="350" height="200" class="my-5">
           <v-card-title class="ml-2">{{ memo.code }}</v-card-title>
           <v-card-title class="ml-2">{{ memo.name }}</v-card-title>
@@ -29,27 +29,32 @@ search_term: number | null = null
 code: number | null = 0
 name: string | null = ""
 memos: MemoItem[] = []
+filteredMemo: MemoItem[] = []
 // filteredList: MemoItem[] = []
 // codeList: (number | null)[] = []
-  created() {
-    // eslint-disable-next-line
-    firestore.collection('memos').get().then((querySnapshot: any) => {
-      const array: MemoItem[] = [];
-      // eslint-disable-next-line
-      querySnapshot.forEach((doc: any) => {
-        array.push(doc.data())
-      });
-        this.memos = array
-        // arrayにぶちこまれてるmemosからそれぞれのmemoのcodeの値を取りだしてcodeListに入れる
-      // array.forEach((s) => {
-      //   this.codeList.push(s.code)
-      // })
-    });
-  }
+  // created() {
+  //   // eslint-disable-next-line
+  //   firestore.collection('memos').get().then((querySnapshot: any) => {
+  //     const array: MemoItem[] = [];
+  //     // eslint-disable-next-line
+  //     querySnapshot.forEach((doc: any) => {
+  //       array.push(doc.data())
+  //     });
+  //       this.memos = array
+  //       // arrayにぶちこまれてるmemosからそれぞれのmemoのcodeの値を取りだしてcodeListに入れる
+  //     // array.forEach((s) => {
+  //     //   this.codeList.push(s.code)
+  //     // })
+  //   });
+  // }
   filteredList() {
     firestore.collection('memos').where("code", "==", this.search_term).get()
-    .then(() => {
-      console.log("成功です")
+    .then((querySnapshot) => {
+      const s: MemoItem[] = []
+      querySnapshot.forEach((doc: any) => {
+        s.push(doc.data())
+      });
+      this.filteredMemo = s
     })
     .catch(() => {
       console.error("失敗です")
