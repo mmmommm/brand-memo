@@ -32,9 +32,9 @@
                 <v-card-title>銘柄名</v-card-title>
                 <v-text-field v-model="name" type="text" placeholder="トヨタ自動車" class="py-2"/>
                 <v-card-title>時価総額（百万）</v-card-title>
-                <v-text-field v-model.number="capitalization" type="number" class="py-2"/>
+                <v-text-field v-model.number="capitalization" placeholder="21495773" type="number" class="py-2"/>
                 <v-card-title>浮動株式数（株）</v-card-title>
-                <v-text-field v-model.number="floating" type="number" class="py-2"/>
+                <v-text-field v-model.number="floating" placeholder="1000000000" type="number" class="py-2"/>
                 <v-card-title>テーマ</v-card-title>
                 <v-text-field v-model="theme" type="text" placeholder="自動運転" class="py-2"/>
                 <v-card-title>株価（円）</v-card-title>
@@ -62,10 +62,10 @@ import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from "@/firebase/fireStore";
 @Component
 export default class MemoAdd extends Vue {
-  capitalization: number | null = 0
+  capitalization: number | null = null
   code: number | null = null
   date: Date | null = null
-  floating: number | null = 0
+  floating: number | null = null
   name: string | null = ""
   price: number | null = null
   reason: string | null = ""

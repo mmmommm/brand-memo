@@ -16,9 +16,9 @@
               <div class="my-2">
                 <v-btn to="/memoSearch" text :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">Search</v-btn>
               </div>
-              <div class="my-2">
+              <!-- <div class="my-2">
                 <v-btn to="/memoAdd" text :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">Add</v-btn>
-              </div>
+              </div> -->
               <!-- <div class="my-2">
                 <v-btn to="/" text x-large>logout</v-btn>
               </div> -->
