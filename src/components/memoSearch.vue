@@ -2,7 +2,7 @@
   <v-container>
     <v-layout>
       <v-text-field v-model.number="search_term" placeholder="search brand by code"/>
-      <v-btn @click="filteredList()" text outlined>検索</v-btn>
+      <v-btn @click="filteredList()" @keydown.enter="filteredList" text outlined>検索</v-btn>
     </v-layout>
     <v-layout wrap>
       <v-flex xs12 sm6 md4 v-for="(memo, index) in filteredMemo" :key="index">
@@ -11,7 +11,7 @@
           <v-card-title class="ml-2">{{ memo.name }}</v-card-title>
           <v-card-text>
             <v-layout>
-              <v-btn outlined class="button ml-2 mt-6" :to="{ name: 'memo-detail', params: { memo: memo.slug }}">viewmemo</v-btn>
+              <v-btn outlined class="button ml-2  -6" :to="{ name: 'memo-detail', params: { memo: memo.slug }}">viewmemo</v-btn>
             </v-layout>
           </v-card-text>
         </v-card>
@@ -55,10 +55,6 @@ filteredMemo: MemoItem[] = []
         s.push(doc.data())
       });
       this.filteredMemo = s
-    })
-    .catch(() => {
-      console.error("失敗です")
-      return this.memos
     })
     //  return this.memos.filter(t => {
     //   this.search_term === this.memos. ?
