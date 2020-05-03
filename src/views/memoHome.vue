@@ -1,5 +1,5 @@
 <template>
-  <v-img src="@/assets/portfolio.jpg" height="1000">
+  <!-- <v-img src="@/assets/portfolio.jpg" height="1000"> -->
     <v-container>
       <v-layout wrap>
         <v-flex xs12 sm6 md4 v-for="(memo, index) in memos" :key="index">
@@ -16,7 +16,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-  </v-img>
+  <!-- </v-img> -->
 </template>
 
 <script lang="ts">
@@ -27,7 +27,7 @@ import { MemoItem } from '@/interface/memoItem';
 export default class MemoHome extends Vue {
   capitalization: number | null = 0
   code: number | null = 0
-  date = new Date().toISOString().substr(0, 10)
+  date: Date | null = null
   floating: number | null = 0
   name: string | null = ""
   price: number | null = null

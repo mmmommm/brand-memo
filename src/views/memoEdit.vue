@@ -72,20 +72,20 @@ export default class MemoEdit extends Vue {
   theme: string | null = ""
   url: string | null = ""
   menu = false
-  updateMemo() {
-    firestore.collection('memos').where('slug', '==', this.$route.params.memo).update({
-      capitalization: this.capitalization,
-      code: this.code,
-      date: this.date,
-      floating: this.floating,
-      name: this.name,
-      price: this.price,
-      reason: this.reason,
-      theme: this.theme,
-      url: this.url
-    })
-      this.$router.push({path: "/"})
-  }
+  // updateMemo() {
+  //   firestore.collection('memos').where('slug', '==', this.$route.params.memo).update({
+  //     capitalization: this.capitalization,
+  //     code: this.code,
+  //     date: this.date,
+  //     floating: this.floating,
+  //     name: this.name,
+  //     price: this.price,
+  //     reason: this.reason,
+  //     theme: this.theme,
+  //     url: this.url
+  //   })
+  //     this.$router.push({path: "/"})
+  // }
 }
 
 </script>
