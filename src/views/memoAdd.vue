@@ -31,13 +31,13 @@
                 <v-text-field v-model.number="code" type="number" placeholder="7203" class="py-2"/>
                 <v-card-title>銘柄名</v-card-title>
                 <v-text-field v-model="name" type="text" placeholder="トヨタ自動車" class="py-2"/>
-                <v-card-title>時価総額</v-card-title>
+                <v-card-title>時価総額（百万）</v-card-title>
                 <v-text-field v-model.number="capitalization" type="number" class="py-2"/>
-                <v-card-title>浮動株式数</v-card-title>
+                <v-card-title>浮動株式数（株）</v-card-title>
                 <v-text-field v-model.number="floating" type="number" class="py-2"/>
                 <v-card-title>テーマ</v-card-title>
                 <v-text-field v-model="theme" type="text" placeholder="自動運転" class="py-2"/>
-                <v-card-title>株価</v-card-title>
+                <v-card-title>株価（円）</v-card-title>
                 <v-text-field v-model.number="price" type="number" placeholder="6500" class="py-2"/>
                 <v-card-title>会社URL</v-card-title>
                 <v-text-field v-model="url" text placeholder="https://company.co.jp" class="py-2"/>
@@ -73,31 +73,30 @@ export default class MemoAdd extends Vue {
   url: string | null = ""
   menu = false
   saveMemo() {
-    // const slug = this.generateUUID()
-    const memocode: (number | null)[] = []
-    memocode.push(this.code)
-    firestore.collection('memos').doc(memocode.toString()).set({
-      date: this.date,
-      code: this.code,
-      name: this.name,
+    const slug = this.generateUUID()
+    firestore.collection('memos').add({
       capitalization: this.capitalization,
+      code: this.code,
+      date: this.date,
       floating: this.floating,
-      theme: this.theme,
+      name: this.name,
       price: this.price,
+      reason: this.reason,
+      theme: this.theme,
       url: this.url,
-      // slug: slug
+      slug: slug
     })
       this.$router.push({path: "/memoHome"})
   }
-  // generateUUID(): string {
-  //   let d = new Date().getTime();
-  //   const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-  //   const r = (d + Math.random() * 16) % 16 | 0
-  //   d = Math.floor(d / 16)
-  //   return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
-  // });
-  //   return uuid;
-  // }
+  generateUUID(): string {
+    let d = new Date().getTime();
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (d + Math.random() * 16) % 16 | 0
+    d = Math.floor(d / 16)
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
+  });
+    return uuid;
+  }
   cardWidth() {
     switch (this.$vuetify.breakpoint.name) {
       case "xs":
