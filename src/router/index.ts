@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import memoAdd from "@/views/memoAdd.vue";
 import memoHome from "@/views/memoHome.vue";
-// import memoLogin from "@/views/memoLogin.vue";
-// import memoRegister from "@/views/memoRegister.vue";
+import memoLogin from "@/views/memoLogin.vue";
+import memoRegister from "@/views/memoRegister.vue";
 // import memoEdit from "@/views/memoEdit.vue";
 import memoDetail from '@/views/memoDetail.vue';
 import memoSearch from '@/components/memoSearch.vue';
@@ -11,17 +11,17 @@ import memoSearch from '@/components/memoSearch.vue';
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
-  // {
-  //   path: '/memoLogin',
-  //   component: memoLogin,
-  //   // beforeEnter(to, from, next) {
-  //   //   if (store.getters.idToken) {
-  //   //     next('/memoHome');
-  //   //   } else {
-  //   //     next();
-  //   //   }
-  //   // }
-  // },
+  {
+    path: '/memoLogin',
+    component: memoLogin,
+    // beforeEnter(to, from, next) {
+    //   if (store.getters.idToken) {
+    //     next('/memoHome');
+    //   } else {
+    //     next();
+    //   }
+    // }
+  },
   {
     path: '/memoAdd',
     component: memoAdd,
@@ -44,17 +44,17 @@ const routes: Array<RouteConfig> = [
     //   }
     // }
   },
-  // {
-  //   path: '/memoRegister',
-  //   component: memoRegister,
-  //   // beforeEnter(to, from, next) {
-  //   //   if (store.getters.idToken) {
-  //   //     next('/memoHome');
-  //   //   } else {
-  //   //     next();
-  //   //   }
-  //   // }
-  // },
+  {
+    path: '/memoRegister',
+    component: memoRegister,
+    // beforeEnter(to, from, next) {
+    //   if (store.getters.idToken) {
+    //     next('/memoHome');
+    //   } else {
+    //     next();
+    //   }
+    // }
+  },
   {
     path: '/memoSearch',
     component: memoSearch,
