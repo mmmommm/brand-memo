@@ -31,7 +31,7 @@
                 <v-btn to="/memoAdd" text :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">Add</v-btn>
               </div>
               <div class="my-2">
-                <v-btn text :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">logout</v-btn>
+                <v-btn text @click="logout()" :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">Logout</v-btn>
               </div>
             </template>
           </v-flex>
@@ -46,6 +46,9 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class Header extends Vue {
   isAuthenticated(): boolean {
     return this.$store.getters.isAuthenticated;
+  }
+  logout() {
+    this.$store.dispatch('userLogout')
   }
 }
 </script>
