@@ -47,7 +47,7 @@ export default new Vuex.Store({
           router.push('memoRegister');
         });
     },
-    userSignOut({ commit }) {
+    userLogout({ commit }) {
       firebaseauth
         .signOut()
         .then(() => {

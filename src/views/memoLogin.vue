@@ -66,14 +66,17 @@ export default class MemoLogin extends Vue {
     (v: any) => (v && v.length >= 6) || 'Password must be more than 6 characters',
   ]
   login() {
-    firebaseauth
-    //firebaseAuth.jsでfirebase.auth()まで書いてあるのでここから
-      .signInWithEmailAndPassword(this.email, this.password)
-      .then(() => {
-        //成功したらホームにリダイレクト
-        this.$router.push('/memoHome');
-      })
-    }
+    this.$store.dispatch('userLogin', {
+      email: this.email,
+      password: this.password
+    })
+    // firebaseauth
+    //   .signInWithEmailAndPassword(this.email, this.password)
+    //   .then(() => {
+    //     //成功したらホームにリダイレクト
+    //     this.$router.push('/memoHome');
+    //   })
+  }
 }
 </script>
 <style scoped>
