@@ -2,7 +2,7 @@
   <v-container>
     <v-layout>
       <v-text-field v-model.number="search_term" placeholder="search brand by code"/>
-      <v-btn @click="filteredList()" @keydown.enter="filteredList" text outlined>検索</v-btn>
+      <v-btn @click="filteredList()" @keydown.enter="filteredList" text outlined class="mt-2">検索</v-btn>
     </v-layout>
     <v-layout wrap>
       <v-flex xs12 sm6 md4 v-for="(memo, index) in filteredMemo" :key="index">

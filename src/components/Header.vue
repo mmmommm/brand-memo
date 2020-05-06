@@ -35,10 +35,10 @@
                   <template v-slot:activator="{ on }">
                     <v-btn text v-on="on" :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly">Logout</v-btn>
                   </template>
-                    <v-card>
+                    <v-card width="290" height="150">
                       <v-card-title class="heeadline">本当にログアウトしてよろしいですか？</v-card-title>
                       <v-layout justify-center>
-                        <v-card-acrions>
+                        <v-card-acrions name="logout">
                           <v-spacer/>
                           <v-btn @click="logout()" color="error" :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly" text>はい</v-btn>
                           <v-btn @click="dialog = false" color="indigo" :x-large="$vuetify.breakpoint.smAndUp" :small="$vuetify.breakpoint.xsOnly" text>いいえ</v-btn>
