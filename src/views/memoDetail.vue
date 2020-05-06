@@ -34,11 +34,12 @@
               <p class="ml-2">理由</p>
             </v-card-title>
             <v-textarea :value="reason" cols="60" rows="25" class="ml-4" readonly outlined></v-textarea>
-            <!-- <v-btn type="submit" x-large class="ml-12 mb-4" outlined :to="{ name: 'memo-edit', params: { memo: slug }}">Editmemo</v-btn> -->
+            <v-btn type="submit" x-large class="ml-12 mb-4" outlined :to="{ name: 'memo-edit', params: { memo: this.slug }}">Editmemo</v-btn>
           </v-card>
         </v-flex>
       </v-layout>
     </v-container>
+    <router-view/>
   </v-app>
 </template>
 <script lang="ts">
@@ -56,6 +57,7 @@ export default class MemoDetail extends Vue {
   reason: string | null = null
   theme: string | null = null
   url: string | null = null
+  slug: string | undefined = ""
   beforeRouteEnter(to: any, from: any, next: any){
     firestore.collection('memos').where('slug', '==', to.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc) =>{
@@ -85,6 +87,7 @@ export default class MemoDetail extends Vue {
         this.reason = doc.data().reason
         this.theme = doc.data().theme
         this.url = doc.data().url
+        this.slug = doc.data().slug
       })
     })
   }

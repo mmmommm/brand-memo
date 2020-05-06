@@ -4,7 +4,7 @@ import memoAdd from "@/views/memoAdd.vue";
 import memoHome from "@/views/memoHome.vue";
 import memoLogin from "@/views/memoLogin.vue";
 import memoRegister from "@/views/memoRegister.vue";
-// import memoEdit from "@/views/memoEdit.vue";
+import memoEdit from "@/views/memoEdit.vue";
 import memoDetail from '@/views/memoDetail.vue';
 import memoSearch from '@/components/memoSearch.vue';
 
@@ -59,22 +59,17 @@ const routes: Array<RouteConfig> = [
     path: '/memoSearch',
     component: memoSearch,
   },
-  // {
-  //   path: '/:memo/edit',
-  //   name: 'memo-edit',
-  //   component: memoEdit,
-  //   // beforeEnter(to, from, next) {
-  //   //   if (store.getters.idToken) {
-  //   //     next();
-  //   //   } else {
-  //   //     next('/');
-  //   //   }
-  //   // }
-  // },
   {
     path: '/:memo',
     name: 'memo-detail',
     component: memoDetail,
+    children: [
+      {
+        path: '/edit',
+        name: 'memo-edit',
+        component: memoEdit
+      }
+    ]
     // beforeEnter(to, from, next) {
     //   if (store.getters.idToken) {
     //     next();
