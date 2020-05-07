@@ -89,8 +89,8 @@
               >
                 <v-btn
                   to='/memoAdd'
-                  text:
-                  x-large='$vuetify.breakpoint.smAndUp'
+                  text
+                  :x-large='$vuetify.breakpoint.smAndUp'
                   :small='$vuetify.breakpoint.xsOnly'
                 >
                   Add
@@ -120,9 +120,7 @@
                       width='290'
                       height='150'
                     >
-                      <v-card-title
-                        class='heeadline'
-                      >
+                      <v-card-title>
                         本当にログアウトしてよろしいですか？
                       </v-card-title>
                       <v-layout
