@@ -1,11 +1,21 @@
 <template>
   <v-app>
     <v-container>
-      <v-layout wrap>
-        <v-flex xs12 sm12 md5>
-          <v-card :width='cardWidth' flat>
+      <v-layout
+        wrap>
+        <v-flex
+          xs12
+          sm12
+          md5
+        >
+          <v-card
+            :width='cardWidth'
+            flat
+          >
             <v-layout>
-              <v-card-title>日付</v-card-title>
+              <v-card-title>
+                日付
+              </v-card-title>
               <v-menu
                 ref='menu'
                 v-model='menu'
@@ -14,7 +24,9 @@
                 offset-y
                 max-width='290'
               >
-                <template v-slot:activator='{ on }'>
+                <template
+                  v-slot:activator='{ on }'
+                >
                   <v-text-field
                     v-model='date'
                     v-on='on'
@@ -22,36 +34,111 @@
                     :value='date'
                   />
                 </template>
-                <v-date-picker v-model='date' no-title @input='menu = false'/>
+                <v-date-picker
+                  v-model='date'
+                  no-title
+                  @input='menu = false'
+                />
               </v-menu>
             </v-layout>
-            <v-layout wrap>
-              <v-flex class='ml-4'>
-                <v-card-title>コード</v-card-title>
-                <v-text-field type='text' class='py-2' :value='code'/>
-                <v-card-title>銘柄名</v-card-title>
-                <v-text-field type='text' class='py-2' :value='name'/>
-                <v-card-title>時価総額</v-card-title>
-                <v-text-field type='text' class='py-2' :value='capitalization'/>
-                <v-card-title>浮動株式数</v-card-title>
-                <v-text-field type='text' class='py-2' :value='floating'/>
-                <v-card-title>テーマ</v-card-title>
-                <v-text-field type='text' class='py-2' :value='theme'/>
-                <v-card-title>株価</v-card-title>
-                <v-text-field type='text' class='py-2' :value='price'/>
-                <v-card-title>会社URL</v-card-title>
-                <v-text-field type='text' class='py-2' :value='url'/>
+            <v-layout
+              wrap
+            >
+              <v-flex
+                class='ml-4'
+              >
+                <v-card-title>
+                  コード
+                </v-card-title>
+                <v-text-field
+                  type='text'
+                  class='py-2'
+                  :value='code'
+                />
+                <v-card-title>
+                  銘柄名
+                </v-card-title>
+                <v-text-field
+                  type='text'
+                  class='py-2'
+                  :value='name'
+                />
+                <v-card-title>
+                  時価総額
+                </v-card-title>
+                <v-text-field
+                  type='text'
+                  class='py-2'
+                  :value='capitalization'
+                />
+                <v-card-title>
+                  浮動株式数
+                </v-card-title>
+                <v-text-field
+                  type='text'
+                  class='py-2'
+                  :value='floating'
+                />
+                <v-card-title>
+                  テーマ
+                </v-card-title>
+                <v-text-field
+                  type='text'
+                  class='py-2'
+                  :value='theme'
+                />
+                <v-card-title>
+                  株価
+                </v-card-title>
+                <v-text-field
+                  type='text'
+                  class='py-2'
+                  :value='price'
+                />
+                <v-card-title>
+                  会社URL
+                </v-card-title>
+                <v-text-field
+                  type='text'
+                  class='py-2'
+                  :value='url'
+                />
               </v-flex>
             </v-layout>
           </v-card>
         </v-flex>
-        <v-flex xs12 sm12 md6>
-          <v-card :width='cardWidth' flat>
+        <v-flex
+          xs12
+          sm12
+          md6
+        >
+          <v-card
+            :width='cardWidth'
+            flat
+          >
             <v-card-title>
-              <p class='ml-2'>理由</p>
+              <p
+                class='ml-2'
+              >
+                理由
+              </p>
             </v-card-title>
-            <v-textarea :value='reason' cols='60' rows='25' class='ml-4' outlined/>
-            <v-btn type='submit' x-large class='ml-12 mb-4' outlined @click='updateMemo()'>updatememo</v-btn>
+            <v-textarea
+              value='reason'
+              cols='60'
+              rows='25'
+              class='ml-4'
+              outlined
+            />
+            <v-btn
+              type='submit'
+              x-large
+              class='ml-12 mb-4'
+              outlined
+              @click='updateMemo()'
+            >
+              updatememo
+            </v-btn>
           </v-card>
         </v-flex>
       </v-layout>

@@ -1,15 +1,36 @@
 <template>
   <v-app>
-    <v-img src='@/assets/login-photo.jpeg'>
+    <v-img
+      src='@/assets/login-photo.jpeg'
+    >
     <div>
       <v-container>
-        <v-layout justify-center>
-          <v-card shaped raised outlined width='800px' height='600px' class='mt-12'>
-            <v-layout justify-center>
-              <v-card-title class='font-weight-bold my-8 headline'>LOG IN</v-card-title>
+        <v-layout
+          justify-center
+        >
+          <v-card
+            shaped
+            raised
+            outlined
+            width='800px'
+            height='600px'
+            class='mt-12'
+          >
+            <v-layout
+              justify-center
+            >
+              <v-card-title
+                class='font-weight-bold my-8 headline'
+              >
+                LOG IN
+              </v-card-title>
             </v-layout>
             <v-form>
-              <v-card-subtitle class='title ml-12'>Email</v-card-subtitle>
+              <v-card-subtitle
+                class='title ml-12'
+              >
+                Email
+              </v-card-subtitle>
               <v-text-field
                 class='px-12'
                 type='email'
@@ -19,8 +40,12 @@
                 required
                 outlined
                 rounded
-              ></v-text-field>
-              <v-card-subtitle class='title ml-12'>Password</v-card-subtitle>
+              />
+              <v-card-subtitle
+                class='title ml-12'
+              >
+                Password
+              </v-card-subtitle>
               <v-text-field
                 class='px-12'
                 type='password'
@@ -30,11 +55,21 @@
                 required
                 outlined
                 rounded
-              ></v-text-field>
+              />
             </v-form>
-            <br><br>
-            <v-layout justify-center>
-              <v-btn outlined rounded x-large @click='login'>log in</v-btn>
+            <br>
+            <br>
+            <v-layout
+              justify-center
+            >
+              <v-btn
+                outlined
+                rounded
+                x-large
+                @click='login'
+              >
+                log in
+              </v-btn>
             </v-layout>
           </v-card>
         </v-layout>
