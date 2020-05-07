@@ -1,17 +1,54 @@
 <template>
   <v-container>
     <v-layout>
-      <v-text-field v-model.number='search_term' placeholder='search brand by code'/>
-      <v-btn @click='filteredList()' @keydown.enter='filteredList' text outlined class='mt-2'>検索</v-btn>
+      <v-text-field
+        v-model.number='search_term'
+        placeholder='search brand by code'
+      />
+      <v-btn
+        @click='filteredList()'
+        @keydown.enter='filteredList'
+        text
+        outlined
+        class='mt-2'
+      >
+        検索
+      </v-btn>
     </v-layout>
-    <v-layout wrap>
-      <v-flex xs12 sm6 md4 v-for='(memo, index) in filteredMemo' :key='index'>
-        <v-card width='350' height='200' class='my-5'>
-          <v-card-title class='ml-2'>{{ memo.code }}</v-card-title>
-          <v-card-title class='ml-2'>{{ memo.name }}</v-card-title>
+    <v-layout
+      wrap
+    >
+      <v-flex
+        xs12
+        sm6
+        md4
+        v-for='(memo, index) in filteredMemo'
+        :key='index'
+      >
+        <v-card
+          width='350'
+          height='200'
+          class='my-5'
+        >
+          <v-card-title
+            class='ml-2'
+          >
+            {{ memo.code }}
+          </v-card-title>
+          <v-card-title
+            class='ml-2'
+          >
+            {{ memo.name }}
+          </v-card-title>
           <v-card-text>
             <v-layout>
-              <v-btn outlined class='button ml-2  -6' :to="{ name: 'memo-detail', params: { memo: memo.slug }}">viewmemo</v-btn>
+              <v-btn
+                outlined
+                class='button ml-2'
+                :to="{ name: 'memo-detail', params: { memo: memo.slug }}"
+              >
+                viewmemo
+              </v-btn>
             </v-layout>
           </v-card-text>
         </v-card>
