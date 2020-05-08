@@ -8,11 +8,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null as string | null,
-    isAuthenticated: false
+    isAuthenticated: false,
+    Token: "" as string | null
   },
   mutations: {
-    setUser(state, payload) {
-      state.user = payload;
+    setIdToken(state, payload) {
+      state.Token = payload;
     },
     setIsAuthenticated(state, payload) {
       state.isAuthenticated = payload;
@@ -22,9 +23,11 @@ export default new Vuex.Store({
     userLogin({ commit }, { email, password }) {
       firebaseauth
         .signInWithEmailAndPassword(email, password)
-        .then(user => {
-          commit('setUser', user);
+        .then(res => {
           commit('setIsAuthenticated', true);
+          if(res.user !== null) {
+            commit('setIdToken', res.user.getIdToken().toString());
+          }
           router.push('/memoHome');
         })
         .catch(() => {
@@ -36,13 +39,15 @@ export default new Vuex.Store({
     userRegister({ commit }, { email, password }) {
       firebaseauth
         .createUserWithEmailAndPassword(email, password)
-        .then(user => {
-          commit('setUser', user);
+        .then(res => {
           commit('setIsAuthenticated', true);
+          if (res.user !== null) {
+            commit('setIdToken', res.user.getIdToken().toString());
+          }
           router.push('/memoHome');
         })
         .catch(() => {
-          commit('setUser', null);
+          commit('setIdToken', "");
           commit('setIsAuthenticated', false);
           router.push('memoRegister');
         });
@@ -51,20 +56,21 @@ export default new Vuex.Store({
       firebaseauth
         .signOut()
         .then(() => {
-          commit('setUser', null);
+          commit('setIdToken', "");
           commit('setIsAuthenticated', false);
-          router.push('/memoLogin')
+          router.push('/memoLogin');
+          this.state.Token = ""
         })
         .catch(() => {
-          commit('setUser', null);
+          commit('setIdToken', null);
           commit('setIsAuthenticated', false);
-          router.push('/memoRegister')
+          router.push('/memoRegister');
         })
     }
   },
   getters: {
     isAuthenticated(state) {
-      return state.user !== null && state.user !== undefined;
+      return state.isAuthenticated
     }
   }
 });
