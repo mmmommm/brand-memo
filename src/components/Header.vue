@@ -162,6 +162,7 @@
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
+import { firebaseauth } from '@/firebase/firebaseAuth';
 @Component
 export default class Header extends Vue {
   dialog = false
@@ -171,6 +172,13 @@ export default class Header extends Vue {
   logout() {
     this.dialog = false
     this.$store.dispatch('userLogout')
+  }
+  created() {
+    firebaseauth.onAuthStateChanged(user => {
+      user = user ? user : null;
+      this.$store.commit('setUser', user)
+      this.$store.commit('setIsAuthenticated', this.isAuthenticated ? true : false);
+    });
   }
 }
 </script>

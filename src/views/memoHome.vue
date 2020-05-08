@@ -35,7 +35,6 @@
                 >
                   viewmemo
                 </v-btn>
-                <!-- <v-btn outlined class='button ml-12 mt-6'>deletememo</v-btn> -->
               </v-layout>
             </v-card-text>
           </v-card>
