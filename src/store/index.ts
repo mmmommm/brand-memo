@@ -9,11 +9,10 @@ export default new Vuex.Store({
   state: {
     user: null as string | null,
     isAuthenticated: false,
-    Token: "" as string | null
   },
   mutations: {
-    setIdToken(state, payload) {
-      state.Token = payload;
+    setUser(state, payload) {
+      state.user = payload;
     },
     setIsAuthenticated(state, payload) {
       state.isAuthenticated = payload;
@@ -23,11 +22,9 @@ export default new Vuex.Store({
     userLogin({ commit }, { email, password }) {
       firebaseauth
         .signInWithEmailAndPassword(email, password)
-        .then(res => {
+        .then((user) => {
+          commit('setUser', user);
           commit('setIsAuthenticated', true);
-          if(res.user !== null) {
-            commit('setIdToken', res.user.getIdToken().toString());
-          }
           router.push('/memoHome');
         })
         .catch(() => {
@@ -39,15 +36,13 @@ export default new Vuex.Store({
     userRegister({ commit }, { email, password }) {
       firebaseauth
         .createUserWithEmailAndPassword(email, password)
-        .then(res => {
+        .then(user => {
+          commit('setUser', user);
           commit('setIsAuthenticated', true);
-          if (res.user !== null) {
-            commit('setIdToken', res.user.getIdToken().toString());
-          }
           router.push('/memoHome');
         })
         .catch(() => {
-          commit('setIdToken', "");
+          commit('setUser', null);
           commit('setIsAuthenticated', false);
           router.push('memoRegister');
         });
@@ -56,15 +51,14 @@ export default new Vuex.Store({
       firebaseauth
         .signOut()
         .then(() => {
-          commit('setIdToken', "");
+          commit('setUser', null);
           commit('setIsAuthenticated', false);
-          router.push('/memoLogin');
-          this.state.Token = ""
+          router.push('/memoLogin')
         })
         .catch(() => {
-          commit('setIdToken', null);
+          commit('setUser', null);
           commit('setIsAuthenticated', false);
-          router.push('/memoRegister');
+          router.push('/memoRegister')
         })
     }
   },
