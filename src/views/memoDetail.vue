@@ -129,6 +129,60 @@
             >
               Editmemo
             </v-btn>
+            <v-dialog
+              v-model='dialog'
+              persistent
+              max-width='290'
+            >
+              <template
+                v-slot:activator='{ on }'
+              >
+                <v-btn
+                  text
+                  v-on='on'
+                  x-large
+                  outlined
+                  class="ml-12 mb-4"
+                >
+                  Deletememo
+                </v-btn>
+              </template>
+                <v-card
+                  width='290'
+                  height='150'
+                >
+                  <v-card-title>
+                    本当に削除してよろしいですか？
+                  </v-card-title>
+                  <v-layout
+                    justify-center
+                  >
+                    <v-card-actions
+                      name='deletememo'
+                    >
+                      <v-spacer/>
+                      <v-btn
+                        @click='deleteMemo'
+                        color='error'
+                        :x-large='$vuetify.breakpoint.smAndUp'
+                        :small='$vuetify.breakpoint.xsOnly'
+                        text
+                      >
+                        はい
+                      </v-btn>
+                      <v-btn
+                        @click='dialog = false'
+                        color='indigo'
+                        :x-large='$vuetify.breakpoint.smAndUp'
+                        :small='$vuetify.breakpoint.xsOnly'
+                        text
+                      >
+                        いいえ
+                      </v-btn>
+                    </v-card-actions>
+                  </v-layout>
+                </v-card>
+            </v-dialog>
           </v-card>
         </v-flex>
       </v-layout>
@@ -152,6 +206,7 @@ export default class MemoDetail extends Vue {
   theme: string | null = null
   url: string | null = null
   slug: string | undefined = ''
+  dialog = false
   beforeRouteEnter(to: any, from: any, next: any){
     firestore.collection('memos').where('slug', '==', to.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc) =>{
@@ -183,6 +238,12 @@ export default class MemoDetail extends Vue {
         this.url = doc.data().url
         this.slug = doc.data().slug
       })
+    })
+  }
+  deleteMemo() {
+    firestore.collection('memos').doc(this.slug).delete()
+    .then(() => {
+      this.$router.push('/memoHome')
     })
   }
   cardWidth() {
