@@ -1,0 +1,36 @@
+version: 2
+jobs:
+ deploy_app:
+   working_directory: ~/brandmemo
+   docker:
+     - image: circleci/node:10-browsers
+   steps:
+     - checkout
+     - run:
+         name: node_modulesのインストール
+         command: |
+           npm install
+     - run:
+         name: テスト
+         command: |
+           npm run lint
+     - run:
+         name: ビルド
+         command: |
+           npm run build
+     - run:
+         name: firebase-toolsのインストール
+         command: |
+           npm install --dev firebase-tools
+     - run:
+         name: firebaseへデプロイ
+         command: |
+           ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+workflows:
+ version: 2
+ build-deploy:
+   jobs:
+     - deploy_app:
+         filters:
+           branches:
+             only: master
