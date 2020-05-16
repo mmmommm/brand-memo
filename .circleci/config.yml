@@ -39,11 +39,15 @@ jobs:
    steps:
      - checkout
      - attach_workspace:
-         at: brandmemo/dist
+         at: .
      - run:
          name: firebase-toolsのインストール
          command: |
            npm install --dev firebase-tools
+     - run:
+         name: distの位置を確認
+         command: |
+           ls -la dist
      - run:
          name: firebaseへデプロイ
          command: |
