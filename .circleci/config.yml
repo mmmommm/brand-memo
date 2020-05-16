@@ -1,7 +1,7 @@
 
 version: 2
 jobs:
- deploy_app:
+ test:
    working_directory: ~/brandmemo
    docker:
      - image: circleci/node:10-browsers
@@ -15,10 +15,20 @@ jobs:
          name: テスト
          command: |
            npm run lint
+ build:
+   docker:
+     - image: circleci/node:10-browsers
+   steps:
+     - checkout
      - run:
          name: ビルド
          command: |
            npm run build
+ deploy:
+   docker:
+     - image: circleci/node:10-browsers
+   steps:
+     - checkout
      - run:
          name: firebase-toolsのインストール
          command: |
@@ -31,7 +41,13 @@ workflows:
  version: 2
  build-deploy:
    jobs:
-     - deploy_app:
+     - test
+     - build:
+      requires:
+        - test
+     - deploy:
+      requires:
+        - build
          filters:
            branches:
              only: master
