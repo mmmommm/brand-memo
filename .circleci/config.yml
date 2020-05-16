@@ -20,6 +20,10 @@ jobs:
      - image: circleci/node:10-browsers
    steps:
      - checkout
+     - persist_to_workspace:
+         root: .
+         paths:
+          - .
      - run:
          name: package.jsonを読み込む
          command: |
@@ -34,6 +38,8 @@ jobs:
      - image: circleci/node:10-browsers
    steps:
      - checkout
+     - attach_workspace:
+         at: .
      - run:
          name: firebase-toolsのインストール
          command: |
@@ -41,7 +47,7 @@ jobs:
      - run:
          name: firebaseへデプロイ
          command: |
-           ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+           ./node_modules/firebase deploy --token=$FIREBASE_TOKEN
 workflows:
  version: 2
  build-test-deploy:
@@ -50,6 +56,10 @@ workflows:
      - build:
         requires:
           - test
+        filters:
+          branches:
+            only:
+             - master
      - deploy:
         requires:
           - build
