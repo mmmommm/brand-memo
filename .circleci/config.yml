@@ -1,4 +1,3 @@
-
 version: 2
 jobs:
  test:
@@ -16,6 +15,7 @@ jobs:
          command: |
            npm run lint
  build:
+   working_directory: ~/brandmemo
    docker:
      - image: circleci/node:10-browsers
    steps:
@@ -25,6 +25,7 @@ jobs:
          command: |
            npm run build
  deploy:
+   working_directory: ~/brandmemo
    docker:
      - image: circleci/node:10-browsers
    steps:
@@ -39,15 +40,16 @@ jobs:
            ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 workflows:
  version: 2
- build-deploy:
+ build-test-deploy:
    jobs:
      - test
      - build:
-      requires:
-        - test
+        requires:
+          - test
      - deploy:
-      requires:
-        - build
-         filters:
-           branches:
-             only: master
+        requires:
+          - build
+        filters:
+          branches:
+            only:
+             - master
