@@ -21,6 +21,10 @@ jobs:
    steps:
      - checkout
      - run:
+         name: package.jsonを読み込む
+         command: |
+           npm install
+     - run:
          name: ビルド
          command: |
            npm run build
@@ -33,7 +37,7 @@ jobs:
      - run:
          name: firebase-toolsのインストール
          command: |
-           npm install --dev firebase-tools
+           npm install --only=dev firebase-tools
      - run:
          name: firebaseへデプロイ
          command: |
