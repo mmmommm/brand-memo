@@ -39,7 +39,7 @@ jobs:
    steps:
      - checkout
      - attach_workspace:
-         at: .
+         at: brandmemo/dist
      - run:
          name: firebase-toolsのインストール
          command: |
