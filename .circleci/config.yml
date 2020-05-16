@@ -14,7 +14,7 @@ jobs:
          name: テスト
          command: |
            npm run lint
- build:
+ build-deploy:
    working_directory: ~/brandmemo
    docker:
      - image: circleci/node:10-browsers
@@ -32,12 +32,6 @@ jobs:
          name: ビルド
          command: |
            npm run build
- deploy:
-   working_directory: ~/brandmemo
-   docker:
-     - image: circleci/node:10-browsers
-   steps:
-     - checkout
      - attach_workspace:
          at: .
      - run:
@@ -57,16 +51,9 @@ workflows:
  build-test-deploy:
    jobs:
      - test
-     - build:
+     - build-deploy:
         requires:
           - test
-        filters:
-          branches:
-            only:
-             - master
-     - deploy:
-        requires:
-          - build
         filters:
           branches:
             only:
