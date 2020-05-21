@@ -1,196 +1,199 @@
 <template>
   <v-app>
-    <v-container>
-      <v-layout
-        wrap
-      >
-        <v-flex
-          xs12
-          sm12
-          md5
+    <template v-if='!displayEdit'>
+      <v-container>
+        <v-layout
+          wrap
         >
-          <v-card
-            :width='cardWidth'
-            flat
+          <v-flex
+            xs12
+            sm12
+            md5
           >
-            <v-layout>
-              <v-card-title>
-                日付
-              </v-card-title>
-              <v-text-field
-                readonly
-                :value='date'
-              />
-            </v-layout>
-            <v-layout
-              wrap
+            <v-card
+              :width='cardWidth'
+              flat
             >
-              <v-flex
-                class='ml-4'
+              <v-layout>
+                <v-card-title>
+                  日付
+                </v-card-title>
+                <v-text-field
+                  readonly
+                  :value='date'
+                />
+              </v-layout>
+              <v-layout
+                wrap
               >
-                <v-card-title>
-                  コード
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  readonly
-                  :value='code'
-                />
-                <v-card-title>
-                  銘柄名
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  readonly
-                  :value='name'
-                />
-                <v-card-title>
-                  時価総額
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  readonly
-                  :value='capitalization'
-                />
-                <v-card-title>
-                  浮動株式数
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  readonly
-                  :value='floating'
-                />
-                <v-card-title>
-                  テーマ
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  readonly
-                  :value='theme'
-                />
-                <v-card-title>
-                  株価
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  readonly
-                  :value='price'
-                />
-                <v-card-title>
-                  会社URL
-                </v-card-title>
-                <v-btn
-                  text
-                  :href='url'
-                  target='_blank'
+                <v-flex
+                  class='ml-4'
                 >
-                  {{ url }}
-                </v-btn>
-              </v-flex>
-            </v-layout>
-          </v-card>
-        </v-flex>
-        <v-flex
-          xs12
-          sm12
-          md6
-        >
-          <v-card
-            :width='cardWidth'
-            flat
-          >
-            <v-card-title>
-              <p
-                class='ml-2'
-              >
-                理由
-              </p>
-            </v-card-title>
-            <v-textarea
-              :value='reason'
-              cols='60'
-              rows='25'
-              class='ml-4'
-              readonly
-              outlined
-            />
-            <template
-              v-if='isAuthenticated()'
-            >
-              <v-btn
-                type='submit'
-                x-large
-                class='ml-12 mb-4'
-                outlined
-                :to="{ name: 'memo-edit', params: { memo: this.slug }}"
-              >
-                Editmemo
-              </v-btn>
-              <v-dialog
-                v-model='dialog'
-                persistent
-                max-width='290'
-              >
-                <template
-                  v-slot:activator='{ on }'
-                >
+                  <v-card-title>
+                    コード
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    readonly
+                    :value='code'
+                  />
+                  <v-card-title>
+                    銘柄名
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    readonly
+                    :value='name'
+                  />
+                  <v-card-title>
+                    時価総額
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    readonly
+                    :value='capitalization'
+                  />
+                  <v-card-title>
+                    浮動株式数
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    readonly
+                    :value='floating'
+                  />
+                  <v-card-title>
+                    テーマ
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    readonly
+                    :value='theme'
+                  />
+                  <v-card-title>
+                    株価
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    readonly
+                    :value='price'
+                  />
+                  <v-card-title>
+                    会社URL
+                  </v-card-title>
                   <v-btn
                     text
-                    v-on='on'
-                    x-large
-                    outlined
-                    class="ml-12 mb-4"
+                    :href='url'
+                    target='_blank'
                   >
-                    Deletememo
+                    {{ url }}
                   </v-btn>
-                </template>
-                  <v-card
-                    width='290'
-                    height='150'
+                </v-flex>
+              </v-layout>
+            </v-card>
+          </v-flex>
+          <v-flex
+            xs12
+            sm12
+            md6
+          >
+            <v-card
+              :width='cardWidth'
+              flat
+            >
+              <v-card-title>
+                <p
+                  class='ml-2'
+                >
+                  理由
+                </p>
+              </v-card-title>
+              <v-textarea
+                :value='reason'
+                cols='60'
+                rows='25'
+                class='ml-4'
+                readonly
+                outlined
+              />
+              <template
+                v-if='isAuthenticated()'
+              >
+                <v-btn
+                  type='submit'
+                  x-large
+                  class='ml-12 mb-4'
+                  outlined
+                  @click='displayEdit = true'
+                  :to="{ name: 'memo-edit', params: { memo: this.slug }}"
+                >
+                  Editmemo
+                </v-btn>
+                <v-dialog
+                  v-model='dialog'
+                  persistent
+                  max-width='290'
+                >
+                  <template
+                    v-slot:activator='{ on }'
                   >
-                    <v-card-title>
-                      本当に削除してよろしいですか？
-                    </v-card-title>
-                    <v-layout
-                      justify-center
+                    <v-btn
+                      text
+                      v-on='on'
+                      x-large
+                      outlined
+                      class="ml-12 mb-4"
                     >
-                      <v-card-actions
-                        name='deletememo'
+                      Deletememo
+                    </v-btn>
+                  </template>
+                    <v-card
+                      width='290'
+                      height='150'
+                    >
+                      <v-card-title>
+                        本当に削除してよろしいですか？
+                      </v-card-title>
+                      <v-layout
+                        justify-center
                       >
-                        <v-spacer/>
-                        <v-btn
-                          @click='deleteMemo'
-                          color='error'
-                          :x-large='$vuetify.breakpoint.smAndUp'
-                          :small='$vuetify.breakpoint.xsOnly'
-                          text
+                        <v-card-actions
+                          name='deletememo'
                         >
-                          はい
-                        </v-btn>
-                        <v-btn
-                          @click='dialog = false'
-                          color='indigo'
-                          :x-large='$vuetify.breakpoint.smAndUp'
-                          :small='$vuetify.breakpoint.xsOnly'
-                          text
-                        >
-                          いいえ
-                        </v-btn>
-                      </v-card-actions>
-                    </v-layout>
-                  </v-card>
-              </v-dialog>
-            </template>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
+                          <v-spacer/>
+                          <v-btn
+                            @click='deleteMemo'
+                            color='error'
+                            :x-large='$vuetify.breakpoint.smAndUp'
+                            :small='$vuetify.breakpoint.xsOnly'
+                            text
+                          >
+                            はい
+                          </v-btn>
+                          <v-btn
+                            @click='dialog = false'
+                            color='indigo'
+                            :x-large='$vuetify.breakpoint.smAndUp'
+                            :small='$vuetify.breakpoint.xsOnly'
+                            text
+                          >
+                            いいえ
+                          </v-btn>
+                        </v-card-actions>
+                      </v-layout>
+                    </v-card>
+                </v-dialog>
+              </template>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </template>
     <router-view/>
   </v-app>
 </template>
@@ -211,6 +214,7 @@ export default class MemoDetail extends Vue {
   url: string | null = null
   slug: string | undefined = ''
   dialog = false
+  displayEdit = false
   beforeRouteEnter(to: any, from: string, next: any){
     firestore.collection('memos').where('slug', '==', to.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc) =>{
