@@ -6,6 +6,7 @@ import memoLogin from '@/views/user/memoLogin.vue';
 import memoRegister from '@/views/user/memoRegister.vue';
 import memoEdit from '@/views/memo/memoEdit.vue';
 import memoDetail from '@/views/memo/memoDetail.vue';
+import PageNotFound from '@/views/PageNotFound.vue';
 import memoSearch from '@/components/memoSearch.vue';
 
 Vue.use(VueRouter)
@@ -78,9 +79,10 @@ const routes: Array<RouteConfig> = [
     //   }
     // }
   },
+  //上の動的ルーティングに吸われて機能しない
   {
     path: '*',
-    redirect: '/memoHome'
+    component: PageNotFound
   }
 ]
 
