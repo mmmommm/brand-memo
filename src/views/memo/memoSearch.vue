@@ -3,7 +3,7 @@
     <v-layout>
       <v-text-field
         v-model.number='search_term'
-        placeholder='search brand by code'
+        placeholder='search brand by code (ex 9984'
       />
       <v-btn
         @click='filteredList()'
