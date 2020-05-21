@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import memoAdd from '@/views/memoAdd.vue';
-import memoHome from '@/views/memoHome.vue';
-import memoLogin from '@/views/memoLogin.vue';
-import memoRegister from '@/views/memoRegister.vue';
-import memoEdit from '@/views/memoEdit.vue';
-import memoDetail from '@/views/memoDetail.vue';
+import memoAdd from '@/views/memo/memoAdd.vue';
+import memoHome from '@/views/memo/memoHome.vue';
+import memoLogin from '@/views/user/memoLogin.vue';
+import memoRegister from '@/views/user/memoRegister.vue';
+import memoEdit from '@/views/memo/memoEdit.vue';
+import memoDetail from '@/views/memo/memoDetail.vue';
+import PageNotFound from '@/views/PageNotFound.vue';
 import memoSearch from '@/components/memoSearch.vue';
 
 Vue.use(VueRouter)
@@ -78,9 +79,10 @@ const routes: Array<RouteConfig> = [
     //   }
     // }
   },
+  //上の動的ルーティングに吸われて機能しない
   {
     path: '*',
-    redirect: '/memoHome'
+    component: PageNotFound
   }
 ]
 
