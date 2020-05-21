@@ -3,11 +3,11 @@
     <v-layout>
       <v-text-field
         v-model.number='search_term'
-        placeholder='search brand by code'
+        placeholder='search brand by code (ex 9984'
+        @keydown.enter='filteredList'
       />
       <v-btn
         @click='filteredList()'
-        @keydown.enter='filteredList'
         text
         outlined
         class='mt-2'

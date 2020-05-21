@@ -7,7 +7,7 @@ import memoRegister from '@/views/user/memoRegister.vue';
 import memoEdit from '@/views/memo/memoEdit.vue';
 import memoDetail from '@/views/memo/memoDetail.vue';
 import PageNotFound from '@/views/PageNotFound.vue';
-import memoSearch from '@/components/memoSearch.vue';
+import memoSearch from '@/views/memo/memoSearch.vue';
 
 Vue.use(VueRouter)
 
