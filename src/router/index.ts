@@ -8,7 +8,7 @@ import memoEdit from '@/views/memo/memoEdit.vue';
 import memoDetail from '@/views/memo/memoDetail.vue';
 import PageNotFound from '@/views/PageNotFound.vue';
 import memoSearch from '@/views/memo/memoSearch.vue';
-import store from 'vuex'
+import store from '@/store/index';
 
 Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
@@ -86,7 +86,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if(store.getters.isAuthenticated) {
+    if(!store.getters.isAuthenticated) {
       next({
         path: '/memoLogin', query: { redirect: to.fullPath }
       });
