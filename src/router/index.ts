@@ -51,33 +51,20 @@ const routes: Array<RouteConfig> = [
     path: '/memoAdd',
     component: memoAdd,
     meta: { requiresAuth: true }
-    // beforeEnter(to, from, next) {
-    //   if(store.getters.idToken) {
-    //     next();
-    //   } else {
-    //     next('/');
-    //   }
-    // }
   },
+  //memoDetailは非ログインでも観れるがedit画面は不可
   {
     path: '/:memo',
     name: 'memo-detail',
     component: memoDetail,
-    meta: { requiresAuth: true },
     children: [
       {
         path: '/edit',
         name: 'memo-edit',
-        component: memoEdit
+        component: memoEdit,
+        meta: { requiresAuth: true },
       }
     ]
-    // beforeEnter(to, from, next) {
-    //   if (store.getters.idToken) {
-    //     next();
-    //   } else {
-    //     next('/');
-    //   }
-    // }
   },
   //上の動的ルーティングに吸われてリダイレクトが機能しない
   {
