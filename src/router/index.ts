@@ -21,12 +21,32 @@ const routes: Array<RouteConfig> = [
     path: '/memoSearch',
     component: memoSearch,
   },
-  //ログインしていないとガードするもの
+  //ログインしているとガードするもの
   {
     path: '/memoLogin',
     component: memoLogin,
-    meta: { requiresAuth: true }
+    beforeEnter(to, from, next) {
+      if (store.getters.isAuthenticated) {
+        store.getters.isAuthenticated = true
+        next('/memoHome');
+      } else {
+        next();
+      }
+    }
   },
+  {
+    path: '/memoRegister',
+    component: memoRegister,
+    beforeEnter(to, from, next) {
+      if (store.getters.isAuthenticated) {
+        store.getters.isAuthenticated = true
+        next('/memoHome');
+      } else {
+        next();
+      }
+    }
+  },
+  //ログインしていないとガードするもの
   {
     path: '/memoAdd',
     component: memoAdd,
@@ -36,18 +56,6 @@ const routes: Array<RouteConfig> = [
     //     next();
     //   } else {
     //     next('/');
-    //   }
-    // }
-  },
-  {
-    path: '/memoRegister',
-    component: memoRegister,
-    meta: { requiresAuth: true }
-    // beforeEnter(to, from, next) {
-    //   if (store.getters.idToken) {
-    //     next('/memoHome');
-    //   } else {
-    //     next();
     //   }
     // }
   },
@@ -87,6 +95,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if(!store.getters.isAuthenticated) {
+      store.getters.isAuthenticated = false
       next({
         path: '/memoLogin', query: { redirect: to.fullPath }
       });
