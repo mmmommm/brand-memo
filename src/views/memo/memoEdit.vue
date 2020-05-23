@@ -141,6 +141,7 @@
                 class='ml-12 mb-4'
                 outlined
                 @click='updateMemo()'
+                :disabled='valid'
               >
                 updatememo
               </v-btn>
