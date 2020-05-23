@@ -1,7 +1,9 @@
 <template>
   <v-app>
-    <form
-      @submit.prevent='saveMemo'
+    <v-form
+      ref='form'
+      v-model='valid'
+      lazy-validation
     >
     <v-container>
       <v-layout
@@ -147,6 +149,8 @@
                 x-large
                 class='ml-12 my-12'
                 outlined
+                @click='saveMemo'
+                :disabled='!valid'
               >
                 Addmemo
               </v-btn>
@@ -154,13 +158,16 @@
           </v-flex>
       </v-layout>
     </v-container>
-    </form>
+    </v-form>
   </v-app>
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import * as rules from '@/config/user/rules';
+interface VForm extends Vue {
+  validate(): boolean;
+}
 @Component
 export default class MemoAdd extends Vue {
   capitalization: number | null = null
@@ -173,6 +180,10 @@ export default class MemoAdd extends Vue {
   theme: string | null = ''
   url: string | null = ''
   menu = false
+  valid = true
+  $refs!: {
+    form: VForm;
+  }
   get codeRules() { return rules.codeRules }
   get nameRules() { return rules.nameRules }
   get capitalizationRules() { return rules.capitalizationRules }
@@ -182,20 +193,22 @@ export default class MemoAdd extends Vue {
   get urlRules() { return rules.urlRules }
   get reasonRules() { return rules.reasonRules }
   saveMemo() {
-    const slug = this.generateUUID()
-    firestore.collection('memos').add({
-      capitalization: this.capitalization,
-      code: this.code,
-      date: this.date,
-      floating: this.floating,
-      name: this.name,
-      price: this.price,
-      reason: this.reason,
-      theme: this.theme,
-      url: this.url,
-      slug: slug
-    })
-      this.$router.push({path: '/memoHome'})
+    if(this.$refs.form.validate()) {
+      const slug = this.generateUUID()
+      firestore.collection('memos').add({
+        capitalization: this.capitalization,
+        code: this.code,
+        date: this.date,
+        floating: this.floating,
+        name: this.name,
+        price: this.price,
+        reason: this.reason,
+        theme: this.theme,
+        url: this.url,
+        slug: slug
+      })
+        this.$router.push({path: '/memoHome'})
+    }
   }
   generateUUID(): string {
     let d = new Date().getTime();
