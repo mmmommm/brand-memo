@@ -1,7 +1,9 @@
 <template>
   <v-app>
-    <form
-      @submit.prevent='saveMemo'
+    <v-form
+      ref='form'
+      v-model='valid'
+      lazy-validation
     >
     <v-container>
       <v-layout
@@ -56,6 +58,7 @@
                     type='number'
                     placeholder='7203'
                     class='py-2'
+                    :rules='codeRules'
                   />
                   <v-card-title>
                     銘柄名
@@ -65,6 +68,7 @@
                     type='text'
                     placeholder='トヨタ自動車'
                     class='py-2'
+                    :rules='nameRules'
                   />
                   <v-card-title>
                     時価総額（百万）
@@ -74,6 +78,7 @@
                     placeholder='21495773'
                     type='number'
                     class='py-2'
+                    :rules='capitalizationRules'
                   />
                   <v-card-title>
                     浮動株式数（株）
@@ -83,6 +88,7 @@
                     placeholder='1000000000'
                     type='number'
                     class='py-2'
+                    :rules='floatRules'
                   />
                   <v-card-title>
                     テーマ
@@ -92,6 +98,7 @@
                     type='text'
                     placeholder='自動運転'
                     class='py-2'
+                    :rules='themeRules'
                   />
                   <v-card-title>
                     株価（円）
@@ -101,6 +108,7 @@
                     type='number'
                     placeholder='6500'
                     class='py-2'
+                    :rules='priceRules'
                   />
                   <v-card-title>
                     会社URL
@@ -110,6 +118,7 @@
                     text
                     placeholder='https://company.co.jp'
                     class='py-2'
+                    :rules='urlRules'
                   />
                 </v-flex>
               </v-layout>
@@ -133,12 +142,15 @@
                 rows='25'
                 outlined
                 placeholder='この会社はどのような会社か、投資をするに値するか、業績等からみてどうか。'
+                :rules='reasonRules'
               />
               <v-btn
                 type='submit'
                 x-large
                 class='ml-12 my-12'
                 outlined
+                @click='saveMemo'
+                :disabled='!valid'
               >
                 Addmemo
               </v-btn>
@@ -146,12 +158,16 @@
           </v-flex>
       </v-layout>
     </v-container>
-    </form>
+    </v-form>
   </v-app>
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
+import * as rules from '@/config/user/rules';
+interface VForm extends Vue {
+  validate(): boolean;
+}
 @Component
 export default class MemoAdd extends Vue {
   capitalization: number | null = null
@@ -164,21 +180,35 @@ export default class MemoAdd extends Vue {
   theme: string | null = ''
   url: string | null = ''
   menu = false
+  valid = true
+  $refs!: {
+    form: VForm;
+  }
+  get codeRules() { return rules.codeRules }
+  get nameRules() { return rules.nameRules }
+  get capitalizationRules() { return rules.capitalizationRules }
+  get floatRules() { return rules.floatRules }
+  get themeRules() { return rules.themeRules }
+  get priceRules() { return rules.priceRules }
+  get urlRules() { return rules.urlRules }
+  get reasonRules() { return rules.reasonRules }
   saveMemo() {
-    const slug = this.generateUUID()
-    firestore.collection('memos').add({
-      capitalization: this.capitalization,
-      code: this.code,
-      date: this.date,
-      floating: this.floating,
-      name: this.name,
-      price: this.price,
-      reason: this.reason,
-      theme: this.theme,
-      url: this.url,
-      slug: slug
-    })
-      this.$router.push({path: '/memoHome'})
+    if(this.$refs.form.validate()) {
+      const slug = this.generateUUID()
+      firestore.collection('memos').add({
+        capitalization: this.capitalization,
+        code: this.code,
+        date: this.date,
+        floating: this.floating,
+        name: this.name,
+        price: this.price,
+        reason: this.reason,
+        theme: this.theme,
+        url: this.url,
+        slug: slug
+      })
+        this.$router.push({path: '/memoHome'})
+    }
   }
   generateUUID(): string {
     let d = new Date().getTime();
