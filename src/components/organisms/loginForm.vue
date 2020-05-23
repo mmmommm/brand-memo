@@ -16,7 +16,11 @@
         LOG IN
       </v-card-title>
     </v-layout>
-    <v-form>
+    <v-form
+      ref='form'
+      v-model='valid'
+      lazy-validation
+    >
       <v-card-subtitle
         class='title ml-12'
       >
@@ -57,6 +61,7 @@
         outlined
         rounded
         x-large
+        :disabled='valid'
         @click='login'
       >
         log in
@@ -67,14 +72,18 @@
 <script lang="ts">
 import * as rules from '@/config/user/rules'
 import { Component, Vue } from 'vue-property-decorator'
+interface VForm extends Vue {
+  validate(): boolean;
+}
 @Component
 export default class LoginForm extends Vue {
-  // @Prop({required: true})
-  // public login!: (email: string, password: string) => Promise<void>
 
   email = ''
   password = ''
-
+  valid = true
+  $refs!: {
+    form: VForm;
+  }
   get emailRules() {
     return rules.emailRules
   }
@@ -82,16 +91,12 @@ export default class LoginForm extends Vue {
     return rules.passwordRules
   }
   login() {
-    this.$store.dispatch('userLogin', {
-      email: this.email,
-      password: this.password
-    })
-    // firebaseauth
-    //   .signInWithEmailAndPassword(this.email, this.password)
-    //   .then(() => {
-    //     //成功したらホームにリダイレクト
-    //     this.$router.push('/memoHome');
-    //   })
+    if(this.$refs.form.validate()) {
+      this.$store.dispatch('userLogin', {
+        email: this.email,
+        password: this.password
+      })
+    }
   }
 }
 </script>

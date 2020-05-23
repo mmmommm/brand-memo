@@ -16,7 +16,11 @@
         REGISTER
       </v-card-title>
     </v-layout>
-    <v-form>
+    <v-form
+      ref='form'
+      v-model='valid'
+      lazy-validation
+    >
       <v-card-subtitle
         class='title ml-12'
       >
@@ -58,6 +62,7 @@
         rounded
         x-large
         @click='register'
+        :disabled='valid'
       >
         register
       </v-btn>
@@ -68,11 +73,17 @@
 import * as rules from '@/config/user/rules';
 import { Component, Vue } from 'vue-property-decorator';
 import { firebaseauth } from '@/firebase/firebaseAuth';
+interface VForm extends Vue {
+  validate(): boolean;
+}
 @Component
 export default class RegisterForm extends Vue {
   email = ''
   password = ''
-
+  valid = true
+  $refs!: {
+    form: VForm;
+  }
   get emailRules() {
     return rules.emailRules
   }
@@ -80,16 +91,12 @@ export default class RegisterForm extends Vue {
     return rules.passwordRules
   }
   register() {
-    this.$store.dispatch('userRegister', {
-      email: this.email,
-      password: this.password
-    })
-    // firebaseauth
-    // .createUserWithEmailAndPassword(this.email, this.password)
-    // .then(() => {
-    // //成功したらemailとpasswordを空に
-    // this.$router.push('/memoHome');
-    // })
+    if(this.$refs.form.validate()) {
+      this.$store.dispatch('userRegister', {
+        email: this.email,
+        password: this.password
+      })
+    }
   }
 }
 </script>
