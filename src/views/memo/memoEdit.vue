@@ -1,154 +1,162 @@
 <template>
   <v-app>
-    <v-container>
-      <v-layout
-        wrap>
-        <v-flex
-          xs12
-          sm12
-          md5
-        >
-          <v-card
-            :width='cardWidth'
-            flat
+    <v-form
+      ref='form'
+      v-model='valid'
+      lazy-validation
+    >
+      <v-container>
+        <v-layout
+          wrap>
+          <v-flex
+            xs12
+            sm12
+            md5
           >
-            <v-layout>
-              <v-card-title>
-                日付
-              </v-card-title>
-              <v-menu
-                ref='menu'
-                v-model='menu'
-                :close-on-content-click='false'
-                transition='scale-transition'
-                offset-y
-                max-width='290'
-              >
-                <template
-                  v-slot:activator='{ on }'
+            <v-card
+              :width='cardWidth'
+              flat
+            >
+              <v-layout>
+                <v-card-title>
+                  日付
+                </v-card-title>
+                <v-menu
+                  ref='menu'
+                  v-model='menu'
+                  :close-on-content-click='false'
+                  transition='scale-transition'
+                  offset-y
+                  max-width='290'
                 >
-                  <v-text-field
+                  <template
+                    v-slot:activator='{ on }'
+                  >
+                    <v-text-field
+                      v-model='date'
+                      v-on='on'
+                      class='mt-4 ml-4'
+                      :value='date'
+                    />
+                  </template>
+                  <v-date-picker
                     v-model='date'
-                    v-on='on'
-                    class='mt-4 ml-4'
-                    :value='date'
+                    no-title
+                    @input='menu = false'
                   />
-                </template>
-                <v-date-picker
-                  v-model='date'
-                  no-title
-                  @input='menu = false'
-                />
-              </v-menu>
-            </v-layout>
-            <v-layout
-              wrap
-            >
-              <v-flex
-                class='ml-4'
+                </v-menu>
+              </v-layout>
+              <v-layout
+                wrap
               >
-                <v-card-title>
-                  コード
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  :value='code'
-                />
-                <v-card-title>
-                  銘柄名
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  :value='name'
-                />
-                <v-card-title>
-                  時価総額
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  :value='capitalization'
-                />
-                <v-card-title>
-                  浮動株式数
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  :value='floating'
-                />
-                <v-card-title>
-                  テーマ
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  :value='theme'
-                />
-                <v-card-title>
-                  株価
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  :value='price'
-                />
-                <v-card-title>
-                  会社URL
-                </v-card-title>
-                <v-text-field
-                  type='text'
-                  class='py-2'
-                  :value='url'
-                />
-              </v-flex>
-            </v-layout>
-          </v-card>
-        </v-flex>
-        <v-flex
-          xs12
-          sm12
-          md6
-        >
-          <v-card
-            :width='cardWidth'
-            flat
+                <v-flex
+                  class='ml-4'
+                >
+                  <v-card-title>
+                    コード
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    :value='code'
+                  />
+                  <v-card-title>
+                    銘柄名
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    :value='name'
+                  />
+                  <v-card-title>
+                    時価総額
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    :value='capitalization'
+                  />
+                  <v-card-title>
+                    浮動株式数
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    :value='floating'
+                  />
+                  <v-card-title>
+                    テーマ
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    :value='theme'
+                  />
+                  <v-card-title>
+                    株価
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    :value='price'
+                  />
+                  <v-card-title>
+                    会社URL
+                  </v-card-title>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    :value='url'
+                  />
+                </v-flex>
+              </v-layout>
+            </v-card>
+          </v-flex>
+          <v-flex
+            xs12
+            sm12
+            md6
           >
-            <v-card-title>
-              <p
-                class='ml-2'
-              >
-                理由
-              </p>
-            </v-card-title>
-            <v-textarea
-              value='reason'
-              cols='60'
-              rows='25'
-              class='ml-4'
-              outlined
-            />
-            <v-btn
-              type='submit'
-              x-large
-              class='ml-12 mb-4'
-              outlined
-              @click='updateMemo()'
+            <v-card
+              :width='cardWidth'
+              flat
             >
-              updatememo
-            </v-btn>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
+              <v-card-title>
+                <p
+                  class='ml-2'
+                >
+                  理由
+                </p>
+              </v-card-title>
+              <v-textarea
+                value='reason'
+                cols='60'
+                rows='25'
+                class='ml-4'
+                outlined
+              />
+              <v-btn
+                type='submit'
+                x-large
+                class='ml-12 mb-4'
+                outlined
+                @click='updateMemo()'
+              >
+                updatememo
+              </v-btn>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-form>
   </v-app>
 </template>
 <script lang='ts'>
-import { Watch, Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
-import { MemoItem } from '@/interface/memoItem';
+interface VForm extends Vue {
+  validate(): boolean;
+}
 @Component
 export default class MemoEdit extends Vue {
   capitalization: number | null = null
@@ -161,6 +169,10 @@ export default class MemoEdit extends Vue {
   theme: string | null = null
   url: string | null = null
   slug: string | undefined = ''
+  valid = true
+  $refs!: {
+    form: VForm;
+  }
   beforeRouteEnter(to: any, from: any, next: any){
     firestore.collection('memos').where('slug', '==', to.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc) =>{
@@ -209,20 +221,22 @@ export default class MemoEdit extends Vue {
     }
   }
   updateMemo() {
-    firestore.collection('memos').doc(this.slug).update({
-      capitalization: this.capitalization,
-      code: this.code,
-      date: this.date,
-      floating: this.floating,
-      name: this.name,
-      price: this.price,
-      reason: this.reason,
-      theme: this.theme,
-      url: this.url
-    })
-    .then(() => {
-      this.$router.go(-1)
-    })
+    if(this.$refs.form.validate()) {
+      firestore.collection('memos').doc(this.slug).update({
+        capitalization: this.capitalization,
+        code: this.code,
+        date: this.date,
+        floating: this.floating,
+        name: this.name,
+        price: this.price,
+        reason: this.reason,
+        theme: this.theme,
+        url: this.url
+      })
+      .then(() => {
+        this.$router.go(-1)
+      })
+    }
   }
 }
 </script>
