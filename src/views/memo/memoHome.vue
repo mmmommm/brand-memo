@@ -17,12 +17,12 @@
             class='my-5'
           >
             <v-card-title
-              class='ml-2'
+              class='ml-2 code'
             >
               {{ memo.code }}
             </v-card-title>
             <v-card-title
-              class='ml-2'
+              class='ml-2 name'
             >
               {{ memo.name }}
             </v-card-title>
@@ -46,20 +46,10 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
-import { firestore } from '@/firebase/fireStore';
+import { firestore } from '../../firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
 @Component
 export default class MemoHome extends Vue {
-  capitalization: number | null = 0
-  code: number | null = 0
-  date: Date | null = null
-  floating: number | null = 0
-  name: string | null = ''
-  price: number | null = null
-  reason: string | null = ''
-  theme: string | null = ''
-  url: string | null = ''
-  menu = false
   memos: MemoItem[] = []
   created() {
     // eslint-disable-next-line
