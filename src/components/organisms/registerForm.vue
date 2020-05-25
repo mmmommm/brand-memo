@@ -72,7 +72,7 @@
 <script lang='ts'>
 import * as rules from '@/config/user/rules';
 import { Component, Vue } from 'vue-property-decorator';
-import { firebaseauth } from '@/firebase/firebaseAuth';
+// import { firebaseauth } from '@/firebase/firebaseAuth';
 interface VForm extends Vue {
   validate(): boolean;
 }
