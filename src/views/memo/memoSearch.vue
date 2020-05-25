@@ -58,7 +58,7 @@
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { firestore } from '../../firebase/fireStore';
+import { firestore } from '@/firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
 @Component
 export default class MemoSearch extends Vue {

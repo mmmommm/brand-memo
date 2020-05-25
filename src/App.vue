@@ -8,7 +8,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Header from './components/organisms/Header.vue';
+import Header from '@/components/organisms/Header.vue';
 @Component({
   components: {
     Header,

@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import memoSearch from '../../views/memo/memoSearch.vue';
+import memoSearch from '@/views/memo/memoSearch.vue';
 
 //テストすべき内容
 //@clickが動いているか

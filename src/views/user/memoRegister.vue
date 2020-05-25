@@ -25,5 +25,5 @@ import { Component, Vue } from 'vue-property-decorator';
     RegisterForm
   }
 })
-export default class MemoLogin extends Vue {}
+export default class MemoRegister extends Vue {}
 </script>
