@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import memoHome from '../../views/memo/memoHome.vue'
+import memoHome from '@/views/memo/memoHome.vue'
 
 //テストすべき内容
 //memo.code、memo.nameが表示されているか

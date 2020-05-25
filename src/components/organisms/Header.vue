@@ -163,7 +163,7 @@
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
-import { firebaseauth } from '../../firebase/firebaseAuth';
+import { firebaseauth } from '@/firebase/firebaseAuth';
 @Component
 export default class Header extends Vue {
   dialog = false

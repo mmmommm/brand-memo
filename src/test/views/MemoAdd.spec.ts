@@ -1,6 +1,6 @@
 
 import { shallowMount } from "@vue/test-utils";
-import memoAdd from "../../views/memo/memoAdd.vue";
+import memoAdd from "@/views/memo/memoAdd.vue";
 
 //テストすべき内容
 //クリックイベントがきちんと動いているか
