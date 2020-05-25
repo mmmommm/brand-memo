@@ -112,6 +112,7 @@
                       v-on='on'
                       :x-large='$vuetify.breakpoint.smAndUp'
                       :small='$vuetify.breakpoint.xsOnly'
+                      class='logout'
                     >
                       Logout
                     </v-btn>
@@ -162,7 +163,7 @@
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
-import { firebaseauth } from '@/firebase/firebaseAuth';
+import { firebaseauth } from '../../firebase/firebaseAuth';
 @Component
 export default class Header extends Vue {
   dialog = false

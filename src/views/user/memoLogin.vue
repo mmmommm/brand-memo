@@ -17,7 +17,7 @@
 </template>
 
 <script lang='ts'>
-import LoginForm from '@/components/organisms/loginForm.vue';
+import LoginForm from '@/components/organisms/LoginForm.vue';
 import { Component, Vue } from 'vue-property-decorator';
 // import { firebaseauth } from '@/firebase/firebaseAuth';
 @Component({

@@ -147,7 +147,7 @@
               <v-btn
                 type='submit'
                 x-large
-                class='ml-12 my-12'
+                class='ml-12 my-12 add'
                 outlined
                 @click='saveMemo'
                 :disabled='!valid'
@@ -163,8 +163,8 @@
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
-import { firestore } from '@/firebase/fireStore';
-import * as rules from '@/config/user/rules';
+import { firestore } from '../../firebase/fireStore';
+import * as rules from '../../config/user/rules';
 interface VForm extends Vue {
   validate(): boolean;
 }

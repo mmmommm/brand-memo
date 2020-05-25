@@ -17,7 +17,7 @@
 </template>
 
 <script lang='ts'>
-import RegisterForm from '@/components/organisms/registerForm.vue';
+import RegisterForm from '@/components/organisms/RegisterForm.vue';
 import { Component, Vue } from 'vue-property-decorator';
 // import { firebaseauth } from '@/firebase/firebaseAuth';
 @Component({

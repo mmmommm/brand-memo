@@ -10,7 +10,7 @@
         @click='filteredList()'
         text
         outlined
-        class='mt-2'
+        class='mt-2 filter'
       >
         検索
       </v-btn>
@@ -58,7 +58,7 @@
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { firestore } from '@/firebase/fireStore';
+import { firestore } from '../../firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
 @Component
 export default class MemoSearch extends Vue {
