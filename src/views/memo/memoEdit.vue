@@ -4,9 +4,7 @@
       v-model='valid'
       lazy-validation
     >
-      <v-container>
-        <v-layout
-          wrap>
+      <Layout>
           <v-flex
             xs12
             sm12
@@ -146,17 +144,21 @@
               </v-btn>
             </v-card>
           </v-flex>
-        </v-layout>
-      </v-container>
+        </Layout>
     </v-form>
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
+import Layout from '@/components/containers/layout.vue';
 interface VForm extends Vue {
   validate(): boolean;
 }
-@Component
+@Component({
+  components: {
+    Layout
+  }
+})
 export default class MemoEdit extends Vue {
   capitalization: number | null = null
   code: number | null = null

@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     <v-img
       src='@/assets/register-photo.jpeg'
     >
@@ -13,7 +12,6 @@
       </v-container>
     </div>
     </v-img>
-  </v-app>
 </template>
 
 <script lang='ts'>

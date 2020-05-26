@@ -1,10 +1,7 @@
 
 <template>
   <!-- <v-img src='@/assets/portfolio.jpg' height='1000'> -->
-    <v-container>
-      <v-layout
-        wrap
-      >
+    <Layout>
         <v-flex
           xs12
           sm6
@@ -40,8 +37,7 @@
             </v-card-text>
           </v-card>
         </v-flex>
-      </v-layout>
-    </v-container>
+      </Layout>
   <!-- </v-img> -->
 </template>
 
@@ -49,7 +45,12 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
-@Component
+import Layout from '@/components/containers/layout.vue';
+@Component({
+  components: {
+    Layout
+  }
+})
 export default class MemoHome extends Vue {
   memos: MemoItem[] = []
   created() {

@@ -1,23 +1,24 @@
 import Vue from "vue";
-import Vuetify from "vuetify";
-import { mount, shallowMount } from "@vue/test-utils";
+import vuetify from "vuetify";
+import { createLocalVue, mount, shallowMount } from "@vue/test-utils";
 import MemoAdd from "@/views/Memo/MemoAdd.vue";
 
 //テストすべき内容
 //クリックイベントがきちんと動いているか
 //v-menuがきちんと動いているか
 describe("MemoAdd.vue", () => {
-  let vuetify
-
+  let wrapper: any
   beforeEach(() => {
-    vuetify = new Vuetify()
+    const localVue = createLocalVue()
+    localVue.use(vuetify);
+    wrapper = shallowMount(MemoAdd,{
+      localVue
+    })
   });
   it("Testing MemoAdd", () => {
-    const wrapper = mount(MemoAdd)
     expect(wrapper.isVueInstance).toBeTruthy();
   });
   it("check click v-btn", () => {
-    const wrapper = mount(MemoAdd)
     const stub = jest.fn();
     const button = wrapper.find('.add')
     wrapper.setMethods({

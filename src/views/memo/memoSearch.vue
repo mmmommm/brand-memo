@@ -61,7 +61,12 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { firestore } from '@/firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
-@Component
+import Layout from '@/components/containers/layout.vue';
+@Component({
+  components: {
+    Layout
+  }
+})
 export default class MemoSearch extends Vue {
 search_term: number | null = null
 code: number | null = 0
