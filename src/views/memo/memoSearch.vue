@@ -62,7 +62,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { firestore } from '@/firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
-import Layout from '@/components/containers/layout.vue';
+import Layout from '@/components/atoms/layout.vue';
 import * as rules from '@/config/user/rules';
 @Component({
   components: {

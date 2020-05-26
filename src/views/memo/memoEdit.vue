@@ -150,7 +150,7 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
-import Layout from '@/components/containers/layout.vue';
+import Layout from '@/components/atoms/layout.vue';
 interface VForm extends Vue {
   validate(): boolean;
 }
