@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <template v-if='!displayEdit'>
       <v-container>
         <v-layout
@@ -130,7 +130,7 @@
                   class='ml-12 mb-4'
                   outlined
                   @click='displayEdit = true'
-                  :to="{ name: 'memo-edit', params: { memo: this.slug }}"
+                  :to="{ name: 'MemoEdit', params: { memo: this.slug }}"
                 >
                   Editmemo
                 </v-btn>
@@ -195,7 +195,7 @@
       </v-container>
     </template>
     <router-view/>
-  </v-app>
+  </div>
 </template>
 <script lang='ts'>
 import { Watch, Component, Vue } from 'vue-property-decorator';

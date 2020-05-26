@@ -5,6 +5,7 @@
         v-model.number='search_term'
         placeholder='search brand by code (ex 9984'
         @keydown.enter='filteredList'
+        class='term'
       />
       <v-btn
         @click='filteredList()'
@@ -45,7 +46,7 @@
               <v-btn
                 outlined
                 class='button ml-2'
-                :to="{ name: 'memo-detail', params: { memo: memo.slug }}"
+                :to="{ name: 'MemoDetail', params: { memo: memo.slug }}"
               >
                 viewmemo
               </v-btn>

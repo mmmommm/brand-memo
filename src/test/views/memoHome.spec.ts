@@ -1,16 +1,18 @@
-import { shallowMount } from '@vue/test-utils';
-import memoHome from '@/views/memo/memoHome.vue'
+import Vue from "vue";
+import Vuetify from "vuetify";
+import { mount, shallowMount } from '@vue/test-utils';
+import MemoHome from '@/views/memo/MemoHome.vue'
 
 //テストすべき内容
 //memo.code、memo.nameが表示されているか
 //memo-detailに飛ぶボタンがきちんと作動しているか
-let wrapper: any
-
-beforeEach(() => {
-  wrapper = shallowMount(memoHome)
-})
-describe('memoHome.vue', () => {
-  it('Testing memoHome', () => {
+describe("memoHome.vue", () => {
+  let vuetify
+  beforeEach(() => {
+    vuetify = new Vuetify();
+  });
+  it("Testing memoHome", () => {
+    const wrapper = mount(MemoHome)
     expect(wrapper.isVueInstance).toBeTruthy();
   });
 });

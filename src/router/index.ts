@@ -1,46 +1,50 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import MemoAdd from '@/views/memo/MemoAdd.vue';
-import MemoHome from '@/views/memo/MemoHome.vue';
-import MemoLogin from '@/views/user/MemoLogin.vue';
-import MemoRegister from '@/views/user/MemoRegister.vue';
-import MemoEdit from '@/views/memo/MemoEdit.vue';
-import MemoDetail from '@/views/memo/MemoDetail.vue';
+import MemoAdd from '@/views/memo/memoAdd.vue';
+import MemoHome from '@/views/memo/memoHome.vue';
+import MemoLogin from '@/views/user/memoLogin.vue';
+import MemoRegister from '@/views/user/memoRegister.vue';
+import MemoEdit from '@/views/memo/memoEdit.vue';
+import MemoDetail from '@/views/memo/memoDetail.vue';
 import PageNotFound from '@/views/PageNotFound.vue';
-import MemoSearch from '@/views/memo/MemoSearch.vue';
+import MemoSearch from '@/views/memo/memoSearch.vue';
 import store from '@/store/index';
 
 Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   //共通で表示するもの
   {
-    path: '/MemoHome',
-    component: MemoHome,
+    path: "/MemoHome",
+    name: "MemoHome",
+    component: MemoHome
   },
   {
-    path: '/MemoSearch',
-    component: MemoSearch,
+    path: "/MemoSearch",
+    name: "Memosearch",
+    component: MemoSearch
   },
   //ログインしているとガードするもの
   {
-    path: '/MemoLogin',
+    path: "/MemoLogin",
+    name: "MemoLogin",
     component: MemoLogin,
     beforeEnter(to, from, next) {
       if (store.getters.isAuthenticated) {
-        store.getters.isAuthenticated = true
-        next('/MemoHome');
+        store.getters.isAuthenticated = true;
+        next("/MemoHome");
       } else {
         next();
       }
     }
   },
   {
-    path: '/MemoRegister',
+    path: "/MemoRegister",
+    name: "MemoRegister",
     component: MemoRegister,
     beforeEnter(to, from, next) {
       if (store.getters.isAuthenticated) {
-        store.getters.isAuthenticated = true
-        next('/MemoHome');
+        store.getters.isAuthenticated = true;
+        next("/MemoHome");
       } else {
         next();
       }
@@ -48,30 +52,31 @@ const routes: Array<RouteConfig> = [
   },
   //ログインしていないとガードするもの
   {
-    path: '/MemoAdd',
+    path: "/MemoAdd",
+    name: "MemoAdd",
     component: MemoAdd,
     meta: { requiresAuth: true }
   },
   //MemoDetailは非ログインでも観れるがedit画面は不可
   {
-    path: '/:Memo',
-    name: 'Memo-detail',
+    path: "/:Memo",
+    name: "MemoDetail",
     component: MemoDetail,
     children: [
       {
-        path: '/edit',
-        name: 'Memo-edit',
+        path: "/edit",
+        name: "MemoEdit",
         component: MemoEdit,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true }
       }
     ]
   },
   //上の動的ルーティングに吸われてリダイレクトが機能しない
   {
-    path: '*',
+    path: "*",
     component: PageNotFound
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
