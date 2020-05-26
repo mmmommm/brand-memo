@@ -1,10 +1,8 @@
 <template>
   <div>
+    <!-- memoEditを押した時にmemoDetailもでてしまうので仕方なく -->
     <template v-if='!displayEdit'>
-      <v-container>
-        <v-layout
-          wrap
-        >
+      <Layout>
           <v-flex
             xs12
             sm12
@@ -191,8 +189,7 @@
               </template>
             </v-card>
           </v-flex>
-        </v-layout>
-      </v-container>
+        </Layout>
     </template>
     <router-view/>
   </div>
@@ -201,7 +198,12 @@
 import { Watch, Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
-@Component
+import Layout from '@/components/containers/layout.vue';
+@Component({
+  components: {
+    Layout
+  }
+})
 export default class MemoDetail extends Vue {
   capitalization: number | null = null
   code: number | null = null
