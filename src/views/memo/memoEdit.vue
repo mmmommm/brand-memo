@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     <v-form
       ref='form'
       v-model='valid'
@@ -150,7 +149,6 @@
         </v-layout>
       </v-container>
     </v-form>
-  </v-app>
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';

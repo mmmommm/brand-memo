@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <template v-if='!displayEdit'>
       <v-container>
         <v-layout
@@ -195,7 +195,7 @@
       </v-container>
     </template>
     <router-view/>
-  </v-app>
+  </div>
 </template>
 <script lang='ts'>
 import { Watch, Component, Vue } from 'vue-property-decorator';
