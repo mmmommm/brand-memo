@@ -130,7 +130,7 @@
                   class='ml-12 mb-4'
                   outlined
                   @click='displayEdit = true'
-                  :to="{ name: 'memo-edit', params: { memo: this.slug }}"
+                  :to="{ name: 'MemoEdit', params: { memo: this.slug }}"
                 >
                   Editmemo
                 </v-btn>

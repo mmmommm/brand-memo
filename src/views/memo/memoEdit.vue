@@ -128,7 +128,7 @@
                 </p>
               </v-card-title>
               <v-textarea
-                value='reason'
+                :value='reason'
                 cols='60'
                 rows='25'
                 class='ml-4'
@@ -169,6 +169,7 @@ export default class MemoEdit extends Vue {
   url: string | null = null
   slug: string | undefined = ''
   valid = true
+  menu = false
   $refs!: {
     form: VForm;
   }

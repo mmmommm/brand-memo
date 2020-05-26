@@ -1,3 +1,4 @@
+
 <template>
   <!-- <v-img src='@/assets/portfolio.jpg' height='1000'> -->
     <v-container>
@@ -31,7 +32,7 @@
                 <v-btn
                   outlined
                   class='button ml-2 mt-6'
-                  :to="{ name: 'memo-detail', params: { memo: memo.slug }}"
+                  :to="{ name: 'MemoDetail', params: { memo: memo.slug }}"
                 >
                   viewmemo
                 </v-btn>
