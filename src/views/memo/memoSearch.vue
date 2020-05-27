@@ -61,7 +61,8 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { firestore } from '@/firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
-import Layout from '@/components/containers/layout.vue';
+import Layout from '@/components/atoms/layout.vue';
+import * as rules from '@/config/user/rules';
 @Component({
   components: {
     Layout
@@ -73,6 +74,8 @@ code: number | null = 0
 name: string | null = ''
 memos: MemoItem[] = []
 filteredMemo: MemoItem[] = []
+
+get codeRules() { return rules.codeRules }
 // filteredList: MemoItem[] = []
 // codeList: (number | null)[] = []
   // created() {

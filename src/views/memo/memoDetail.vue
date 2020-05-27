@@ -198,7 +198,7 @@
 import { Watch, Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
-import Layout from '@/components/containers/layout.vue';
+import Layout from '@/components/atoms/layout.vue';
 @Component({
   components: {
     Layout
