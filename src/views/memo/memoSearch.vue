@@ -6,7 +6,6 @@
         placeholder='search brand by code (ex 9984'
         @keydown.enter='filteredList'
         class='term'
-        :rules='codeRules'
       />
       <v-btn
         @click='filteredList()'
