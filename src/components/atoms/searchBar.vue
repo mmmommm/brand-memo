@@ -4,6 +4,7 @@
     placeholder='search brand by code (ex 9984'
     class='term'
     :rules='codeRules'
+    @keydown.enter='submit()'
   />
 </template>
 <script lang="ts">
@@ -13,5 +14,8 @@ import * as rules from '@/config/user/rules';
 export default class SearchBar extends Vue {
 search_term: number | null = null
 get codeRules() { return rules.codeRules }
+submit() {
+  this.$emit('filter', this.search_term)
+}
 }
 </script>

@@ -59,7 +59,7 @@ const routes: Array<RouteConfig> = [
   },
   //MemoDetailは非ログインでも観れるがedit画面は不可
   {
-    path: "/:Memo",
+    path: "/:memo",
     name: "MemoDetail",
     component: MemoDetail,
     children: [

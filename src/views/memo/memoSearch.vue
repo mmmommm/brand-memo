@@ -4,7 +4,6 @@
       <v-text-field
         v-model.number='search_term'
         placeholder='search brand by code (ex 9984'
-        @keydown.enter='filteredList'
         class='term'
       />
       <v-btn
@@ -65,7 +64,7 @@ import Layout from '@/components/atoms/layout.vue';
 import * as rules from '@/config/user/rules';
 @Component({
   components: {
-    Layout
+    Layout,
   }
 })
 export default class MemoSearch extends Vue {
