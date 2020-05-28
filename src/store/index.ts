@@ -44,7 +44,7 @@ export default new Vuex.Store({
         .catch(() => {
           commit('setUser', null);
           commit('setIsAuthenticated', false);
-          router.push('memoRegister');
+          router.push('/memoRegister');
         });
     },
     userLogout({ commit }) {
