@@ -62,7 +62,7 @@
         rounded
         x-large
         @click='register'
-        :disabled='valid'
+        :disabled='!valid'
       >
         register
       </v-btn>

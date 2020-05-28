@@ -61,7 +61,7 @@
         outlined
         rounded
         x-large
-        :disabled='valid'
+        :disabled='!valid'
         @click='login'
       >
         log in
