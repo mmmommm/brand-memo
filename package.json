@@ -76,10 +76,9 @@
       }
     },
     "moduleFileExtensions": [
-      "js",
-      "ts",
-      "json",
-      "vue"
+      ".ts",
+      ".json",
+      ".vue"
     ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
