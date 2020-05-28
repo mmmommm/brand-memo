@@ -5,6 +5,7 @@
         v-model.number='search_term'
         placeholder='search brand by code (ex 9984'
         class='term'
+        @keydown.enter='filteredList'
       />
       <v-btn
         @click='filteredList()'
