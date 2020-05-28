@@ -256,7 +256,7 @@ export default class MemoDetail extends Vue {
   deleteMemo() {
     firestore.collection('memos').doc(this.slug).delete()
     .then(() => {
-      this.$router.push('/memoHome')
+      this.$router.push('/')
     })
   }
   cardWidth() {
