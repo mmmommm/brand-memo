@@ -32,7 +32,7 @@
                 class='my-2'
               >
                 <v-btn
-                  to='/memoHome'
+                  to='/'
                   text
                   :x-large='$vuetify.breakpoint.smAndUp'
                   :small='$vuetify.breakpoint.xsOnly'

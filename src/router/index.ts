@@ -14,7 +14,7 @@ Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   //共通で表示するもの
   {
-    path: "/MemoHome",
+    path: "/",
     name: "MemoHome",
     component: MemoHome
   },

@@ -25,7 +25,7 @@ export default new Vuex.Store({
         .then((user) => {
           commit('setUser', user);
           commit('setIsAuthenticated', true);
-          router.push('/memoHome');
+          router.push('/');
         })
         .catch(() => {
           commit('setUser', null);
@@ -39,7 +39,7 @@ export default new Vuex.Store({
         .then(user => {
           commit('setUser', user);
           commit('setIsAuthenticated', true);
-          router.push('/memoHome');
+          router.push('/');
         })
         .catch(() => {
           commit('setUser', null);

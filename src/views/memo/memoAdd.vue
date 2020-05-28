@@ -206,7 +206,7 @@ export default class MemoAdd extends Vue {
         url: this.url,
         slug: slug
       })
-        this.$router.push({path: '/memoHome'})
+        this.$router.push({path: '/'})
     }
   }
   generateUUID(): string {
