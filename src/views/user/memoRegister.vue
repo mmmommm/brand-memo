@@ -7,7 +7,7 @@
         <v-layout
           justify-center
         >
-          <RegisterForm/>
+          <RegisterForm />
         </v-layout>
       </v-container>
     </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang='ts'>
-import RegisterForm from '@/components/organisms/RegisterForm.vue';
+import RegisterForm from '../../components/organisms/registerForm.vue'
 import { Component, Vue } from 'vue-property-decorator';
 // import { firebaseauth } from '@/firebase/firebaseAuth';
 @Component({

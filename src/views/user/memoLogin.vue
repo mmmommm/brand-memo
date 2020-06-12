@@ -7,7 +7,7 @@
         <v-layout
           justify-center
         >
-          <LoginForm/>
+          <LoginForm />
         </v-layout>
       </v-container>
     </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang='ts'>
-import LoginForm from '@/components/organisms/LoginForm.vue';
+import LoginForm from '../../components/organisms/loginForm.vue'
 import { Component, Vue } from 'vue-property-decorator';
 // import { firebaseauth } from '@/firebase/firebaseAuth';
 @Component({
