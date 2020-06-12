@@ -37,6 +37,13 @@
             </v-card-text>
           </v-card>
         </v-flex>
+        <v-pagination
+          v-model="page"
+          class="my-4"
+          :length="2"
+          :total-visible="3"
+          @input="getNumber"
+        />
       </Layout>
   <!-- </v-img> -->
 </template>
@@ -52,6 +59,7 @@ import Layout from '@/components/atoms/layout.vue';
   }
 })
 export default class MemoHome extends Vue {
+  page = 1
   memos: MemoItem[] = []
   created() {
     // eslint-disable-next-line
