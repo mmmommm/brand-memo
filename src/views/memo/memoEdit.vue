@@ -56,6 +56,8 @@
                     type='text'
                     class='py-2'
                     :value='code'
+                    v-model="code"
+                    :rules='codeRules'
                   />
                   <v-card-title>
                     銘柄名
@@ -64,6 +66,8 @@
                     type='text'
                     class='py-2'
                     :value='name'
+                    v-model="name"
+                    :rules='nameRules'
                   />
                   <v-card-title>
                     時価総額
@@ -72,6 +76,8 @@
                     type='text'
                     class='py-2'
                     :value='capitalization'
+                    v-model="capitalization"
+                    :rules='capitalizationRules'
                   />
                   <v-card-title>
                     浮動株式数
@@ -80,6 +86,8 @@
                     type='text'
                     class='py-2'
                     :value='floating'
+                    v-model="floating"
+                    :rules='floatRules'
                   />
                   <v-card-title>
                     テーマ
@@ -88,6 +96,8 @@
                     type='text'
                     class='py-2'
                     :value='theme'
+                    v-model="theme"
+                    :rules='themeRules'
                   />
                   <v-card-title>
                     株価
@@ -96,6 +106,8 @@
                     type='text'
                     class='py-2'
                     :value='price'
+                    v-model="price"
+                    :rules='priceRules'
                   />
                   <v-card-title>
                     会社URL
@@ -104,6 +116,8 @@
                     type='text'
                     class='py-2'
                     :value='url'
+                    v-model="url"
+                    :rules='urlRules'
                   />
                 </v-flex>
               </v-layout>
@@ -127,10 +141,12 @@
               </v-card-title>
               <v-textarea
                 :value='reason'
+                v-model="reason"
                 cols='60'
                 rows='25'
                 class='ml-4'
                 outlined
+                :rules='reasonRules'
               />
               <v-btn
                 type='submit'
@@ -138,7 +154,7 @@
                 class='ml-12 mb-4'
                 outlined
                 @click='updateMemo()'
-                :disabled='valid'
+                :disabled='!valid'
               >
                 updatememo
               </v-btn>
@@ -151,6 +167,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import Layout from '@/components/atoms/layout.vue';
+import * as rules from '@/config/user/rules';
 interface VForm extends Vue {
   validate(): boolean;
 }
@@ -175,6 +192,14 @@ export default class MemoEdit extends Vue {
   $refs!: {
     form: VForm;
   }
+  get codeRules() { return rules.codeRules }
+  get nameRules() { return rules.nameRules }
+  get capitalizationRules() { return rules.capitalizationRules }
+  get floatRules() { return rules.floatRules }
+  get themeRules() { return rules.themeRules }
+  get priceRules() { return rules.priceRules }
+  get urlRules() { return rules.urlRules }
+  get reasonRules() { return rules.reasonRules }
   beforeRouteEnter(to: any, from: any, next: any){
     firestore.collection('memos').where('slug', '==', to.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc) =>{
@@ -224,7 +249,7 @@ export default class MemoEdit extends Vue {
   }
   updateMemo() {
     if(this.$refs.form.validate()) {
-      firestore.collection('memos').doc(this.slug).update({
+      firestore.collection('memos').doc().update({
         capitalization: this.capitalization,
         code: this.code,
         date: this.date,
@@ -236,7 +261,11 @@ export default class MemoEdit extends Vue {
         url: this.url
       })
       .then(() => {
-        this.$router.go(-1)
+        this.$router.push({path: '/'})
+        console.log('成功')
+      })
+      .catch(() => {
+        console.log('失敗')
       })
     }
   }
