@@ -6,7 +6,7 @@
           xs12
           sm6
           md4
-          v-for='(memo, index) in memos'
+          v-for='(memo, index) in memoLists'
           :key='index'
         >
           <v-card
@@ -42,7 +42,7 @@
           class="my-4"
           :length="2"
           :total-visible="3"
-          @input="getNumber"
+          @input = "pageChange"
         />
       </Layout>
   <!-- </v-img> -->
@@ -60,7 +60,9 @@ import Layout from '@/components/atoms/layout.vue';
 })
 export default class MemoHome extends Vue {
   page = 1
+  pageSize = 3
   memos: MemoItem[] = []
+  memoLists: MemoItem[] = []
   created() {
     // eslint-disable-next-line
     firestore.collection('memos').get().then((querySnapshot: any) => {
@@ -70,7 +72,11 @@ export default class MemoHome extends Vue {
         array.push(doc.data())
       });
         this.memos = array
+        this.memoLists = this.memos.slice(0, this.pageSize)
     });
+  }
+  pageChange() {
+    this.memoLists = this.memos.slice(this.pageSize*(this.page -1), this.pageSize*(this.page))
   }
 }
 </script>
