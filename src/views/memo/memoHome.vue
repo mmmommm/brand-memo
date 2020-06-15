@@ -42,6 +42,7 @@
           class="my-4"
           :length="2"
           :total-visible="3"
+          color="black"
           @input = "pageChange"
         />
       </Layout>
