@@ -76,23 +76,6 @@ memos: MemoItem[] = []
 filteredMemo: MemoItem[] = []
 
 get codeRules() { return rules.codeRules }
-// filteredList: MemoItem[] = []
-// codeList: (number | null)[] = []
-  // created() {
-  //   // eslint-disable-next-line
-  //   firestore.collection('memos').get().then((querySnapshot: any) => {
-  //     const array: MemoItem[] = [];
-  //     // eslint-disable-next-line
-  //     querySnapshot.forEach((doc: any) => {
-  //       array.push(doc.data())
-  //     });
-  //       this.memos = array
-  //       // arrayにぶちこまれてるmemosからそれぞれのmemoのcodeの値を取りだしてcodeListに入れる
-  //     // array.forEach((s) => {
-  //     //   this.codeList.push(s.code)
-  //     // })
-  //   });
-  // }
   filteredList() {
     firestore.collection('memos').where('code', '==', this.search_term).get()
     .then((querySnapshot) => {
@@ -102,9 +85,6 @@ get codeRules() { return rules.codeRules }
       });
       this.filteredMemo = s
     })
-    //  return this.memos.filter(t => {
-    //   this.search_term === this.memos. ?
-    //  })
   }
 }
 </script>
