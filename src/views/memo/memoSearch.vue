@@ -45,7 +45,7 @@
             <v-layout>
               <v-btn
                 outlined
-                class='button ml-2'
+                class='ml-2'
                 :to="{ name: 'MemoDetail', params: { memo: memo.slug }}"
               >
                 viewmemo
