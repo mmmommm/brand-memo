@@ -25,8 +25,3 @@ import { Component, Vue } from 'vue-property-decorator';
 })
 export default class MemoLogin extends Vue {}
 </script>
-<style scoped>
-.signin {
-  border-radius: 20%;
-}
-</style>

@@ -1,52 +1,50 @@
 
 <template>
-  <!-- <v-img src='@/assets/portfolio.jpg' height='1000'> -->
-    <Layout>
-        <v-flex
-          xs12
-          sm6
-          md4
-          v-for='(memo, index) in memoLists'
-          :key='index'
+  <Layout>
+      <v-flex
+        xs12
+        sm6
+        md4
+        v-for='(memo, index) in memoLists'
+        :key='index'
+      >
+        <v-card
+          width='350'
+          height='200'
+          class='my-5'
         >
-          <v-card
-            width='350'
-            height='200'
-            class='my-5'
+          <v-card-title
+            class='ml-2 code'
           >
-            <v-card-title
-              class='ml-2 code'
-            >
-              {{ memo.code }}
-            </v-card-title>
-            <v-card-title
-              class='ml-2 name'
-            >
-              {{ memo.name }}
-            </v-card-title>
-            <v-card-text>
-              <v-layout>
-                <v-btn
-                  outlined
-                  class='button ml-2 mt-6'
-                  :to="{ name: 'MemoDetail', params: { memo: memo.slug }}"
-                >
-                  viewmemo
-                </v-btn>
-              </v-layout>
-            </v-card-text>
-          </v-card>
-        </v-flex>
-        <v-pagination
-          v-model="page"
-          class="my-4"
-          :length="2"
-          :total-visible="3"
-          color="black"
-          @input = "pageChange"
-        />
-      </Layout>
-  <!-- </v-img> -->
+            {{ memo.code }}
+          </v-card-title>
+          <v-card-title
+            class='ml-2 name'
+          >
+            {{ memo.name }}
+          </v-card-title>
+          <v-card-text>
+            <v-layout>
+              <v-btn
+                outlined
+                class='ml-2 mt-6'
+                :to="{ name: 'MemoDetail', params: { memo: memo.slug }}"
+              >
+                viewmemo
+              </v-btn>
+            </v-layout>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    <v-pagination
+      v-model="page"
+      class="my-4"
+      :length="2"
+      :total-visible="3"
+      color="black"
+      @input = "pageChange"
+    />
+  </Layout>
 </template>
 
 <script lang='ts'>
@@ -81,11 +79,3 @@ export default class MemoHome extends Vue {
   }
 }
 </script>
-<style scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-</style>
