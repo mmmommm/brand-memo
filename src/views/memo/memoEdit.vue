@@ -200,23 +200,6 @@ export default class MemoEdit extends Vue {
   get priceRules() { return rules.priceRules }
   get urlRules() { return rules.urlRules }
   get reasonRules() { return rules.reasonRules }
-  beforeRouteEnter(to: any, from: any, next: any){
-    firestore.collection('memos').where('slug', '==', to.params.memo).get().then((querySnapshot) =>{
-      querySnapshot.forEach((doc) =>{
-        next(() => {
-          this.capitalization = doc.data().capitalization
-          this.code = doc.data().code
-          this.date = doc.data().date
-          this.floating = doc.data().floating
-          this.name = doc.data().name
-          this.price = doc.data().price
-          this.reason = doc.data().reason
-          this.theme = doc.data().theme
-          this.url = doc.data().url
-        })
-      })
-    })
-  }
   created() {
     firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc)=>{
