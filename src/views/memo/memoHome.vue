@@ -1,41 +1,11 @@
 
 <template>
   <Layout>
-    <v-flex
-      xs12
-      sm6
-      md4
+    <MemoCard
       v-for='(memo, index) in memoLists'
       :key='index'
-    >
-      <v-card
-        width='350'
-        height='200'
-        class='my-5'
-      >
-        <v-card-title
-          class='ml-2 code'
-        >
-          {{ memo.code }}
-        </v-card-title>
-        <v-card-title
-          class='ml-2 name'
-        >
-          {{ memo.name }}
-        </v-card-title>
-        <v-card-text>
-          <v-layout>
-            <v-btn
-              outlined
-              class='ml-2 mt-6'
-              :to="{ name: 'MemoDetail', params: { memo: memo.slug }}"
-            >
-              viewmemo
-            </v-btn>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-    </v-flex>
+      :memo='memo'
+    />
     <v-pagination
       v-model="page"
       class="my-4"
@@ -52,9 +22,11 @@ import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import { MemoHomeItem } from '@/interface/memoHomeItem';
 import Layout from '@/components/atoms/layout.vue';
+import MemoCard from '@/components/atoms/memoCard.vue';
 @Component({
   components: {
-    Layout
+    Layout,
+    MemoCard
   }
 })
 export default class MemoHome extends Vue {
