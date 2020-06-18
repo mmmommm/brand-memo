@@ -132,60 +132,7 @@
                 >
                   Editmemo
                 </v-btn>
-                <v-dialog
-                  v-model='dialog'
-                  persistent
-                  max-width='290'
-                >
-                  <template
-                    v-slot:activator='{ on }'
-                  >
-                    <v-btn
-                      text
-                      v-on='on'
-                      x-large
-                      outlined
-                      class="ml-12 mb-4"
-                    >
-                      Deletememo
-                    </v-btn>
-                  </template>
-                    <v-card
-                      width='290'
-                      height='150'
-                    >
-                      <v-card-title>
-                        本当に削除してよろしいですか？
-                      </v-card-title>
-                      <v-layout
-                        justify-center
-                      >
-                        <v-card-actions
-                          name='deletememo'
-                        >
-                          <v-spacer/>
-                          <v-btn
-                            @click='deleteMemo'
-                            color='error'
-                            :x-large='$vuetify.breakpoint.smAndUp'
-                            :small='$vuetify.breakpoint.xsOnly'
-                            text
-                          >
-                            はい
-                          </v-btn>
-                          <v-btn
-                            @click='dialog = false'
-                            color='indigo'
-                            :x-large='$vuetify.breakpoint.smAndUp'
-                            :small='$vuetify.breakpoint.xsOnly'
-                            text
-                          >
-                            いいえ
-                          </v-btn>
-                        </v-card-actions>
-                      </v-layout>
-                    </v-card>
-                </v-dialog>
+                <DeleteButton/>
               </template>
             </v-card>
           </v-flex>
@@ -199,9 +146,11 @@ import { Watch, Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
 import Layout from '@/components/atoms/layout.vue';
+import DeleteButton from '@/components/atoms/deleteButton.vue';
 @Component({
   components: {
-    Layout
+    Layout,
+    DeleteButton
   }
 })
 export default class MemoDetail extends Vue {
