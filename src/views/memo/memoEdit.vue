@@ -245,10 +245,6 @@ export default class MemoEdit extends Vue {
       })
       .then(() => {
         this.$router.push({path: '/'})
-        console.log('成功')
-      })
-      .catch(() => {
-        console.log('失敗')
       })
     }
   }
