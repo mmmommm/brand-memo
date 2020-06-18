@@ -1,41 +1,41 @@
 
 <template>
   <Layout>
-      <v-flex
-        xs12
-        sm6
-        md4
-        v-for='(memo, index) in memoLists'
-        :key='index'
+    <v-flex
+      xs12
+      sm6
+      md4
+      v-for='(memo, index) in memoLists'
+      :key='index'
+    >
+      <v-card
+        width='350'
+        height='200'
+        class='my-5'
       >
-        <v-card
-          width='350'
-          height='200'
-          class='my-5'
+        <v-card-title
+          class='ml-2 code'
         >
-          <v-card-title
-            class='ml-2 code'
-          >
-            {{ memo.code }}
-          </v-card-title>
-          <v-card-title
-            class='ml-2 name'
-          >
-            {{ memo.name }}
-          </v-card-title>
-          <v-card-text>
-            <v-layout>
-              <v-btn
-                outlined
-                class='ml-2 mt-6'
-                :to="{ name: 'MemoDetail', params: { memo: memo.slug }}"
-              >
-                viewmemo
-              </v-btn>
-            </v-layout>
-          </v-card-text>
-        </v-card>
-      </v-flex>
+          {{ memo.code }}
+        </v-card-title>
+        <v-card-title
+          class='ml-2 name'
+        >
+          {{ memo.name }}
+        </v-card-title>
+        <v-card-text>
+          <v-layout>
+            <v-btn
+              outlined
+              class='ml-2 mt-6'
+              :to="{ name: 'MemoDetail', params: { memo: memo.slug }}"
+            >
+              viewmemo
+            </v-btn>
+          </v-layout>
+        </v-card-text>
+      </v-card>
+    </v-flex>
     <v-pagination
       v-model="page"
       class="my-4"
@@ -62,6 +62,7 @@ export default class MemoHome extends Vue {
   pageSize = 3
   memos: MemoHomeItem[] = []
   memoLists: MemoHomeItem[] = []
+  //開いた時にfirestoreからmemoデータを取ってくる
   created() {
     //全部のデータを取ってしまっているので必要なcodeとnameだけとりたい
     firestore.collection('memos').get().then((querySnapshot: any) => {
@@ -70,10 +71,12 @@ export default class MemoHome extends Vue {
         array.push(doc.data())
       });
         this.memos = array
+        //pageSizeに分けて取得する
         this.memoLists = this.memos.slice(0, this.pageSize)
     });
   }
   pageChange() {
+    //pageの番号に合わせてmemooListsに入るmemoを変更する
     this.memoLists = this.memos.slice(this.pageSize*(this.page -1), this.pageSize*(this.page))
   }
 }
