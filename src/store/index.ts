@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     user: null as string | null,
     isAuthenticated: false,
+    searchTerm: null as number | null,
   },
   mutations: {
     setUser(state, payload) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     setIsAuthenticated(state, payload) {
       state.isAuthenticated = payload;
+    },
+    setSearchTerm(state, payload) {
+      state.searchTerm = payload;
     }
   },
   actions: {

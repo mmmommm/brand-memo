@@ -50,7 +50,7 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
-import { MemoItem } from '@/interface/memoItem';
+import { MemoHomeItem } from '@/interface/memoHomeItem';
 import Layout from '@/components/atoms/layout.vue';
 @Component({
   components: {
@@ -60,13 +60,12 @@ import Layout from '@/components/atoms/layout.vue';
 export default class MemoHome extends Vue {
   page = 1
   pageSize = 3
-  memos: MemoItem[] = []
-  memoLists: MemoItem[] = []
+  memos: MemoHomeItem[] = []
+  memoLists: MemoHomeItem[] = []
   created() {
-    // eslint-disable-next-line
+    //全部のデータを取ってしまっているので必要なcodeとnameだけとりたい
     firestore.collection('memos').get().then((querySnapshot: any) => {
-      const array: MemoItem[] = [];
-      // eslint-disable-next-line
+      const array: MemoHomeItem[] = [];
       querySnapshot.forEach((doc: any) => {
         array.push(doc.data())
       });

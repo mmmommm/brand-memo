@@ -1,20 +1,12 @@
 <template>
   <v-container>
     <v-layout>
-      <v-text-field
-        v-model.number='search_term'
-        placeholder='search brand by code (ex 9984'
-        class='term'
-        @keydown.enter='filteredList'
+      <SearchBar
+        @catchData="passData"
       />
-      <v-btn
-        @click='filteredList()'
-        text
-        outlined
-        class='mt-2 filter'
-      >
-        検索
-      </v-btn>
+      <SearchButton
+        @catchData="passData"
+      />
     </v-layout>
     <v-layout
       wrap
@@ -59,32 +51,24 @@
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { firestore } from '@/firebase/fireStore';
 import { MemoItem } from '@/interface/memoItem';
 import Layout from '@/components/atoms/layout.vue';
-import * as rules from '@/config/user/rules';
+import SearchBar from '@/components/atoms/searchBar.vue';
+import SearchButton from '@/components/atoms/searchButton.vue';
 @Component({
   components: {
     Layout,
+    SearchBar,
+    SearchButton,
   }
 })
 export default class MemoSearch extends Vue {
-search_term: number | null = null
+searchTerm: number | null = null
 code: number | null = 0
 name: string | null = ''
-memos: MemoItem[] = []
 filteredMemo: MemoItem[] = []
-
-get codeRules() { return rules.codeRules }
-  filteredList() {
-    firestore.collection('memos').where('code', '==', this.search_term).get()
-    .then((querySnapshot) => {
-      const s: MemoItem[] = []
-      querySnapshot.forEach((doc: any) => {
-        s.push(doc.data())
-      });
-      this.filteredMemo = s
-    })
-  }
+passData(filteredData: MemoItem[]) {
+  this.filteredMemo = filteredData
+}
 }
 </script>
