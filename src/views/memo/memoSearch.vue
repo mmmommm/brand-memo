@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-layout>
+      <!-- filteredMemo[]を取得 -->
       <SearchBar
         @catchData="passData"
       />
