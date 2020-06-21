@@ -66,6 +66,14 @@
       >
         log in
       </v-btn>
+      <v-btn
+        outlined
+        rounded
+        x-large
+        @click='googlelogin'
+      >
+        google login
+      </v-btn>
     </v-layout>
   </v-card>
 </template>
@@ -97,6 +105,9 @@ export default class LoginForm extends Vue {
         password: this.password
       })
     }
+  }
+  googlelogin() {
+    this.$store.dispatch('googleLogin')
   }
 }
 </script>
