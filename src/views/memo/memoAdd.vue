@@ -178,6 +178,7 @@ export default class MemoAdd extends Vue {
   reason: string | null = ''
   theme: string | null = ''
   url: string | null = ''
+  author: string = this.$store.state.user
   menu = false
   valid = true
   $refs!: {
@@ -204,6 +205,7 @@ export default class MemoAdd extends Vue {
         reason: this.reason,
         theme: this.theme,
         url: this.url,
+        author: this.author,
         slug: slug
       })
         this.$router.push({path: '/'})
