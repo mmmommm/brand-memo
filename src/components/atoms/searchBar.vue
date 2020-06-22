@@ -21,7 +21,7 @@ get codeRules() { return rules.codeRules }
 filteredList() {
   firestore.collection('memos').where('code', '==', this.$store.state.searchTerm).get()
     .then((querySnapshot) => {
-      const s: MemoItem[] =[]
+      const s: MemoItem[] = []
       querySnapshot.forEach((doc: any) => {
         s.push(doc.data())
       });
