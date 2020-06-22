@@ -8,6 +8,7 @@ import MemoEdit from '@/views/memo/memoEdit.vue';
 import MemoDetail from '@/views/memo/memoDetail.vue';
 import PageNotFound from '@/views/PageNotFound.vue';
 import MemoSearch from '@/views/memo/memoSearch.vue';
+import MemoMypage from '@/views/memo/memoMypage.vue';
 import store from '@/store/index';
 
 Vue.use(VueRouter)
@@ -51,6 +52,12 @@ const routes: Array<RouteConfig> = [
     }
   },
   //ログインしていないとガードするもの
+  {
+    path: '/MemoMypage',
+    name: 'MemoMypage',
+    component: MemoMypage,
+    meta: { requiresAuth: true }
+  },
   {
     path: "/MemoAdd",
     name: "MemoAdd",
