@@ -12,6 +12,7 @@ export default new Vuex.Store({
     user: null as string | null,
     isAuthenticated: false,
     searchTerm: null as number | null,
+    displayName: null as string | null
   },
   mutations: {
     setUser(state, payload) {
@@ -36,7 +37,6 @@ export default new Vuex.Store({
           }
           console.log(userData)
           firestore.collection('users').doc(result.user.uid).set(userData)
-          commit('setIsAuthenticated', true)
           router.push('/')
         })
         .catch(() => {
