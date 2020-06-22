@@ -44,7 +44,7 @@
                 class='my-2'
               >
                 <v-btn
-                  to='/memoSearch'
+                  to='/MemoSearch'
                   text
                   :x-large='$vuetify.breakpoint.smAndUp'
                   :small='$vuetify.breakpoint.xsOnly'
@@ -60,7 +60,7 @@
                 class='my-2'
               >
                 <v-btn
-                  to='/memoLogin'
+                  to='/MemoLogin'
                   text
                   :x-large='$vuetify.breakpoint.smAndUp'
                   :small='$vuetify.breakpoint.xsOnly'
@@ -72,7 +72,7 @@
                 class='my-2'
               >
                 <v-btn
-                  to='/memoRegister'
+                  to='/MemoRegister'
                   text
                   :x-large='$vuetify.breakpoint.smAndUp'
                   :small='$vuetify.breakpoint.xsOnly'
@@ -80,6 +80,12 @@
                   Register
                 </v-btn>
               </div>
+              <v-spacer/>
+              <v-text
+                class="mt-5"
+              >
+                匿名
+              </v-text>
             </template>
             <template
               v-if='isAuthenticated()'
@@ -88,7 +94,7 @@
                 class='my-2'
               >
                 <v-btn
-                  to='/memoAdd'
+                  to='/MemoAdd'
                   text
                   :x-large='$vuetify.breakpoint.smAndUp'
                   :small='$vuetify.breakpoint.xsOnly'
@@ -96,7 +102,25 @@
                   Add
                 </v-btn>
               </div>
+              <div
+                class='my-2'
+              >
+                <v-btn
+                  to='/MemoMypage'
+                  text
+                  :x-large='$vuetify.breakpoint.smAndUp'
+                  :small='$vuetify.breakpoint.xsOnly'
+                >
+                  Mypage
+                </v-btn>
+              </div>
               <LogoutButton/>
+              <v-spacer/>
+              <v-text
+                class="mt-5"
+              >
+                {{ name }}さん
+              </v-text>
             </template>
           </v-flex>
         </v-layout>
@@ -114,15 +138,25 @@ import LogoutButton from '@/components/atoms/logoutButton.vue';
   }
 })
 export default class Header extends Vue {
+  name = null as string | null
   isAuthenticated(): boolean {
     return this.$store.getters.isAuthenticated;
   }
-  created() {
-    firebaseauth.onAuthStateChanged(user => {
-      user = user ? user : null;
-      this.$store.commit('setUser', user)
-      this.$store.commit('setIsAuthenticated', this.isAuthenticated ? true : false);
-    });
+  mounted() {
+    firebaseauth.onAuthStateChanged((user) => {
+      if(user) {
+        this.$store.commit('setIsAuthenticated', this.isAuthenticated ? true : false);
+        this.$store.commit('setUser', user.displayName)
+        this.name = user.displayName
+      }
+    })
   }
+  // created() {
+  //   firebaseauth.onAuthStateChanged(user => {
+  //     user = user ? user : null;
+  //     this.$store.commit('setUser', user)
+  //     this.$store.commit('setIsAuthenticated', this.isAuthenticated ? true : false);
+  //   });
+  // }
 }
 </script>
