@@ -12,7 +12,6 @@ export default new Vuex.Store({
     user: null as string | null,
     isAuthenticated: false,
     searchTerm: null as number | null,
-    displayName: null as string | null
   },
   mutations: {
     setUser(state, payload) {
