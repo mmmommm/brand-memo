@@ -147,7 +147,7 @@ export default class Header extends Vue {
       if(user) {
         this.$store.commit('setIsAuthenticated', this.isAuthenticated ? true : false);
         this.$store.commit('setUser', user.displayName)
-        this.name = user.displayName
+        this.name = this.$store.state.user
       }
     })
   }
