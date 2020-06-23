@@ -184,7 +184,7 @@ export default class MemoDetail extends Vue {
       })
     })
     .then(() => {
-      // 　ログインしていない時に両方ともnullになり通過してしまうため追加
+      //ログインしていない時に両方ともnullになり通過してしまうため追加
       if(this.$store.state.user == this.author && this.$store.state.user != null) {
         this.$store.commit('setIsUser', true)
       } else {
@@ -194,12 +194,6 @@ export default class MemoDetail extends Vue {
   }
   isUser() {
     return this.$store.getters.isUser;
-  }
-  deleteMemo() {
-    firestore.collection('memos').doc(this.slug).delete()
-    .then(() => {
-      this.$router.push('/')
-    })
   }
   cardWidth(){
     switch (this.$vuetify.breakpoint.name) {
