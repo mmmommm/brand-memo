@@ -232,7 +232,7 @@ export default class MemoEdit extends Vue {
   }
   updateMemo() {
     if(this.$refs.form.validate()) {
-      firestore.collection('memos').doc().update({
+      firestore.collection('memos').doc(this.slug).update({
         capitalization: this.capitalization,
         code: this.code,
         date: this.date,
