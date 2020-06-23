@@ -195,7 +195,7 @@ export default class MemoAdd extends Vue {
   saveMemo() {
     if(this.$refs.form.validate()) {
       const slug = this.generateUUID()
-      firestore.collection('memos').add({
+      firestore.collection('memos').doc(slug).set({
         capitalization: this.capitalization,
         code: this.code,
         date: this.date,
