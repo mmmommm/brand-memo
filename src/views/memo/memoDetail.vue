@@ -167,13 +167,6 @@ export default class MemoDetail extends Vue {
   author: string | null = null
   dialog = false
   displayEdit = false
-  isUser() {
-    if(this.$store.getters.isUser == this.author) {
-      return true
-    } else {
-      false
-    }
-  }
   created() {
     firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc)=>{
@@ -190,6 +183,17 @@ export default class MemoDetail extends Vue {
         this.author = doc.data().author
       })
     })
+    .then(() => {
+      // 　ログインしていない時に両方ともnullになり通過してしまうため追加
+      if(this.$store.state.user == this.author && this.$store.state.user != null) {
+        this.$store.commit('setIsUser', true)
+      } else {
+        this.$store.commit('setIsUser', false)
+      }
+    })
+  }
+  isUser() {
+    return this.$store.getters.isUser;
   }
   deleteMemo() {
     firestore.collection('memos').doc(this.slug).delete()
@@ -197,7 +201,7 @@ export default class MemoDetail extends Vue {
       this.$router.push('/')
     })
   }
-  cardWidth() {
+  cardWidth(){
     switch (this.$vuetify.breakpoint.name) {
       case 'xs':
         return 350;
@@ -209,6 +213,8 @@ export default class MemoDetail extends Vue {
         return 600;
       case 'xl':
         return 600;
+      default:
+        return
     }
   }
 }
