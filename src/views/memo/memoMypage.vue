@@ -43,7 +43,7 @@ import MemoCard from '@/components/atoms/memoCard.vue';
 })
 export default class MemoMypage extends Vue {
   memos: MemoItem[] = []
-  hasNoMemo = true
+  hasNoMemo = false
   created() {
     firestore.collection('memos').where('author', '==', this.$store.state.user).get()
       .then((querySnapshot) => {
@@ -52,7 +52,9 @@ export default class MemoMypage extends Vue {
           s.push(doc.data())
         });
         this.memos = s
-        this.hasNoMemo = false
+      })
+      .catch(() => {
+        this.hasNoMemo = true
       })
   }
 }
