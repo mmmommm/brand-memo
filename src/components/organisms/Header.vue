@@ -108,7 +108,7 @@
               <v-text
                 class="mt-5"
               >
-                {{ name }}さん
+                {{ this.$store.state.user }}さん
               </v-text>
             </template>
           </v-flex>
@@ -129,7 +129,6 @@ import LogoutButton from '@/components/atoms/logoutButton.vue';
   }
 })
 export default class Header extends Vue {
-  name = null as string | null
   isAuthenticated(): boolean {
     return this.$store.getters.isAuthenticated;
   }
@@ -138,7 +137,6 @@ export default class Header extends Vue {
       if(user) {
         this.$store.commit('setIsAuthenticated', this.isAuthenticated ? true : false);
         this.$store.commit('setUser', user.displayName)
-        this.name = this.$store.state.user
       }
     })
   }
