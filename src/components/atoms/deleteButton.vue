@@ -55,12 +55,13 @@
   </v-dialog>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 @Component
 export default class DeleteButton extends Vue {
   dialog = false
-  slug: string | undefined = ''
+  @Prop({ default: '' })
+  slug!: string
   deleteMemo() {
     firestore.collection('memos').doc(this.slug).delete()
     .then(() => {
