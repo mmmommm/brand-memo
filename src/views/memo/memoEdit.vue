@@ -241,10 +241,11 @@ export default class MemoEdit extends Vue {
         price: this.price,
         reason: this.reason,
         theme: this.theme,
-        url: this.url
+        url: this.url,
+        slug: this.slug
       })
       .then(() => {
-        this.$router.push({path: '/'})
+        this.$router.push({path: '/MemoMypage'})
       })
     }
   }
