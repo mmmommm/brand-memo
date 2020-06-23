@@ -232,7 +232,7 @@ export default class MemoEdit extends Vue {
   }
   updateMemo() {
     if(this.$refs.form.validate()) {
-      firestore.collection('memos').doc().update({
+      firestore.collection('memos').doc(this.slug).update({
         capitalization: this.capitalization,
         code: this.code,
         date: this.date,
@@ -241,10 +241,11 @@ export default class MemoEdit extends Vue {
         price: this.price,
         reason: this.reason,
         theme: this.theme,
-        url: this.url
+        url: this.url,
+        slug: this.slug
       })
       .then(() => {
-        this.$router.push({path: '/'})
+        this.$router.push({path: '/MemoMypage'})
       })
     }
   }

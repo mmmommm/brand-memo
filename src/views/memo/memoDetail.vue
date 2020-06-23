@@ -120,7 +120,7 @@
                 outlined
               />
               <template
-                v-if='isAuthenticated()'
+                v-if='isUser()'
               >
                 <v-btn
                   type='submit'
@@ -164,28 +164,9 @@ export default class MemoDetail extends Vue {
   theme: string | null = null
   url: string | null = null
   slug: string | undefined = ''
+  author: string | null = null
   dialog = false
   displayEdit = false
-  beforeRouteEnter(to: any, from: string, next: any){
-    firestore.collection('memos').where('slug', '==', to.params.memo).get().then((querySnapshot) =>{
-      querySnapshot.forEach((doc) =>{
-        next(() => {
-          this.capitalization = doc.data().capitalization
-          this.code = doc.data().code
-          this.date = doc.data().date
-          this.floating = doc.data().floating
-          this.name = doc.data().name
-          this.price = doc.data().price
-          this.reason = doc.data().reason
-          this.theme = doc.data().theme
-          this.url = doc.data().url
-        })
-      })
-    })
-  }
-  isAuthenticated(): boolean {
-    return this.$store.getters.isAuthenticated;
-  }
   created() {
     firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc)=>{
@@ -199,16 +180,22 @@ export default class MemoDetail extends Vue {
         this.theme = doc.data().theme
         this.url = doc.data().url
         this.slug = doc.data().slug
+        this.author = doc.data().author
       })
     })
-  }
-  deleteMemo() {
-    firestore.collection('memos').doc(this.slug).delete()
     .then(() => {
-      this.$router.push('/')
+      //ログインしていない時に両方ともnullになり通過してしまうため追加
+      if(this.$store.state.user == this.author && this.$store.state.user != null) {
+        this.$store.commit('setIsUser', true)
+      } else {
+        this.$store.commit('setIsUser', false)
+      }
     })
   }
-  cardWidth() {
+  isUser() {
+    return this.$store.getters.isUser;
+  }
+  cardWidth(){
     switch (this.$vuetify.breakpoint.name) {
       case 'xs':
         return 350;
@@ -220,6 +207,8 @@ export default class MemoDetail extends Vue {
         return 600;
       case 'xl':
         return 600;
+      default:
+        return
     }
   }
 }

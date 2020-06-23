@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import firebase from 'firebase/app'
 import { firebaseauth } from '@/firebase/firebaseAuth';
+import { firestore } from '@/firebase/fireStore';
 import router from '@/router';
 
 Vue.use(Vuex)
@@ -8,12 +10,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null as string | null,
+    isUser: false,
     isAuthenticated: false,
     searchTerm: null as number | null,
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload;
+    },
+    setIsUser(state, payload) {
+      state.isUser = payload
     },
     setIsAuthenticated(state, payload) {
       state.isAuthenticated = payload;
@@ -23,52 +29,78 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    userLogin({ commit }, { email, password }) {
-      firebaseauth
-        .signInWithEmailAndPassword(email, password)
-        .then((user) => {
-          commit('setUser', user);
-          commit('setIsAuthenticated', true);
-          router.push('/');
+    googleLogin({ commit }) {
+      const provider = new firebase.auth.GoogleAuthProvider()
+      firebaseauth.signInWithPopup(provider)
+        .then((result: any) => {
+          const userData = {
+            id: result.user.uid,
+            name: result.additionalUserInfo.profile.given_name,
+            email: result.additionalUserInfo.profile.email,
+          }
+          console.log(userData)
+          firestore.collection('users').doc(result.user.uid).set(userData)
+          router.push('/')
         })
         .catch(() => {
-          commit('setUser', null);
-          commit('setIsAuthenticated', false);
-          router.push('/memoLogin')
-        });
-    },
-    userRegister({ commit }, { email, password }) {
-      firebaseauth
-        .createUserWithEmailAndPassword(email, password)
-        .then(user => {
-          commit('setUser', user);
-          commit('setIsAuthenticated', true);
-          router.push('/');
+          router.push('/')
         })
-        .catch(() => {
-          commit('setUser', null);
-          commit('setIsAuthenticated', false);
-          router.push('/memoRegister');
-        });
     },
+    // userLogin({ commit }, { email, password }) {
+    //   firebaseauth
+    //     .signInWithEmailAndPassword(email, password)
+    //     .then((user) => {
+    //       commit('setUser', user);
+    //       commit('setIsAuthenticated', true);
+    //       router.push('/');
+    //     })
+    //     .catch(() => {
+    //       commit('setUser', null);
+    //       commit('setIsAuthenticated', false);
+    //       router.push('/memoLogin')
+    //     });
+    // },
+    // userRegister({ commit }, { email, password }) {
+    //   firebaseauth
+    //     .createUserWithEmailAndPassword(email, password)
+    //     .then(user => {
+    //       const userData = {
+    //         email: user.additionalUserInfo
+    //       }
+    //       commit('setUser', user);
+    //       commit('setIsAuthenticated', true);
+    //       router.push('/');
+    //     })
+    //     .catch(() => {
+    //       commit('setUser', null);
+    //       commit('setIsAuthenticated', false);
+    //       router.push('/memoRegister');
+    //     });
+    // },
     userLogout({ commit }) {
       firebaseauth
         .signOut()
         .then(() => {
+          console.log('成功')
           commit('setUser', null);
+          commit('setIsUser', false)
           commit('setIsAuthenticated', false);
-          router.push('/memoLogin')
+          router.push('/')
         })
         .catch(() => {
+          console.log('失敗')
           commit('setUser', null);
           commit('setIsAuthenticated', false);
-          router.push('/memoRegister')
+          router.push('/')
         })
     }
   },
   getters: {
     isAuthenticated(state) {
       return state.isAuthenticated
+    },
+    isUser(state) {
+      return state.isUser
     }
   }
 });

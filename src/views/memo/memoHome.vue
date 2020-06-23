@@ -16,7 +16,6 @@
     />
   </Layout>
 </template>
-
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';

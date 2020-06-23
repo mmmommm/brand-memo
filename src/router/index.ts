@@ -2,12 +2,13 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import MemoAdd from '@/views/memo/memoAdd.vue';
 import MemoHome from '@/views/memo/memoHome.vue';
-import MemoLogin from '@/views/user/memoLogin.vue';
-import MemoRegister from '@/views/user/memoRegister.vue';
+// import MemoLogin from '@/views/user/memoLogin.vue';
+// import MemoRegister from '@/views/user/memoRegister.vue';
 import MemoEdit from '@/views/memo/memoEdit.vue';
 import MemoDetail from '@/views/memo/memoDetail.vue';
 import PageNotFound from '@/views/PageNotFound.vue';
 import MemoSearch from '@/views/memo/memoSearch.vue';
+import MemoMypage from '@/views/memo/memoMypage.vue';
 import store from '@/store/index';
 
 Vue.use(VueRouter)
@@ -24,33 +25,39 @@ const routes: Array<RouteConfig> = [
     component: MemoSearch
   },
   //ログインしているとガードするもの
-  {
-    path: "/MemoLogin",
-    name: "MemoLogin",
-    component: MemoLogin,
-    beforeEnter(to, from, next) {
-      if (store.getters.isAuthenticated) {
-        store.getters.isAuthenticated = true;
-        next("/MemoHome");
-      } else {
-        next();
-      }
-    }
-  },
-  {
-    path: "/MemoRegister",
-    name: "MemoRegister",
-    component: MemoRegister,
-    beforeEnter(to, from, next) {
-      if (store.getters.isAuthenticated) {
-        store.getters.isAuthenticated = true;
-        next("/MemoHome");
-      } else {
-        next();
-      }
-    }
-  },
+  // {
+  //   path: "/MemoLogin",
+  //   name: "MemoLogin",
+  //   component: MemoLogin,
+  //   beforeEnter(to, from, next) {
+  //     if (store.getters.isAuthenticated) {
+  //       store.getters.isAuthenticated = true;
+  //       next("/MemoHome");
+  //     } else {
+  //       next();
+  //     }
+  //   }
+  // },
+  // {
+  //   path: "/MemoRegister",
+  //   name: "MemoRegister",
+  //   component: MemoRegister,
+  //   beforeEnter(to, from, next) {
+  //     if (store.getters.isAuthenticated) {
+  //       store.getters.isAuthenticated = true;
+  //       next("/MemoHome");
+  //     } else {
+  //       next();
+  //     }
+  //   }
+  // },
   //ログインしていないとガードするもの
+  {
+    path: '/MemoMypage',
+    name: 'MemoMypage',
+    component: MemoMypage,
+    meta: { requiresAuth: true }
+  },
   {
     path: "/MemoAdd",
     name: "MemoAdd",
@@ -89,7 +96,7 @@ router.beforeEach((to, from, next) => {
     if(!store.getters.isAuthenticated) {
       store.getters.isAuthenticated = false
       next({
-        path: '/MemoLogin', query: { redirect: to.fullPath }
+        path: '/', query: { redirect: to.fullPath }
       });
     } else {
       next()
