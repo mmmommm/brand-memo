@@ -120,7 +120,7 @@
                 outlined
               />
               <template
-                v-if='isAuthenticated()'
+                v-if='isUser()'
               >
                 <v-btn
                   type='submit'
@@ -164,27 +164,15 @@ export default class MemoDetail extends Vue {
   theme: string | null = null
   url: string | null = null
   slug: string | undefined = ''
+  author: string | null = null
   dialog = false
   displayEdit = false
-  beforeRouteEnter(to: any, from: string, next: any){
-    firestore.collection('memos').where('slug', '==', to.params.memo).get().then((querySnapshot) =>{
-      querySnapshot.forEach((doc) =>{
-        next(() => {
-          this.capitalization = doc.data().capitalization
-          this.code = doc.data().code
-          this.date = doc.data().date
-          this.floating = doc.data().floating
-          this.name = doc.data().name
-          this.price = doc.data().price
-          this.reason = doc.data().reason
-          this.theme = doc.data().theme
-          this.url = doc.data().url
-        })
-      })
-    })
-  }
-  isAuthenticated(): boolean {
-    return this.$store.getters.isAuthenticated;
+  isUser() {
+    if(this.$store.getters.isUser == this.author) {
+      return true
+    } else {
+      false
+    }
   }
   created() {
     firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot) =>{
@@ -199,6 +187,7 @@ export default class MemoDetail extends Vue {
         this.theme = doc.data().theme
         this.url = doc.data().url
         this.slug = doc.data().slug
+        this.author = doc.data().author
       })
     })
   }
