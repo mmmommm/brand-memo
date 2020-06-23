@@ -91,6 +91,9 @@ export default new Vuex.Store({
   getters: {
     isAuthenticated(state) {
       return state.isAuthenticated
+    },
+    isUser(state) {
+      return state.user
     }
   }
 });
