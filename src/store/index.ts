@@ -10,12 +10,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null as string | null,
+    isUser: false,
     isAuthenticated: false,
     searchTerm: null as number | null,
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload;
+    },
+    setIsUser(state, payload) {
+      state.isUser = payload
     },
     setIsAuthenticated(state, payload) {
       state.isAuthenticated = payload;
@@ -77,11 +81,14 @@ export default new Vuex.Store({
       firebaseauth
         .signOut()
         .then(() => {
+          console.log('成功')
           commit('setUser', null);
+          commit('setIsUser', false)
           commit('setIsAuthenticated', false);
           router.push('/')
         })
         .catch(() => {
+          console.log('失敗')
           commit('setUser', null);
           commit('setIsAuthenticated', false);
           router.push('/')
@@ -93,7 +100,7 @@ export default new Vuex.Store({
       return state.isAuthenticated
     },
     isUser(state) {
-      return state.user
+      return state.isUser
     }
   }
 });
