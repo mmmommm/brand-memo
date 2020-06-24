@@ -144,9 +144,8 @@
   </div>
 </template>
 <script lang='ts'>
-import { Watch, Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
-import { MemoItem } from '@/interface/memoItem';
 import Layout from '@/components/atoms/layout.vue';
 import DeleteButton from '@/components/atoms/deleteButton.vue';
 @Component({
