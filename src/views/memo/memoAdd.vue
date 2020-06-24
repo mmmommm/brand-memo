@@ -220,19 +220,27 @@ export default class MemoAdd extends Vue {
   });
     return uuid;
   }
+  // cardWidth() {
+  //   switch (this.$vuetify.breakpoint.name) {
+  //     case 'xs':
+  //       return 350;
+  //     case 'sm':
+  //       return 350;
+  //     case 'md':
+  //       return 600;
+  //     case 'lg':
+  //       return 600;
+  //     case 'xl':
+  //       return 600;
+  //   }
+  // }
   cardWidth() {
-    switch (this.$vuetify.breakpoint.name) {
-      case 'xs':
-        return 350;
-      case 'sm':
-        return 350;
-      case 'md':
-        return 600;
-      case 'lg':
-        return 600;
-      case 'xl':
-        return 600;
-    }
+    const name = this.$vuetify.breakpoint.name;
+    if(name == 'xs'){ return 350 }
+    else if(name == 'sm'){ return 350 }
+    else if(name == 'md'){ return 600 }
+    else if(name == 'lg'){ return 600 }
+    else { return 600 }
   }
 }
 </script>
