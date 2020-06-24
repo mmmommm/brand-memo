@@ -1,19 +1,19 @@
 <template>
   <Layout>
-    <template v-if='!hasNoMemo'>
+    <template v-if="memos.length">
       <MemoCard
         v-for="(memo, index) in memos"
         :key="index"
         :memo='memo'
       />
     </template>
-    <template v-if="hasNoMemo">
+    <template v-else>
       <v-container>
       <v-layout align-center column justify-center fill-height>
-        <h1 class="display-2 font-weight-thin mb-3">
+        <h1 class="display-2 font-weight-thin my-12">
           まだメモがありません
         </h1>
-        <h4 class="subheading mt-4">
+        <h4 class="subheading mt-12">
           是非下記のボタンを押下しメモを作成してみてください。
         </h4>
         <v-btn
@@ -43,7 +43,6 @@ import MemoCard from '@/components/atoms/memoCard.vue';
 })
 export default class MemoMypage extends Vue {
   memos: MemoItem[] = []
-  hasNoMemo = false
   created() {
     firestore.collection('memos').where('author', '==', this.$store.state.user).get()
       .then((querySnapshot) => {
@@ -52,9 +51,6 @@ export default class MemoMypage extends Vue {
           s.push(doc.data())
         });
         this.memos = s
-      })
-      .catch(() => {
-        this.hasNoMemo = true
       })
   }
 }

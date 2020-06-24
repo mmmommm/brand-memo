@@ -8,4 +8,5 @@ export interface MemoItem {
   reason: string;
   theme: string;
   url: string;
+  slug: string;
 }

@@ -132,7 +132,9 @@
                 >
                   Editmemo
                 </v-btn>
-                <DeleteButton/>
+                <DeleteButton
+                  :slug='slug'
+                />
               </template>
             </v-card>
           </v-flex>
