@@ -30,9 +30,7 @@
         <v-layout
           justify-center
         >
-          <v-card-acrions
-            name='logout'
-          >
+          <v-card-acrions>
             <v-spacer/>
             <v-btn
               @click='logout()'

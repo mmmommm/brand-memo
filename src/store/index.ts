@@ -29,14 +29,15 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    googleLogin({ commit }) {
+    googleLogin() {
       const provider = new firebase.auth.GoogleAuthProvider()
       firebaseauth.signInWithPopup(provider)
-        .then((result: any) => {
+        .then((result) => {
+          if(result.user == null) return
           const userData = {
-            id: result.user.uid,
-            name: result.additionalUserInfo.profile.given_name,
-            email: result.additionalUserInfo.profile.email,
+            id:  result.user.uid,
+            name: result.user.displayName,
+            email: result.user.email,
           }
           console.log(userData)
           firestore.collection('users').doc(result.user.uid).set(userData)

@@ -9,7 +9,7 @@
             md5
           >
             <v-card
-              :width='cardWidth'
+              :width='cardWidth()'
               flat
             >
               <v-layout>
@@ -101,7 +101,7 @@
             md6
           >
             <v-card
-              :width='cardWidth'
+              :width='cardWidth()'
               flat
             >
               <v-card-title>
@@ -144,9 +144,8 @@
   </div>
 </template>
 <script lang='ts'>
-import { Watch, Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
-import { MemoItem } from '@/interface/memoItem';
 import Layout from '@/components/atoms/layout.vue';
 import DeleteButton from '@/components/atoms/deleteButton.vue';
 @Component({
@@ -197,21 +196,13 @@ export default class MemoDetail extends Vue {
   isUser() {
     return this.$store.getters.isUser;
   }
-  cardWidth(){
-    switch (this.$vuetify.breakpoint.name) {
-      case 'xs':
-        return 350;
-      case 'sm':
-        return 350;
-      case 'md':
-        return 600;
-      case 'lg':
-        return 600;
-      case 'xl':
-        return 600;
-      default:
-        return
-    }
+  cardWidth(): number {
+    const name = this.$vuetify.breakpoint.name;
+    if(name == 'xs'){ return 350 }
+    else if(name == 'sm'){ return 350 }
+    else if(name == 'md'){ return 600 }
+    else if(name == 'lg'){ return 600 }
+    else { return 600 }
   }
 }
 </script>
