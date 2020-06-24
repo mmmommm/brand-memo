@@ -11,7 +11,7 @@
             md5
           >
             <v-card
-              :width='cardWidth'
+              :width='cardWidth()'
               flat
             >
               <v-layout>
@@ -129,7 +129,7 @@
             md6
           >
             <v-card
-              :width='cardWidth'
+              :width='cardWidth()'
               flat
             >
               <v-card-title>
@@ -216,19 +216,13 @@ export default class MemoEdit extends Vue {
       })
     })
   }
-  cardWidth() {
-    switch (this.$vuetify.breakpoint.name) {
-      case 'xs':
-        return 350;
-      case 'sm':
-        return 350;
-      case 'md':
-        return 600;
-      case 'lg':
-        return 600;
-      case 'xl':
-        return 600;
-    }
+  cardWidth(): number {
+    const name = this.$vuetify.breakpoint.name;
+    if(name == 'xs'){ return 350 }
+    else if(name == 'sm'){ return 350 }
+    else if(name == 'md'){ return 600 }
+    else if(name == 'lg'){ return 600 }
+    else { return 600 }
   }
   updateMemo() {
     if(this.$refs.form.validate()) {
