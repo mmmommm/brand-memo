@@ -19,7 +19,6 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
-import { MemoHomeItem } from '@/interface/memoHomeItem';
 import Layout from '@/components/atoms/layout.vue';
 import MemoCard from '@/components/atoms/memoCard.vue';
 @Component({
@@ -31,14 +30,14 @@ import MemoCard from '@/components/atoms/memoCard.vue';
 export default class MemoHome extends Vue {
   page = 1
   pageSize = 3
-  memos: MemoHomeItem[] = []
-  memoLists: MemoHomeItem[] = []
+  memos: Array<firebase.firestore.DocumentData>  = []
+  memoLists: Array<firebase.firestore.DocumentData> = []
   //開いた時にfirestoreからmemoデータを取ってくる
   created() {
     //全部のデータを取ってしまっているので必要なcodeとnameだけとりたい
-    firestore.collection('memos').get().then((querySnapshot: any) => {
-      const array: MemoHomeItem[] = [];
-      querySnapshot.forEach((doc: any) => {
+    firestore.collection('memos').get().then((querySnapshot) => {
+      const array: Array<firebase.firestore.DocumentData> = [];
+      querySnapshot.forEach((doc) => {
         array.push(doc.data())
       });
         this.memos = array
