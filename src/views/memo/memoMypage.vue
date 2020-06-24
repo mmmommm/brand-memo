@@ -32,7 +32,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
-import { MemoItem } from '@/interface/memoItem';
 import Layout from '@/components/atoms/layout.vue';
 import MemoCard from '@/components/atoms/memoCard.vue';
 @Component({
@@ -42,12 +41,12 @@ import MemoCard from '@/components/atoms/memoCard.vue';
   }
 })
 export default class MemoMypage extends Vue {
-  memos: MemoItem[] = []
+  memos: Array<firebase.firestore.DocumentData> = []
   created() {
     firestore.collection('memos').where('author', '==', this.$store.state.user).get()
       .then((querySnapshot) => {
-        const s: MemoItem[] = []
-        querySnapshot.forEach((doc: any) => {
+        const s: Array<firebase.firestore.DocumentData> = []
+        querySnapshot.forEach((doc) => {
           s.push(doc.data())
         });
         this.memos = s
