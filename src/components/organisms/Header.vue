@@ -70,11 +70,11 @@
                 </v-btn>
               </div> -->
               <v-spacer/>
-              <v-text
+              <p
                 class="mt-5"
               >
                 匿名
-              </v-text>
+              </p>
             </template>
             <template
               v-if='isAuthenticated()'
@@ -105,11 +105,11 @@
               </div>
               <LogoutButton/>
               <v-spacer/>
-              <v-text
+              <p
                 class="mt-5"
               >
                 {{ this.$store.state.user }}さん
-              </v-text>
+              </p>
             </template>
           </v-flex>
         </v-layout>
