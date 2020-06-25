@@ -45,11 +45,9 @@ export default class MemoMypage extends Vue {
   created() {
     firestore.collection('memos').where('author', '==', this.$store.state.user).get()
       .then((querySnapshot) => {
-        const s: Array<firebase.firestore.DocumentData> = []
         querySnapshot.forEach((doc) => {
-          s.push(doc.data())
-        });
-        this.memos = s
+          this.memos.push(doc.data())
+        })
       })
   }
 }
