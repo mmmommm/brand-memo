@@ -2,6 +2,8 @@
   <div>
     <v-app-bar
       app
+      height="100"
+      class="py-2"
     >
       <v-container>
         <v-layout>
