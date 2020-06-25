@@ -177,6 +177,7 @@ interface VForm extends Vue {
   }
 })
 export default class MemoEdit extends Vue {
+  author = ''
   capitalization: number | null = null
   code: number | null = null
   date: string | null = null
@@ -203,6 +204,7 @@ export default class MemoEdit extends Vue {
   created() {
     firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc)=>{
+        this.author = doc.data().author
         this.capitalization = doc.data().capitalization
         this.code = doc.data().code
         this.date = doc.data().date
@@ -226,7 +228,8 @@ export default class MemoEdit extends Vue {
   }
   updateMemo() {
     if(this.$refs.form.validate()) {
-      firestore.collection('memos').doc(this.slug).update({
+      firestore.collection('memos').doc(this.slug).set({
+        author: this.author,
         capitalization: this.capitalization,
         code: this.code,
         date: this.date,
@@ -237,10 +240,7 @@ export default class MemoEdit extends Vue {
         theme: this.theme,
         url: this.url,
         slug: this.slug
-      })
-      .then(() => {
-        this.$router.push({path: '/MemoMypage'})
-      })
+      },{ merge: true })
     }
   }
 }

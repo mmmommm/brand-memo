@@ -20,11 +20,9 @@ get codeRules() { return rules.codeRules }
 filteredList() {
   firestore.collection('memos').where('code', '==', this.$store.state.searchTerm).get()
     .then((querySnapshot) => {
-      const s: Array<firebase.firestore.DocumentData> = []
       querySnapshot.forEach((doc) => {
-        s.push(doc.data())
+        this.filteredData.push(doc.data())
       });
-      this.filteredData = s
       this.$emit('catchData', this.filteredData)
     })
   }
