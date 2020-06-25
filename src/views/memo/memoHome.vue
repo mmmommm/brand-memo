@@ -29,7 +29,7 @@ import MemoCard from '@/components/atoms/memoCard.vue';
 })
 export default class MemoHome extends Vue {
   page = 1
-  pageSize = 3
+  pageSize = 9
   memos: Array<firebase.firestore.DocumentData>  = []
   memoLists: Array<firebase.firestore.DocumentData> = []
   //開いた時にfirestoreからmemoデータを取ってくる
