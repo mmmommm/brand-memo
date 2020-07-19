@@ -3,9 +3,9 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import vuetify from './plugins/vuetify';
-// import Firebase from '@/firebase/firebase';
+import VueCompositionAPI from "@vue/composition-api";
 
-// Firebase.init();
+Vue.use(VueCompositionAPI);
 
 Vue.config.productionTip = false
 
