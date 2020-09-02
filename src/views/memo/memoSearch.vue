@@ -36,9 +36,6 @@ import MemoCard from '@/components/atoms/memoCard.vue';
   }
 })
 export default class MemoSearch extends Vue {
-searchTerm: number | null = null
-code: number | null = 0
-name: string | null = ''
 filteredMemo: MemoItem[] = []
 passData(filteredData: MemoItem[]) {
   this.filteredMemo = filteredData
