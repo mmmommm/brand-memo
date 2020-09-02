@@ -39,6 +39,6 @@ import { MemoItem } from '@/interface/memoItem';
 @Component
 export default class MemoCard extends Vue {
   @Prop({ default: [] })
-  memo!: MemoItem[]
+  readonly memo!: MemoItem[]
 }
 </script>
