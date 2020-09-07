@@ -147,7 +147,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import Layout from '@/components/atoms/layout.vue';
-import DeleteButton from '@/components/atoms/deleteButton.vue';
+import DeleteButton from '@/components/atoms/delete-button.vue';
 @Component({
   components: {
     Layout,

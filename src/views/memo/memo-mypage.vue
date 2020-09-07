@@ -33,7 +33,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import Layout from '@/components/atoms/layout.vue';
-import MemoCard from '@/components/atoms/memoCard.vue';
+import MemoCard from '@/components/atoms/memo-card.vue';
 @Component({
   components: {
     Layout,

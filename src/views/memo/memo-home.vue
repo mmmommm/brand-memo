@@ -1,4 +1,3 @@
-
 <template>
   <Layout>
     <MemoCard
@@ -20,7 +19,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import Layout from '@/components/atoms/layout.vue';
-import MemoCard from '@/components/atoms/memoCard.vue';
+import MemoCard from '@/components/atoms/memo-card.vue';
 @Component({
   components: {
     Layout,
@@ -30,7 +29,7 @@ import MemoCard from '@/components/atoms/memoCard.vue';
 export default class MemoHome extends Vue {
   readonly page = 1
   readonly pageSize = 9
-  memos: Array<firebase.firestore.DocumentData>  = []
+  memos: Array<firebase.firestore.DocumentData> = []
   memoLists: Array<firebase.firestore.DocumentData> = []
   //開いた時にfirestoreからmemoデータを取ってくる
   created() {
