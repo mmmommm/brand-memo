@@ -1,27 +1,32 @@
 <template>
-  <Layout>
-    <MemoCard
-      v-for='(memo, index) in memoLists'
-      :key='index'
-      :memo='memo'
-    />
-    <v-pagination
-      v-model="page"
-      class="my-4"
-      :length="2"
-      :total-visible="3"
-      color="black"
-      @input = "pageChange"
-    />
-  </Layout>
+  <v-app>
+    <LoadingScreen v-show='loading'/>
+    <Layout v-show='!loading'>
+      <MemoCard
+        v-for='(memo, index) in memoLists'
+        :key='index'
+        :memo='memo'
+      />
+      <v-pagination
+        v-model="page"
+        class="my-4"
+        :length="2"
+        :total-visible="3"
+        color="black"
+        @input = "pageChange"
+      />
+    </Layout>
+  </v-app>
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
+import LoadingScreen from '@/views/loading-screen.vue';
 import Layout from '@/components/atoms/layout.vue';
 import MemoCard from '@/components/atoms/memo-card.vue';
 @Component({
   components: {
+    LoadingScreen,
     Layout,
     MemoCard
   }
@@ -29,9 +34,17 @@ import MemoCard from '@/components/atoms/memo-card.vue';
 export default class MemoHome extends Vue {
   readonly page = 1
   readonly pageSize = 9
+  loading = true
   memos: Array<firebase.firestore.DocumentData> = []
   memoLists: Array<firebase.firestore.DocumentData> = []
   //開いた時にfirestoreからmemoデータを取ってくる
+
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 1500)
+  }
+
   created() {
     //全部のデータを取ってしまっているので必要なcodeとnameだけとりたい
     firestore.collection('memos').get().then((querySnapshot) => {
