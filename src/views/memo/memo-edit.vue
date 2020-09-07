@@ -149,7 +149,7 @@
                 :rules='reasonRules'
               />
               <v-btn
-                type='submit'
+                type='button'
                 x-large
                 class='ml-12 mb-4'
                 outlined
@@ -163,6 +163,7 @@
         </Layout>
     </v-form>
 </template>
+
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
@@ -193,6 +194,7 @@ export default class MemoEdit extends Vue {
   $refs!: {
     form: VForm;
   }
+
   get codeRules() { return rules.codeRules }
   get nameRules() { return rules.nameRules }
   get capitalizationRules() { return rules.capitalizationRules }
@@ -201,6 +203,7 @@ export default class MemoEdit extends Vue {
   get priceRules() { return rules.priceRules }
   get urlRules() { return rules.urlRules }
   get reasonRules() { return rules.reasonRules }
+
   created() {
     firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc)=>{
@@ -218,6 +221,7 @@ export default class MemoEdit extends Vue {
       })
     })
   }
+
   cardWidth(): number {
     const name = this.$vuetify.breakpoint.name;
     if(name == 'xs'){ return 350 }
@@ -226,22 +230,32 @@ export default class MemoEdit extends Vue {
     else if(name == 'lg'){ return 600 }
     else { return 600 }
   }
+
+  beforeRouteUpdate(to: any, from: never, next: any) {
+    this.slug = to.params.id
+    next()
+  }
+
   updateMemo() {
-    if(this.$refs.form.validate()) {
-      firestore.collection('memos').doc(this.slug).set({
-        author: this.author,
-        capitalization: this.capitalization,
-        code: this.code,
-        date: this.date,
-        floating: this.floating,
-        name: this.name,
-        price: this.price,
-        reason: this.reason,
-        theme: this.theme,
-        url: this.url,
-        slug: this.slug
-      },{ merge: true })
-    }
+    console.log(this.slug)
+    firestore.collection('memos').doc(this.slug).update({
+      "capitalization": this.capitalization,
+      "code": this.code,
+      "date": this.date,
+      "floating": this.floating,
+      "name": this.name,
+      "price": this.price,
+      "reason": this.reason,
+      "theme": this.theme,
+      "url": this.url,
+    })
+    .then(() => {
+      this.$router.push("/")
+    })
+    .catch(() => {
+      alert("エラーが発生しました、少し時間をおいて再実行してください。")
+      this.$router.push("/MemoMyPage")
+    })
   }
 }
 </script>
