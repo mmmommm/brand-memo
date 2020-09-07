@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <!-- memoEditを押した時にmemoDetailもでてしまうので仕方なく -->
-    <template v-if='!displayEdit'>
+    <v-form
+      ref='form'
+      v-model='valid'
+      lazy-validation
+    >
       <Layout>
           <v-flex
             xs12
@@ -16,10 +18,30 @@
                 <v-card-title>
                   日付
                 </v-card-title>
-                <v-text-field
-                  readonly
-                  :value='date'
-                />
+                <v-menu
+                  ref='menu'
+                  v-model='menu'
+                  :close-on-content-click='false'
+                  transition='scale-transition'
+                  offset-y
+                  max-width='290'
+                >
+                  <template
+                    v-slot:activator='{ on }'
+                  >
+                    <v-text-field
+                      v-model='date'
+                      v-on='on'
+                      class='mt-4 ml-4'
+                      :value='date'
+                    />
+                  </template>
+                  <v-date-picker
+                    v-model='date'
+                    no-title
+                    @input='menu = false'
+                  />
+                </v-menu>
               </v-layout>
               <v-layout
                 wrap
@@ -33,8 +55,9 @@
                   <v-text-field
                     type='text'
                     class='py-2'
-                    readonly
                     :value='code'
+                    v-model="code"
+                    :rules='codeRules'
                   />
                   <v-card-title>
                     銘柄名
@@ -42,8 +65,9 @@
                   <v-text-field
                     type='text'
                     class='py-2'
-                    readonly
                     :value='name'
+                    v-model="name"
+                    :rules='nameRules'
                   />
                   <v-card-title>
                     時価総額
@@ -51,8 +75,9 @@
                   <v-text-field
                     type='text'
                     class='py-2'
-                    readonly
                     :value='capitalization'
+                    v-model="capitalization"
+                    :rules='capitalizationRules'
                   />
                   <v-card-title>
                     浮動株式数
@@ -60,8 +85,9 @@
                   <v-text-field
                     type='text'
                     class='py-2'
-                    readonly
                     :value='floating'
+                    v-model="floating"
+                    :rules='floatRules'
                   />
                   <v-card-title>
                     テーマ
@@ -69,8 +95,9 @@
                   <v-text-field
                     type='text'
                     class='py-2'
-                    readonly
                     :value='theme'
+                    v-model="theme"
+                    :rules='themeRules'
                   />
                   <v-card-title>
                     株価
@@ -78,19 +105,20 @@
                   <v-text-field
                     type='text'
                     class='py-2'
-                    readonly
                     :value='price'
+                    v-model="price"
+                    :rules='priceRules'
                   />
                   <v-card-title>
                     会社URL
                   </v-card-title>
-                  <v-btn
-                    text
-                    :href='url'
-                    target='_blank'
-                  >
-                    {{ url }}
-                  </v-btn>
+                  <v-text-field
+                    type='text'
+                    class='py-2'
+                    :value='url'
+                    v-model="url"
+                    :rules='urlRules'
+                  />
                 </v-flex>
               </v-layout>
             </v-card>
@@ -113,48 +141,44 @@
               </v-card-title>
               <v-textarea
                 :value='reason'
+                v-model="reason"
                 cols='60'
                 rows='25'
                 class='ml-4'
-                readonly
                 outlined
+                :rules='reasonRules'
               />
-              <template
-                v-if='isUser()'
+              <v-btn
+                type='button'
+                x-large
+                class='ml-12 mb-4'
+                outlined
+                @click='updateMemo()'
+                :disabled='!valid'
               >
-                <v-btn
-                  type='submit'
-                  x-large
-                  class='ml-12 mb-4'
-                  outlined
-                  @click='displayEdit = true'
-                  :to="{ name: 'MemoEdit', params: { memo: this.slug }}"
-                >
-                  Editmemo
-                </v-btn>
-                <DeleteButton
-                  :slug='slug'
-                />
-              </template>
+                updatememo
+              </v-btn>
             </v-card>
           </v-flex>
         </Layout>
-    </template>
-    <router-view/>
-  </div>
+    </v-form>
 </template>
+
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
 import Layout from '@/components/atoms/layout.vue';
-import DeleteButton from '@/components/atoms/deleteButton.vue';
+import * as rules from '@/config/user/rules';
+interface VForm extends Vue {
+  validate(): boolean;
+}
 @Component({
   components: {
-    Layout,
-    DeleteButton
+    Layout
   }
 })
-export default class MemoDetail extends Vue {
+export default class MemoEdit extends Vue {
+  author = ''
   capitalization: number | null = null
   code: number | null = null
   date: string | null = null
@@ -165,12 +189,25 @@ export default class MemoDetail extends Vue {
   theme: string | null = null
   url: string | null = null
   slug: string | undefined = ''
-  author: string | null = null
-  dialog = false
-  displayEdit = false
+  valid = true
+  menu = false
+  $refs!: {
+    form: VForm;
+  }
+
+  get codeRules() { return rules.codeRules }
+  get nameRules() { return rules.nameRules }
+  get capitalizationRules() { return rules.capitalizationRules }
+  get floatRules() { return rules.floatRules }
+  get themeRules() { return rules.themeRules }
+  get priceRules() { return rules.priceRules }
+  get urlRules() { return rules.urlRules }
+  get reasonRules() { return rules.reasonRules }
+
   created() {
     firestore.collection('memos').where('slug', '==', this.$route.params.memo).get().then((querySnapshot) =>{
       querySnapshot.forEach((doc)=>{
+        this.author = doc.data().author
         this.capitalization = doc.data().capitalization
         this.code = doc.data().code
         this.date = doc.data().date
@@ -181,21 +218,10 @@ export default class MemoDetail extends Vue {
         this.theme = doc.data().theme
         this.url = doc.data().url
         this.slug = doc.data().slug
-        this.author = doc.data().author
       })
     })
-    .then(() => {
-      //ログインしていない時に両方ともnullになり通過してしまうため追加
-      if(this.$store.state.user == this.author && this.$store.state.user != null) {
-        this.$store.commit('setIsUser', true)
-      } else {
-        this.$store.commit('setIsUser', false)
-      }
-    })
   }
-  isUser() {
-    return this.$store.getters.isUser;
-  }
+
   cardWidth(): number {
     const name = this.$vuetify.breakpoint.name;
     if(name == 'xs'){ return 350 }
@@ -203,6 +229,33 @@ export default class MemoDetail extends Vue {
     else if(name == 'md'){ return 600 }
     else if(name == 'lg'){ return 600 }
     else { return 600 }
+  }
+
+  beforeRouteUpdate(to: any, from: never, next: any) {
+    this.slug = to.params.id
+    next()
+  }
+
+  updateMemo() {
+    console.log(this.slug)
+    firestore.collection('memos').doc(this.slug).update({
+      "capitalization": this.capitalization,
+      "code": this.code,
+      "date": this.date,
+      "floating": this.floating,
+      "name": this.name,
+      "price": this.price,
+      "reason": this.reason,
+      "theme": this.theme,
+      "url": this.url,
+    })
+    .then(() => {
+      this.$router.push("/")
+    })
+    .catch(() => {
+      alert("エラーが発生しました、少し時間をおいて再実行してください。")
+      this.$router.push("/MemoMyPage")
+    })
   }
 }
 </script>

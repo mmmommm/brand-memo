@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import MemoAdd from '@/views/memo/memoAdd.vue';
-import MemoHome from '@/views/memo/memoHome.vue';
+import MemoAdd from '@/views/memo/memo-add.vue';
+import MemoHome from '@/views/memo/memo-home.vue';
 // import MemoLogin from '@/views/user/memoLogin.vue';
 // import MemoRegister from '@/views/user/memoRegister.vue';
-import MemoEdit from '@/views/memo/memoEdit.vue';
-import MemoDetail from '@/views/memo/memoDetail.vue';
-import PageNotFound from '@/views/PageNotFound.vue';
-import MemoSearch from '@/views/memo/memoSearch.vue';
-import MemoMypage from '@/views/memo/memoMypage.vue';
+import MemoEdit from '@/views/memo/memo-edit.vue';
+import MemoDetail from '@/views/memo/memo-detail.vue';
+import PageNotFound from '@/views/page-not-found.vue';
+import MemoSearch from '@/views/memo/memo-search.vue';
+import MemoMypage from '@/views/memo/memo-mypage.vue';
 import store from '@/store/index';
 
 Vue.use(VueRouter)

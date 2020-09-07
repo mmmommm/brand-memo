@@ -122,8 +122,8 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import { firebaseauth } from '@/firebase/firebaseAuth';
-import LoginButton from '@/components/atoms/loginButton.vue';
-import LogoutButton from '@/components/atoms/logoutButton.vue';
+import LoginButton from '@/components/atoms/login-button.vue';
+import LogoutButton from '@/components/atoms/logout-button.vue';
 @Component({
   components: {
     LoginButton,
