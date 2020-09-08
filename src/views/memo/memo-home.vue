@@ -8,12 +8,12 @@
         :memo='memo'
       />
       <v-pagination
-        v-model="page"
+        v-model="currentpage"
         class="my-4"
-        :length="2"
+        :length="pageLength"
         :total-visible="3"
         color="black"
-        @input = "pageChange"
+        @input="pageChange"
       />
     </Layout>
   </v-app>
@@ -32,14 +32,16 @@ import MemoCard from '@/components/atoms/memo-card.vue';
   }
 })
 export default class MemoHome extends Vue {
-  readonly page = 1
+  readonly currentpage = 1
   readonly pageSize = 9
+  pageLength = 1
   loading = false
   memos: Array<firebase.firestore.DocumentData> = []
   memoLists: Array<firebase.firestore.DocumentData> = []
-  //開いた時にfirestoreからmemoデータを取ってくる
 
+  //開いた時にfirestoreからmemoデータを取ってくる
   created() {
+    this.pageLen()
     this.loading = true
     this.fetchMemo()
   }
@@ -57,9 +59,14 @@ export default class MemoHome extends Vue {
     this.loading = false
   }
 
+  pageLen() {
+    if (this.memos.length < 9) { return }
+    this.pageLength = Math.ceil(this.memos.length / this.pageSize)
+  }
+
   pageChange() {
     //pageの番号に合わせてmemooListsに入るmemoを変更する
-    this.memoLists = this.memos.slice(this.pageSize*(this.page -1), this.pageSize*(this.page))
+    this.memoLists = this.memos.slice(this.pageSize*(this.currentpage -1), this.pageSize*(this.currentpage))
   }
 }
 </script>
