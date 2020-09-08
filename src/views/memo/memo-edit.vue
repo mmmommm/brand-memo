@@ -231,11 +231,6 @@ export default class MemoEdit extends Vue {
     else { return 600 }
   }
 
-  beforeRouteUpdate(to: any, from: never, next: any) {
-    this.slug = to.params.id
-    next()
-  }
-
   updateMemo() {
     console.log(this.slug)
     firestore.collection('memos').doc(this.slug).update({
