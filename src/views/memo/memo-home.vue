@@ -34,20 +34,18 @@ import MemoCard from '@/components/atoms/memo-card.vue';
 export default class MemoHome extends Vue {
   readonly page = 1
   readonly pageSize = 9
-  loading = true
+  loading = false
   memos: Array<firebase.firestore.DocumentData> = []
   memoLists: Array<firebase.firestore.DocumentData> = []
   //開いた時にfirestoreからmemoデータを取ってくる
 
-  mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 1500)
+  created() {
+    this.loading = true
+    this.fetchMemo()
   }
 
-  created() {
-    //全部のデータを取ってしまっているので必要なcodeとnameだけとりたい
-    firestore.collection('memos').get().then((querySnapshot) => {
+  async fetchMemo () {
+    await firestore.collection('memos').get().then((querySnapshot) => {
       const array: Array<firebase.firestore.DocumentData> = [];
       querySnapshot.forEach((doc) => {
         array.push(doc.data())
@@ -56,7 +54,9 @@ export default class MemoHome extends Vue {
         //pageSizeに分けて取得する
         this.memoLists = this.memos.slice(0, this.pageSize)
     });
+    this.loading = false
   }
+
   pageChange() {
     //pageの番号に合わせてmemooListsに入るmemoを変更する
     this.memoLists = this.memos.slice(this.pageSize*(this.page -1), this.pageSize*(this.page))
