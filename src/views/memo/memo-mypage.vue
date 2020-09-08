@@ -46,22 +46,22 @@ import MemoCard from '@/components/atoms/memo-card.vue';
   }
 })
 export default class MemoMypage extends Vue {
-  loading = true
+  loading = false
   memos: Array<firebase.firestore.DocumentData> = []
 
-  mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 1500);
+  created() {
+    this.loading = true
+    this.fetchMemo()
   }
 
-  created() {
-    firestore.collection('memos').where('author', '==', this.$store.state.user).get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.memos.push(doc.data())
+  async fetchMemo () {
+    await firestore.collection('memos').where('author', '==', this.$store.state.user).get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            this.memos.push(doc.data())
+          })
         })
-      })
+    this.loading = false
   }
 }
 </script>
