@@ -47,37 +47,6 @@ export default new Vuex.Store({
           router.push('/')
         })
     },
-    // userLogin({ commit }, { email, password }) {
-    //   firebaseauth
-    //     .signInWithEmailAndPassword(email, password)
-    //     .then((user) => {
-    //       commit('setUser', user);
-    //       commit('setIsAuthenticated', true);
-    //       router.push('/');
-    //     })
-    //     .catch(() => {
-    //       commit('setUser', null);
-    //       commit('setIsAuthenticated', false);
-    //       router.push('/memoLogin')
-    //     });
-    // },
-    // userRegister({ commit }, { email, password }) {
-    //   firebaseauth
-    //     .createUserWithEmailAndPassword(email, password)
-    //     .then(user => {
-    //       const userData = {
-    //         email: user.additionalUserInfo
-    //       }
-    //       commit('setUser', user);
-    //       commit('setIsAuthenticated', true);
-    //       router.push('/');
-    //     })
-    //     .catch(() => {
-    //       commit('setUser', null);
-    //       commit('setIsAuthenticated', false);
-    //       router.push('/memoRegister');
-    //     });
-    // },
     userLogout({ commit }) {
       firebaseauth
         .signOut()
