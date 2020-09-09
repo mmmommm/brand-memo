@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "tests": "jest",
+    "test": "jest",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -93,7 +93,7 @@
     "testURL": "http://localhost/",
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "setupFilesAfterEnv": [
-      "./tests/jest-setup.ts"
+      "./test/jest-setup.ts"
     ]
   },
   "husky": {
