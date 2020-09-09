@@ -11,7 +11,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { firestore } from '@/firebase/fireStore';
-import * as rules from '@/config/user/rules';
+import * as rules from '@/config/rules';
 @Component
 export default class SearchBar extends Vue {
 searchTerm: number | null = null
