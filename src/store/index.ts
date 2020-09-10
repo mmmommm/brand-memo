@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 import firebase from 'firebase/app'
-import { firebaseauth } from '@/firebase/firebaseAuth';
-import { firestore } from '@/firebase/fireStore';
-import router from '@/router';
+import { firebaseauth } from '@/firebase/firebaseAuth'
+import { firestore } from '@/firebase/fireStore'
+import router from '@/router'
 
 Vue.use(Vuex)
 
@@ -13,7 +13,7 @@ export default new Vuex.Store({
     isUser: false,
     isAuthenticated: false,
     searchTerm: null as number | null,
-    dialog: false
+    dialog: false,
   },
   mutations: {
     setUser(state, payload) {
@@ -23,23 +23,24 @@ export default new Vuex.Store({
       state.isUser = payload
     },
     setIsAuthenticated(state, payload) {
-      state.isAuthenticated = payload;
+      state.isAuthenticated = payload
     },
     setSearchTerm(state, payload) {
-      state.searchTerm = payload;
+      state.searchTerm = payload
     },
     setDialog(state, payload) {
-      state.dialog = payload;
-    }
+      state.dialog = payload
+    },
   },
   actions: {
     login() {
       const provider = new firebase.auth.GoogleAuthProvider()
-      firebaseauth.signInWithPopup(provider)
+      firebaseauth
+        .signInWithPopup(provider)
         .then((result) => {
-          if(result.user == null) return
+          if (result.user == null) return
           const userData = {
-            id:  result.user.uid,
+            id: result.user.uid,
             name: result.user.displayName,
             email: result.user.email,
           }
@@ -55,17 +56,17 @@ export default new Vuex.Store({
       firebaseauth
         .signOut()
         .then(() => {
-          commit('setUser', null);
+          commit('setUser', null)
           commit('setIsUser', false)
-          commit('setIsAuthenticated', false);
+          commit('setIsAuthenticated', false)
           router.push('/')
         })
         .catch(() => {
-          commit('setUser', null);
-          commit('setIsAuthenticated', false);
+          commit('setUser', null)
+          commit('setIsAuthenticated', false)
           router.push('/')
         })
-    }
+    },
   },
   getters: {
     isAuthenticated(state) {
@@ -76,6 +77,6 @@ export default new Vuex.Store({
     },
     isDialog(state) {
       return state.dialog
-    }
-  }
-});
+    },
+  },
+})

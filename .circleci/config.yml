@@ -13,7 +13,7 @@ jobs:
      - run:
          name: テスト
          command: |
-           npm run lint
+           npm run lint --fix
  build-deploy:
    working_directory: ~/brandmemo
    docker:

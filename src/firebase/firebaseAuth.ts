@@ -1,4 +1,4 @@
-import { firebaseApp } from './firebase';
-import 'firebase/auth';
+import { firebaseApp } from './firebase'
+import 'firebase/auth'
 
-export const firebaseauth = firebaseApp.auth();
+export const firebaseauth = firebaseApp.auth()

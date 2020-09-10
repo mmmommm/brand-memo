@@ -10,28 +10,17 @@ export const codeRules = [
   //vのnumber型を許容できるようにする
   // (v: string) => /.{4}/.test(v) || 'code must be 4 numbers'
 ]
-export const nameRules = [
-  (v: string) => !!v || 'name is required'
-]
+export const nameRules = [(v: string) => !!v || 'name is required']
 export const capitalizationRules = [
-  (v: number) => !!v || 'capitalization is required'
+  (v: number) => !!v || 'capitalization is required',
 ]
-export const floatRules = [
-  (v: number) => !!v || 'float is required'
-]
-export const themeRules = [
-  (v: string) => !!v || 'theme is required'
-]
-export const priceRules = [
-  (v: number) => !!v || 'price is required'
-]
+export const floatRules = [(v: number) => !!v || 'float is required']
+export const themeRules = [(v: string) => !!v || 'theme is required']
+export const priceRules = [(v: number) => !!v || 'price is required']
 export const urlRules = [
   (v: string) => !!v || 'url is required',
   //tsconfigで無効化する方法がわからなかった
   // eslint-disable-next-line
   (v: string) => !v || /^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/.test(v) || 'Url is invalid',
 ]
-export const reasonRules = [
-  (v: string) => !!v || 'reason is required'
-]
-
+export const reasonRules = [(v: string) => !!v || 'reason is required']
