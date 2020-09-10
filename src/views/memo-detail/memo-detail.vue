@@ -93,8 +93,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { firestore } from '@/firebase/fireStore'
-import Layout from '@/components/atoms/layout.vue'
-import DeleteButton from '@/views/memo-detail/delete-button.vue'
+import Layout from '@/components/atoms/base-layout.vue'
+import DeleteButton from '@/views/memo-detail/memo-detail-delete-button.vue'
 @Component({
   components: {
     Layout,

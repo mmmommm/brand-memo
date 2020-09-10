@@ -119,7 +119,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { firestore } from '@/firebase/fireStore'
-import Layout from '@/components/atoms/layout.vue'
+import Layout from '@/components/atoms/base-layout.vue'
 import * as rules from '@/config/rules'
 interface VForm extends Vue {
   validate(): boolean

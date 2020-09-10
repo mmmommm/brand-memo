@@ -112,7 +112,7 @@ import { Component, Vue } from 'vue-property-decorator'
 // import { defineComponent, reactive, provide, inject } from '@vue/composition-api'
 import { firestore } from '@/firebase/fireStore'
 import * as rules from '@/config/rules'
-import Layout from '@/components/atoms/layout.vue'
+import Layout from '@/components/atoms/base-layout.vue'
 interface VForm extends Vue {
   validate(): boolean
 }

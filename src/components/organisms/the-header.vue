@@ -35,8 +35,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { firebaseauth } from '@/firebase/firebaseAuth'
-import LoginButton from '@/components/molecules/login-button.vue'
-import LogoutButton from '@/components/molecules/logout-button.vue'
+import LoginButton from '@/components/molecules/the-header-login-button.vue'
+import LogoutButton from '@/components/molecules/the-header-logout-button.vue'
 import BaseLink from '@/components/atoms/base-link.vue'
 @Component({
   components: {
