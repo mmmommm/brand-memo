@@ -114,7 +114,7 @@ import { firestore } from '@/firebase/fireStore'
 import * as rules from '@/config/rules'
 import Layout from '@/components/atoms/layout.vue'
 interface VForm extends Vue {
-  validate(): boolean
+  validate(): boolean;
 }
 @Component({
   components: {
@@ -135,7 +135,7 @@ export default class MemoAdd extends Vue {
   menu = false
   valid = true
   $refs!: {
-    form: VForm
+    form: VForm;
   }
   get codeRules() {
     return rules.codeRules

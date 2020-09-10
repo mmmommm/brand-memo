@@ -19,7 +19,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { firestore } from '@/firebase/fireStore'
 import LoadingScreen from '@/views/loading-screen.vue'
 import Layout from '@/components/atoms/layout.vue'
-import MemoCard from '@/components/atoms/memo-card.vue'
+import MemoCard from '@/components/organisms/memo-card.vue'
 @Component({
   components: {
     LoadingScreen,

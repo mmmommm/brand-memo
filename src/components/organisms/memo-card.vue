@@ -14,7 +14,7 @@
             class="ml-2 mt-6"
             :to="{ name: 'MemoDetail', params: { memo: memo.slug } }"
           >
-            viewmemo
+            viewmemo ＜
           </v-btn>
         </v-layout>
       </v-card-text>

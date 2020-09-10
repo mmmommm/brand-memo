@@ -7,6 +7,7 @@
           :x-large="$vuetify.breakpoint.smAndUp"
           :small="$vuetify.breakpoint.xsOnly"
           v-on="on"
+          class="mx-2"
         >
           <slot name="buttonTitle"></slot>
         </v-btn>
