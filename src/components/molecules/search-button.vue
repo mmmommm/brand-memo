@@ -1,17 +1,20 @@
 <template>
-  <v-btn
+  <BaseButton
     @click='filteredList()'
-    text
-    outlined
     class='mt-2 filter'
   >
     検索
-  </v-btn>
+  </BaseButton>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { firestore } from '@/firebase/fireStore';
-@Component
+import { firestore } from '@/firebase/fireStore'
+import BaseButton from '@/components/atoms/base-button.vue'
+@Component({
+  components: {
+    BaseButton
+  }
+})
 export default class SearchButton extends Vue {
   filteredData: Array<firebase.firestore.DocumentData> = []
   filteredList() {

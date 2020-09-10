@@ -30,86 +30,20 @@
             md8
           >
             <template>
-              <div
-                class='my-2'
-              >
-                <v-btn
-                  to='/'
-                  text
-                  :x-large='$vuetify.breakpoint.smAndUp'
-                  :small='$vuetify.breakpoint.xsOnly'
-                  >
-                  Home
-                </v-btn>
-              </div>
-              <div
-                class='my-2'
-              >
-                <v-btn
-                  to='/MemoSearch'
-                  text
-                  :x-large='$vuetify.breakpoint.smAndUp'
-                  :small='$vuetify.breakpoint.xsOnly'
-                >
-                  Search
-                </v-btn>
-              </div>
+              <BaseLink url='/'>Home</BaseLink>
+              <BaseLink url='/MemoSearch'>Search</BaseLink>
             </template>
-            <template
-              v-if='!isAuthenticated()'
-            >
+            <template v-if='!isAuthenticated()'>
               <LoginButton/>
-              <!-- <div
-                class='my-2'
-              >
-                <v-btn
-                  to='/MemoRegister'
-                  text
-                  :x-large='$vuetify.breakpoint.smAndUp'
-                  :small='$vuetify.breakpoint.xsOnly'
-                >
-                  Register
-                </v-btn>
-              </div> -->
               <v-spacer/>
-              <p
-                class="mt-5"
-              >
-                匿名
-              </p>
+              <p class="mt-5">匿名</p>
             </template>
-            <template
-              v-if='isAuthenticated()'
-            >
-              <div
-                class='my-2'
-              >
-                <v-btn
-                  to='/MemoAdd'
-                  text
-                  :x-large='$vuetify.breakpoint.smAndUp'
-                  :small='$vuetify.breakpoint.xsOnly'
-                >
-                  Add
-                </v-btn>
-              </div>
-              <div
-                class='my-2'
-              >
-                <v-btn
-                  to='/MemoMypage'
-                  text
-                  :x-large='$vuetify.breakpoint.smAndUp'
-                  :small='$vuetify.breakpoint.xsOnly'
-                >
-                  Mypage
-                </v-btn>
-              </div>
+            <template v-if='isAuthenticated()'>
+              <BaseLink url='/MemoAdd'>Add</BaseLink>
+              <BaseLink url='/MemoMypage'>Mypage</BaseLink>
               <LogoutButton/>
               <v-spacer/>
-              <p
-                class="mt-5"
-              >
+              <p class="mt-5">
                 {{ this.$store.state.user }}さん
               </p>
             </template>
@@ -120,12 +54,14 @@
   </div>
 </template>
 <script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator';
-import { firebaseauth } from '@/firebase/firebaseAuth';
-import LoginButton from '@/components/atoms/login-button.vue';
-import LogoutButton from '@/components/atoms/logout-button.vue';
+import { Component, Vue } from 'vue-property-decorator'
+import { firebaseauth } from '@/firebase/firebaseAuth'
+import LoginButton from '@/components/molecules/login-button.vue'
+import LogoutButton from '@/components/molecules/logout-button.vue'
+import BaseLink from '@/components/atoms/base-link.vue'
 @Component({
   components: {
+    BaseLink,
     LoginButton,
     LogoutButton
   }

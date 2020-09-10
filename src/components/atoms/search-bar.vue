@@ -19,16 +19,13 @@ filteredData: Array<firebase.firestore.DocumentData> = []
 get codeRules() { return rules.codeRules }
 
 filteredList() {
-  if(String(this.searchTerm).length === 4) {
-    firestore.collection('memos').where('code', '==', this.$store.state.searchTerm).get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.filteredData.push(doc.data())
-        });
-        this.$emit('catchData', this.filteredData)
-      })
-  }
-  alert('入力する数字は4桁にしてください。')
+  firestore.collection('memos').where('code', '==', this.$store.state.searchTerm).get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.filteredData.push(doc.data())
+      });
+      this.$emit('catchData', this.filteredData)
+    })
 }
 inputTerm() {
   this.$store.commit('setSearchTerm', this.searchTerm)

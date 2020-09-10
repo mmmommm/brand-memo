@@ -1,5 +1,5 @@
 <template>
-  <v-aop>
+  <v-app>
     <LoadingScreen v-show='loading'/>
     <Layout v-show='!loading'>
       <template v-if="memos.length">
@@ -30,7 +30,7 @@
         </v-container>
       </template>
     </Layout>
-  </v-aop>
+  </v-app>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';

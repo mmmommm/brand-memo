@@ -13,10 +13,11 @@ export default new Vuex.Store({
     isUser: false,
     isAuthenticated: false,
     searchTerm: null as number | null,
+    dialog: false
   },
   mutations: {
     setUser(state, payload) {
-      state.user = payload;
+      state.user = payload
     },
     setIsUser(state, payload) {
       state.isUser = payload
@@ -26,10 +27,13 @@ export default new Vuex.Store({
     },
     setSearchTerm(state, payload) {
       state.searchTerm = payload;
+    },
+    setDialog(state, payload) {
+      state.dialog = payload;
     }
   },
   actions: {
-    googleLogin() {
+    login() {
       const provider = new firebase.auth.GoogleAuthProvider()
       firebaseauth.signInWithPopup(provider)
         .then((result) => {
@@ -51,14 +55,12 @@ export default new Vuex.Store({
       firebaseauth
         .signOut()
         .then(() => {
-          console.log('成功')
           commit('setUser', null);
           commit('setIsUser', false)
           commit('setIsAuthenticated', false);
           router.push('/')
         })
         .catch(() => {
-          console.log('失敗')
           commit('setUser', null);
           commit('setIsAuthenticated', false);
           router.push('/')
@@ -71,6 +73,9 @@ export default new Vuex.Store({
     },
     isUser(state) {
       return state.isUser
+    },
+    isDialog(state) {
+      return state.dialog
     }
   }
 });
