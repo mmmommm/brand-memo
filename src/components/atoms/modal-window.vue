@@ -1,50 +1,38 @@
 <template>
-  <div
-    class='my-2'
-  >
-    <v-dialog
-      v-model="dialog"
-      max-width='290'
-    >
-      <template
-        v-slot:activator='{ on }'
-      >
+  <div class="my-2">
+    <v-dialog v-model="dialog" max-width="290">
+      <template v-slot:activator="{ on }">
         <v-btn
           text
-          v-on='on'
-          :x-large='$vuetify.breakpoint.smAndUp'
-          :small='$vuetify.breakpoint.xsOnly'
+          :x-large="$vuetify.breakpoint.smAndUp"
+          :small="$vuetify.breakpoint.xsOnly"
+          v-on="on"
         >
           <slot name="buttonTitle"></slot>
         </v-btn>
       </template>
-      <v-card
-        width='290'
-        height='150'
-      >
-        <v-card-title class='mb-4'>
+      <v-card width="290" height="150">
+        <v-card-title class="mb-4">
           <slot name="modalTitle"></slot>
         </v-card-title>
-        <v-layout
-          justify-center
-        >
+        <v-layout justify-center>
           <v-card-acrions>
-            <v-spacer/>
+            <v-spacer />
             <v-btn
-              @click="approve"
               color="error"
               text
-              :x-large='$vuetify.breakpoint.smAndUp'
-              :small='$vuetify.breakpoint.xsOnly'
+              :x-large="$vuetify.breakpoint.smAndUp"
+              :small="$vuetify.breakpoint.xsOnly"
+              @click="approve"
             >
               はい
             </v-btn>
             <v-btn
-              @click="cancel"
               color="indigo"
               text
-              :x-large='$vuetify.breakpoint.smAndUp'
-              :small='$vuetify.breakpoint.xsOnly'
+              :x-large="$vuetify.breakpoint.smAndUp"
+              :small="$vuetify.breakpoint.xsOnly"
+              @click="cancel"
             >
               いいえ
             </v-btn>
@@ -65,8 +53,12 @@ export default class ModalWindow extends Vue {
     this.$store.commit('setDialog', opened)
   }
   @Emit()
-  approve() { return }
+  approve() {
+    return
+  }
   @Emit()
-  cancel() { return }
+  cancel() {
+    return
+  }
 }
 </script>

@@ -2,9 +2,9 @@
   <div class="my-2">
     <v-btn
       text
-      :to='url'
-      :x-large='$vuetify.breakpoint.smAndUp'
-      :small='$vuetify.breakpoint.xsOnly'
+      :to="url"
+      :x-large="$vuetify.breakpoint.smAndUp"
+      :small="$vuetify.breakpoint.xsOnly"
     >
       <slot></slot>
     </v-btn>

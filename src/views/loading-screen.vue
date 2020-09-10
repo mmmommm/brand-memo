@@ -6,21 +6,21 @@
         type="cylon"
         color="#33CCCC"
         :size="{ width: '100px', height: '100px' }"
-        >
+      >
       </vue-loading>
     </div>
   </div>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator';
-import { VueLoading } from 'vue-loading-template';
+import { Component, Vue } from 'vue-property-decorator'
+import { VueLoading } from 'vue-loading-template'
 @Component({
   components: {
     VueLoading,
-  }
+  },
 })
-export default class LoadingScreen extends Vue{}
+export default class LoadingScreen extends Vue {}
 </script>
 
 <style>

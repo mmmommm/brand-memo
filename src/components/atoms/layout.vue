@@ -1,9 +1,7 @@
 <template>
   <v-container>
-    <v-layout
-      wrap
-    >
-      <slot/>
+    <v-layout wrap>
+      <slot />
     </v-layout>
   </v-container>
 </template>

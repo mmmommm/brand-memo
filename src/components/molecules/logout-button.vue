@@ -9,8 +9,8 @@ import { Vue, Component } from 'vue-property-decorator'
 import ModalWindow from '@/components/atoms/modal-window.vue'
 @Component({
   components: {
-    ModalWindow
-  }
+    ModalWindow,
+  },
 })
 export default class LogoutButton extends Vue {
   logout() {

@@ -1,152 +1,104 @@
 <template>
-  <v-form
-    ref='form'
-    v-model='valid'
-    lazy-validation
-  >
+  <v-form ref="form" v-model="valid" lazy-validation>
     <Layout>
-      <v-flex
-        xs12
-        sm12
-        md6
-      >
-        <v-card
-          :width='cardWidth()'
-          flat
-        >
+      <v-flex xs12 sm12 md6>
+        <v-card :width="cardWidth()" flat>
           <v-layout>
-            <v-card-title>
-              日付
-            </v-card-title>
+            <v-card-title> 日付 </v-card-title>
             <v-menu
-              ref='menu'
-              v-model='menu'
-              :close-on-content-click='false'
-              transition='scale-transition'
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              transition="scale-transition"
               offset-y
-              max-width='290'
+              max-width="290"
             >
-              <template
-                v-slot:activator='{ on }'
-              >
-                <v-text-field
-                  v-model='date'
-                  v-on='on'
-                  class='mt-4 ml-4'
-                />
+              <template v-slot:activator="{ on }">
+                <v-text-field v-model="date" class="mt-4 ml-4" v-on="on" />
               </template>
-              <v-date-picker
-                v-model='date'
-                no-title
-                @input='menu = false'
-              />
+              <v-date-picker v-model="date" no-title @input="menu = false" />
             </v-menu>
           </v-layout>
           <v-layout>
-            <v-flex
-              class='ml-4'
-            >
-              <v-card-title>
-                コード
-              </v-card-title>
+            <v-flex class="ml-4">
+              <v-card-title> コード </v-card-title>
               <v-text-field
-                v-model.number='code'
-                type='number'
-                placeholder='7203'
-                class='py-2'
-                :rules='codeRules'
+                v-model.number="code"
+                type="number"
+                placeholder="7203"
+                class="py-2"
+                :rules="codeRules"
               />
-              <v-card-title>
-                銘柄名
-              </v-card-title>
+              <v-card-title> 銘柄名 </v-card-title>
               <v-text-field
-                v-model='name'
-                type='text'
-                placeholder='トヨタ自動車'
-                class='py-2'
-                :rules='nameRules'
+                v-model="name"
+                type="text"
+                placeholder="トヨタ自動車"
+                class="py-2"
+                :rules="nameRules"
               />
-              <v-card-title>
-                時価総額（百万）
-              </v-card-title>
+              <v-card-title> 時価総額（百万） </v-card-title>
               <v-text-field
-                v-model.number='capitalization'
-                placeholder='21495773'
-                type='number'
-                class='py-2'
-                :rules='capitalizationRules'
+                v-model.number="capitalization"
+                placeholder="21495773"
+                type="number"
+                class="py-2"
+                :rules="capitalizationRules"
               />
-              <v-card-title>
-                浮動株式数（株）
-              </v-card-title>
+              <v-card-title> 浮動株式数（株） </v-card-title>
               <v-text-field
-                v-model.number='floating'
-                placeholder='1000000000'
-                type='number'
-                class='py-2'
-                :rules='floatRules'
+                v-model.number="floating"
+                placeholder="1000000000"
+                type="number"
+                class="py-2"
+                :rules="floatRules"
               />
-              <v-card-title>
-                テーマ
-              </v-card-title>
+              <v-card-title> テーマ </v-card-title>
               <v-text-field
-                v-model='theme'
-                type='text'
-                placeholder='自動運転'
-                class='py-2'
-                :rules='themeRules'
+                v-model="theme"
+                type="text"
+                placeholder="自動運転"
+                class="py-2"
+                :rules="themeRules"
               />
-              <v-card-title>
-                株価（円）
-              </v-card-title>
+              <v-card-title> 株価（円） </v-card-title>
               <v-text-field
-                v-model.number='price'
-                type='number'
-                placeholder='6500'
-                class='py-2'
-                :rules='priceRules'
+                v-model.number="price"
+                type="number"
+                placeholder="6500"
+                class="py-2"
+                :rules="priceRules"
               />
-              <v-card-title>
-                会社URL
-              </v-card-title>
+              <v-card-title> 会社URL </v-card-title>
               <v-text-field
-                v-model='url'
+                v-model="url"
                 text
-                placeholder='https://company.co.jp'
-                class='py-2'
-                :rules='urlRules'
+                placeholder="https://company.co.jp"
+                class="py-2"
+                :rules="urlRules"
               />
             </v-flex>
           </v-layout>
         </v-card>
       </v-flex>
-      <v-flex
-        xs12
-        sm12
-        md6
-      >
-        <v-card
-          :width='cardWidth()'
-          flat
-        >
-          <v-card-title>
-            理由
-          </v-card-title>
+      <v-flex xs12 sm12 md6>
+        <v-card :width="cardWidth()" flat>
+          <v-card-title> 理由 </v-card-title>
           <v-textarea
-            v-model='reason'
-            cols='60'
-            rows='25'
+            v-model="reason"
+            cols="60"
+            rows="25"
             outlined
-            placeholder='この会社はどのような会社か、投資をするに値するか、業績等からみてどうか。'
-            :rules='reasonRules'
+            placeholder="この会社はどのような会社か、投資をするに値するか、業績等からみてどうか。"
+            :rules="reasonRules"
           />
           <v-btn
-            type='submit'
+            type="submit"
             x-large
-            class='ml-12 my-12 add'
+            class="ml-12 my-12 add"
             outlined
-            @click='saveMemo'
-            :disabled='!valid'
+            :disabled="!valid"
+            @click="saveMemo"
           >
             Addmemo
           </v-btn>
@@ -155,19 +107,19 @@
     </Layout>
   </v-form>
 </template>
-<script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator';
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 // import { defineComponent, reactive, provide, inject } from '@vue/composition-api'
-import { firestore } from '@/firebase/fireStore';
-import * as rules from '@/config/rules';
-import Layout from '@/components/atoms/layout.vue';
+import { firestore } from '@/firebase/fireStore'
+import * as rules from '@/config/rules'
+import Layout from '@/components/atoms/layout.vue'
 interface VForm extends Vue {
-  validate(): boolean;
+  validate(): boolean
 }
 @Component({
   components: {
-    Layout
-  }
+    Layout,
+  },
 })
 export default class MemoAdd extends Vue {
   capitalization: number | null = null
@@ -183,18 +135,34 @@ export default class MemoAdd extends Vue {
   menu = false
   valid = true
   $refs!: {
-    form: VForm;
+    form: VForm
   }
-  get codeRules() { return rules.codeRules }
-  get nameRules() { return rules.nameRules }
-  get capitalizationRules() { return rules.capitalizationRules }
-  get floatRules() { return rules.floatRules }
-  get themeRules() { return rules.themeRules }
-  get priceRules() { return rules.priceRules }
-  get urlRules() { return rules.urlRules }
-  get reasonRules() { return rules.reasonRules }
+  get codeRules() {
+    return rules.codeRules
+  }
+  get nameRules() {
+    return rules.nameRules
+  }
+  get capitalizationRules() {
+    return rules.capitalizationRules
+  }
+  get floatRules() {
+    return rules.floatRules
+  }
+  get themeRules() {
+    return rules.themeRules
+  }
+  get priceRules() {
+    return rules.priceRules
+  }
+  get urlRules() {
+    return rules.urlRules
+  }
+  get reasonRules() {
+    return rules.reasonRules
+  }
   saveMemo() {
-    if(this.$refs.form.validate()) {
+    if (this.$refs.form.validate()) {
       const slug = this.generateUUID()
       firestore.collection('memos').doc(slug).set({
         capitalization: this.capitalization,
@@ -207,27 +175,36 @@ export default class MemoAdd extends Vue {
         theme: this.theme,
         url: this.url,
         author: this.author,
-        slug: slug
+        slug: slug,
       })
-        this.$router.push({path: '/'})
+      this.$router.push({ path: '/' })
     }
   }
   generateUUID(): string {
-    let d = new Date().getTime();
-    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = (d + Math.random() * 16) % 16 | 0
-    d = Math.floor(d / 16)
-    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
-  });
-    return uuid;
+    let d = new Date().getTime()
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+      /[xy]/g,
+      function (c) {
+        const r = (d + Math.random() * 16) % 16 | 0
+        d = Math.floor(d / 16)
+        return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16)
+      }
+    )
+    return uuid
   }
   cardWidth(): number {
-    const name = this.$vuetify.breakpoint.name;
-    if(name == 'xs'){ return 350 }
-    else if(name == 'sm'){ return 350 }
-    else if(name == 'md'){ return 600 }
-    else if(name == 'lg'){ return 600 }
-    else { return 600 }
+    const name = this.$vuetify.breakpoint.name
+    if (name == 'xs') {
+      return 350
+    } else if (name == 'sm') {
+      return 350
+    } else if (name == 'md') {
+      return 600
+    } else if (name == 'lg') {
+      return 600
+    } else {
+      return 600
+    }
   }
 }
 </script>

@@ -9,14 +9,14 @@ import { Vue, Component } from 'vue-property-decorator'
 import ModalWindow from '@/components/atoms/modal-window.vue'
 @Component({
   components: {
-    ModalWindow
-  }
+    ModalWindow,
+  },
 })
 export default class LoginButton extends Vue {
   login() {
-  this.$store.commit('setDialog', false)
-  this.$store.dispatch('login')
-}
+    this.$store.commit('setDialog', false)
+    this.$store.dispatch('login')
+  }
   cancel() {
     this.$store.commit('setDialog', false)
   }

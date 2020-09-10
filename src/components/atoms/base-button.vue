@@ -1,9 +1,5 @@
 <template>
-  <v-btn
-    text
-    outlined
-    @click='click'
-  >
+  <v-btn text outlined @click="click">
     <slot></slot>
   </v-btn>
 </template>
@@ -12,6 +8,8 @@ import { Component, Vue, Emit } from 'vue-property-decorator'
 @Component
 export default class BaseButton extends Vue {
   @Emit()
-  click() { return }
+  click() {
+    return
+  }
 }
 </script>

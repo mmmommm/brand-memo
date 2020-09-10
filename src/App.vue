@@ -1,18 +1,18 @@
 <template>
   <v-app>
-    <Header/>
+    <Header />
     <v-content>
-      <router-view/>
+      <router-view />
     </v-content>
   </v-app>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Header from '@/components/organisms/the-header.vue';
+import { Component, Vue } from 'vue-property-decorator'
+import Header from '@/components/organisms/the-header.vue'
 @Component({
   components: {
     Header,
-  }
+  },
 })
 export default class App extends Vue {}
 </script>
