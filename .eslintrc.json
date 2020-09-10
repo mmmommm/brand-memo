@@ -3,7 +3,9 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
+    "plugin:vue/recommended",
+    "prettier/vue",
+    "prettier/@typescript-eslint",
   ],
   "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
@@ -15,5 +17,7 @@
     "node": true,
     "es6": true
   },
-  "rules": {}
+  "rules": {
+    "no-empty-function": "off"
+  }
 }
