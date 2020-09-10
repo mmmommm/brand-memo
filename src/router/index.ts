@@ -1,14 +1,12 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import MemoAdd from '@/views/memo/memo-add.vue'
-import MemoHome from '@/views/memo/memo-home.vue'
-// import MemoLogin from '@/views/user/memoLogin.vue';
-// import MemoRegister from '@/views/user/memoRegister.vue';
-import MemoEdit from '@/views/memo/memo-edit.vue'
-import MemoDetail from '@/views/memo/memo-detail.vue'
+import MemoAdd from '@/views/memo-add.vue'
+import MemoHome from '@/views/memo-home.vue'
+import MemoEdit from '@/views/memo-edit.vue'
+import MemoDetail from '@/views/memo-detail/memo-detail.vue'
 import PageNotFound from '@/views/page-not-found.vue'
-import MemoSearch from '@/views/memo/memo-search.vue'
-import MemoMypage from '@/views/memo/memo-mypage.vue'
+import MemoSearch from '@/views/memo-search/memo-search.vue'
+import MemoMypage from '@/views/memo-mypage.vue'
 import store from '@/store/index'
 
 Vue.use(VueRouter)
@@ -24,33 +22,6 @@ const routes: Array<RouteConfig> = [
     name: 'Memosearch',
     component: MemoSearch,
   },
-  //ログインしているとガードするもの
-  // {
-  //   path: "/MemoLogin",
-  //   name: "MemoLogin",
-  //   component: MemoLogin,
-  //   beforeEnter(to, from, next) {
-  //     if (store.getters.isAuthenticated) {
-  //       store.getters.isAuthenticated = true;
-  //       next("/MemoHome");
-  //     } else {
-  //       next();
-  //     }
-  //   }
-  // },
-  // {
-  //   path: "/MemoRegister",
-  //   name: "MemoRegister",
-  //   component: MemoRegister,
-  //   beforeEnter(to, from, next) {
-  //     if (store.getters.isAuthenticated) {
-  //       store.getters.isAuthenticated = true;
-  //       next("/MemoHome");
-  //     } else {
-  //       next();
-  //     }
-  //   }
-  // },
   //ログインしていないとガードするもの
   {
     path: '/MemoMypage',

@@ -65,17 +65,23 @@
               outlined
             />
             <template v-if="isUser()">
-              <v-btn
-                type="submit"
-                x-large
-                class="ml-12 mb-4"
-                outlined
-                :to="{ name: 'MemoEdit', params: { memo: this.slug } }"
-                @click="displayEdit = true"
-              >
-                Editmemo
-              </v-btn>
-              <DeleteButton :slug="slug" />
+              <v-layout>
+                <v-flex xs12 sm12 md6>
+                  <v-btn
+                    type="submit"
+                    x-large
+                    text
+                    class="ml-12 my-2"
+                    :to="{ name: 'MemoEdit', params: { memo: this.slug } }"
+                    @click="displayEdit = true"
+                  >
+                    Editmemo ＜
+                  </v-btn>
+                </v-flex>
+                <v-flex xs12 sm12 md6>
+                  <DeleteButton :slug="slug" />
+                </v-flex>
+              </v-layout>
             </template>
           </v-card>
         </v-flex>
@@ -88,7 +94,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { firestore } from '@/firebase/fireStore'
 import Layout from '@/components/atoms/layout.vue'
-import DeleteButton from '@/components/molecules/delete-button.vue'
+import DeleteButton from '@/views/memo-detail/delete-button.vue'
 @Component({
   components: {
     Layout,
