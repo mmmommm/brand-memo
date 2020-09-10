@@ -25,7 +25,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { MemoItem } from '@/interface/memoItem';
 import Layout from '@/components/atoms/layout.vue';
 import SearchBar from '@/components/atoms/search-bar.vue';
-import SearchButton from '@/components/atoms/search-button.vue';
+import SearchButton from '@/components/molecules/search-button.vue';
 import MemoCard from '@/components/atoms/memo-card.vue';
 @Component({
   components: {
