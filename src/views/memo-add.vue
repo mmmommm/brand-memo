@@ -61,7 +61,7 @@
                 class="py-2"
                 :rules="themeRules"
               />
-              <v-card-title> 株価（円） </v-card-title>
+              <v-card-title> 株価（円）</v-card-title>
               <v-text-field
                 v-model.number="price"
                 type="number"
@@ -100,7 +100,7 @@
             :disabled="!valid"
             @click="saveMemo"
           >
-            Addmemo
+            Addmemo ＜
           </v-btn>
         </v-card>
       </v-flex>
