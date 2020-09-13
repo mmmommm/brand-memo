@@ -7,9 +7,7 @@
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "plugin:vue/vue-recommended",
-    "prettier/@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:vue/recommended"
   ],
   "plugins": ["@typescript-eslint"],
   "env": {
@@ -18,16 +16,9 @@
     "es6": true
   },
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "doubleQuote": true,
-        "semi": false
-      }
-    ],
     "no-empty-function": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/semi": ["error"],
-    "semi": "off"
+    "@typescript-eslint/semi": "off",
+    "semi": [2, "never"]
   }
 }
