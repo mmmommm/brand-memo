@@ -3,7 +3,6 @@
     <v-app-bar
       app
       height="100"
-      class="py-2"
     >
       <v-container>
         <v-layout>
@@ -36,9 +35,9 @@
             </template>
             <template v-if="!isAuthenticated()">
               <LoginButton />
-              <p class="ml-4 mt-5">
+              <v-text class="ml-4 mt-5">
                 匿名
-              </p>
+              </v-text>
             </template>
             <template v-if="isAuthenticated()">
               <BaseLink url="/MemoAdd">
@@ -48,9 +47,9 @@
                 Mypage
               </BaseLink>
               <LogoutButton />
-              <p class="ml-4 mt-5">
+              <v-text class="ml-4 mt-5">
                 {{ this.$store.state.user }}さん
-              </p>
+              </v-text>
             </template>
           </v-flex>
         </v-layout>

@@ -1,26 +1,20 @@
 <template>
-  <div class="my-2">
-    <v-dialog
-      v-model="dialog"
-      max-width="290"
-    >
+  <div>
+    <v-dialog v-model="dialog" max-width="290">
       <template v-slot:activator="{ on }">
         <v-btn
           text
           :x-large="$vuetify.breakpoint.smAndUp"
           :small="$vuetify.breakpoint.xsOnly"
-          class="mx-2"
           v-on="on"
+          class="mx-2"
         >
-          <slot name="buttonTitle" />
+          <slot name="buttonTitle"></slot>
         </v-btn>
       </template>
-      <v-card
-        width="290"
-        height="190"
-      >
+      <v-card width="290" height="190">
         <v-card-title class="mb-4">
-          <slot name="modalTitle" />
+          <slot name="modalTitle"></slot>
         </v-card-title>
         <v-layout justify-center>
           <v-card-acrions>
