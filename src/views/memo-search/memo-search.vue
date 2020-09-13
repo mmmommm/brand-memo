@@ -17,9 +17,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { MemoItem } from '@/interface/memoItem'
-import Layout from '@/components/atoms/layout.vue'
-import SearchBar from '@/views/memo-search/search-bar.vue'
-import SearchButton from '@/views/memo-search/search-button.vue'
+import Layout from '@/components/atoms/base-layout.vue'
+import SearchBar from '@/views/memo-search/memo-search-bar.vue'
+import SearchButton from '@/views/memo-search/memo-search-button.vue'
 import MemoCard from '@/components/organisms/memo-card.vue'
 @Component({
   components: {

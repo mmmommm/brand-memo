@@ -2,7 +2,11 @@
   <v-app>
     <LoadingScreen v-show="loading" />
     <Layout v-show="!loading">
-      <MemoCard v-for="(memo, index) in memoLists" :key="index" :memo="memo" />
+      <MemoCard
+        v-for="(memo, index) in memoLists"
+        :key="index"
+        :memo="memo"
+      />
       <v-pagination
         v-model="currentpage"
         class="my-4"
@@ -17,8 +21,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { firestore } from '@/firebase/fireStore'
-import LoadingScreen from '@/views/loading-screen.vue'
-import Layout from '@/components/atoms/layout.vue'
+import LoadingScreen from '@/components/organisms/loading-screen.vue'
+import Layout from '@/components/atoms/base-layout.vue'
 import MemoCard from '@/components/organisms/memo-card.vue'
 @Component({
   components: {

@@ -1,7 +1,14 @@
 <template>
-  <ModalWindow @approve="logout" @cancel="cancel">
-    <template #buttonTitle>Logout</template>
-    <template #modalTitle>本当にログアウトしてよろしいですか？</template>
+  <ModalWindow
+    @approve="login"
+    @cancel="cancel"
+  >
+    <template #buttonTitle>
+      Login
+    </template>
+    <template #modalTitle>
+      Google認証に遷移します
+    </template>
   </ModalWindow>
 </template>
 <script lang="ts">
@@ -12,10 +19,10 @@ import ModalWindow from '@/components/atoms/modal-window.vue'
     ModalWindow,
   },
 })
-export default class LogoutButton extends Vue {
-  logout() {
+export default class LoginButton extends Vue {
+  login() {
     this.$store.commit('setDialog', false)
-    this.$store.dispatch('userLogout')
+    this.$store.dispatch('login')
   }
   cancel() {
     this.$store.commit('setDialog', false)

@@ -1,12 +1,12 @@
 <template>
-  <div class="mx-2 my-2">
+  <div class="mx-2">
     <v-btn
       text
       :to="url"
       :x-large="$vuetify.breakpoint.smAndUp"
       :small="$vuetify.breakpoint.xsOnly"
     >
-      <slot></slot>
+      <slot />
     </v-btn>
   </div>
 </template>

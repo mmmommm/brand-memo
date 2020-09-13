@@ -1,7 +1,14 @@
 <template>
-  <ModalWindow @approve="deleteMemo" @cancel="cancel">
-    <template #buttonTitle>DeleteMemo ＜</template>
-    <template #modalTitle>本当に削除してよろしいですか？</template>
+  <ModalWindow
+    @approve="deleteMemo"
+    @cancel="cancel"
+  >
+    <template #buttonTitle>
+      DeleteMemo ＜
+    </template>
+    <template #modalTitle>
+      本当に削除してよろしいですか？
+    </template>
   </ModalWindow>
 </template>
 <script lang="ts">

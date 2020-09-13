@@ -1,13 +1,12 @@
 <template>
   <div>
     <div class="fullview">
-      <div class="loading-spacer"></div>
+      <div class="loading-spacer" />
       <vue-loading
         type="cylon"
         color="#33CCCC"
         :size="{ width: '100px', height: '100px' }"
-      >
-      </vue-loading>
+      />
     </div>
   </div>
 </template>
@@ -23,7 +22,7 @@ import { VueLoading } from 'vue-loading-template'
 export default class LoadingScreen extends Vue {}
 </script>
 
-<style>
+<style scoped>
 .fullview {
   width: 100%;
   height: 100%;

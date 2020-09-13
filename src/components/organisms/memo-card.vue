@@ -1,24 +1,28 @@
 <template>
-  <v-flex xs12 sm6 md4>
-    <v-card width="350" height="200" class="my-5">
-      <v-card-title class="ml-2 code">
-        {{ memo.code }}
-      </v-card-title>
-      <v-card-title class="ml-2 name">
-        {{ memo.name }}
-      </v-card-title>
-      <v-card-text>
-        <v-layout>
-          <v-btn
-            outlined
-            class="ml-2 mt-6"
-            :to="{ name: 'MemoDetail', params: { memo: memo.slug } }"
-          >
-            viewmemo ＜
-          </v-btn>
-        </v-layout>
-      </v-card-text>
-    </v-card>
+  <v-flex
+    xs12
+    sm6
+    md4
+  >
+    <v-btn
+      outlined
+      width="350"
+      height="140"
+      class="my-5"
+      :to="{ name: 'MemoDetail', params: { memo: memo.slug } }"
+    >
+      <v-card
+        width="350"
+        height="140"
+      >
+        <v-card-text class="ml-2 code">
+          {{ memo.code }}
+        </v-card-text>
+        <v-card-title class="ml-2 name">
+          {{ memo.name }}
+        </v-card-title>
+      </v-card>
+    </v-btn>
   </v-flex>
 </template>
 <script lang="ts">
