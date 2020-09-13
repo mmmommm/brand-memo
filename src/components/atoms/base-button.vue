@@ -1,6 +1,10 @@
 <template>
-  <v-btn text outlined @click="click">
-    <slot></slot>
+  <v-btn
+    text
+    outlined
+    @click="click"
+  >
+    <slot />
   </v-btn>
 </template>
 <script lang="ts">

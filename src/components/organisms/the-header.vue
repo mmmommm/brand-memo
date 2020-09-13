@@ -1,9 +1,18 @@
 <template>
   <div>
-    <v-app-bar app height="100" class="py-2">
+    <v-app-bar
+      app
+      height="100"
+      class="py-2"
+    >
       <v-container>
         <v-layout>
-          <v-flex row xs0 sm4 md4>
+          <v-flex
+            row
+            xs0
+            sm4
+            md4
+          >
             <v-toolbar-title
               v-if="$vuetify.breakpoint.smAndUp"
               class="mt-5 headline text-uppercase"
@@ -11,20 +20,37 @@
               <span> Trade brand memo </span>
             </v-toolbar-title>
           </v-flex>
-          <v-flex row xs12 sm10 md8>
+          <v-flex
+            row
+            xs12
+            sm10
+            md8
+          >
             <template>
-              <BaseLink url="/">Home</BaseLink>
-              <BaseLink url="/MemoSearch">Search</BaseLink>
+              <BaseLink url="/">
+                Home
+              </BaseLink>
+              <BaseLink url="/MemoSearch">
+                Search
+              </BaseLink>
             </template>
             <template v-if="!isAuthenticated()">
               <LoginButton />
-              <p class="ml-4 mt-5">匿名</p>
+              <p class="ml-4 mt-5">
+                匿名
+              </p>
             </template>
             <template v-if="isAuthenticated()">
-              <BaseLink url="/MemoAdd">Add</BaseLink>
-              <BaseLink url="/MemoMypage">Mypage</BaseLink>
+              <BaseLink url="/MemoAdd">
+                Add
+              </BaseLink>
+              <BaseLink url="/MemoMypage">
+                Mypage
+              </BaseLink>
               <LogoutButton />
-              <p class="ml-4 mt-5">{{ this.$store.state.user }}さん</p>
+              <p class="ml-4 mt-5">
+                {{ this.$store.state.user }}さん
+              </p>
             </template>
           </v-flex>
         </v-layout>

@@ -1,5 +1,9 @@
 <template>
-  <v-flex xs12 sm6 md4>
+  <v-flex
+    xs12
+    sm6
+    md4
+  >
     <v-btn
       outlined
       width="350"
@@ -7,7 +11,10 @@
       class="my-5"
       :to="{ name: 'MemoDetail', params: { memo: memo.slug } }"
     >
-      <v-card width="350" height="140">
+      <v-card
+        width="350"
+        height="140"
+      >
         <v-card-text class="ml-2 code">
           {{ memo.code }}
         </v-card-text>

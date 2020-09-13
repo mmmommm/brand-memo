@@ -2,7 +2,11 @@
   <v-app>
     <LoadingScreen v-show="loading" />
     <Layout v-show="!loading">
-      <MemoCard v-for="(memo, index) in memoLists" :key="index" :memo="memo" />
+      <MemoCard
+        v-for="(memo, index) in memoLists"
+        :key="index"
+        :memo="memo"
+      />
       <v-pagination
         v-model="currentpage"
         class="my-4"

@@ -1,8 +1,19 @@
 <template>
-  <v-form ref="form" v-model="valid" lazy-validation>
+  <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
     <Layout>
-      <v-flex xs12 sm12 md5>
-        <v-card :width="cardWidth()" flat>
+      <v-flex
+        xs12
+        sm12
+        md5
+      >
+        <v-card
+          :width="cardWidth()"
+          flat
+        >
           <v-layout>
             <v-card-title> 日付 </v-card-title>
             <v-menu
@@ -21,7 +32,11 @@
                   v-on="on"
                 />
               </template>
-              <v-date-picker v-model="date" no-title @input="menu = false" />
+              <v-date-picker
+                v-model="date"
+                no-title
+                @input="menu = false"
+              />
             </v-menu>
           </v-layout>
           <v-layout wrap>
@@ -86,10 +101,19 @@
           </v-layout>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm12 md6>
-        <v-card :width="cardWidth()" flat>
+      <v-flex
+        xs12
+        sm12
+        md6
+      >
+        <v-card
+          :width="cardWidth()"
+          flat
+        >
           <v-card-title>
-            <p class="ml-2">理由</p>
+            <p class="ml-2">
+              理由
+            </p>
           </v-card-title>
           <v-textarea
             v-model="reason"
@@ -122,7 +146,7 @@ import { firestore } from '@/firebase/fireStore'
 import Layout from '@/components/atoms/base-layout.vue'
 import * as rules from '@/config/rules'
 interface VForm extends Vue {
-  validate(): boolean
+  validate(): boolean;
 }
 @Component({
   components: {
@@ -144,7 +168,7 @@ export default class MemoEdit extends Vue {
   valid = true
   menu = false
   $refs!: {
-    form: VForm
+    form: VForm;
   }
 
   get codeRules() {

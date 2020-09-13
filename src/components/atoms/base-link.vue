@@ -6,7 +6,7 @@
       :x-large="$vuetify.breakpoint.smAndUp"
       :small="$vuetify.breakpoint.xsOnly"
     >
-      <slot></slot>
+      <slot />
     </v-btn>
   </div>
 </template>

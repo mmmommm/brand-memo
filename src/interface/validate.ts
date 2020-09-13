@@ -1,3 +1,3 @@
 export interface VForm {
-  validate: () => boolean
+  validate: () => boolean;
 }

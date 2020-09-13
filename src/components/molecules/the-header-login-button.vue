@@ -1,7 +1,14 @@
 <template>
-  <ModalWindow @approve="login" @cancel="cancel">
-    <template #buttonTitle>Login</template>
-    <template #modalTitle>Google認証に遷移します</template>
+  <ModalWindow
+    @approve="login"
+    @cancel="cancel"
+  >
+    <template #buttonTitle>
+      Login
+    </template>
+    <template #modalTitle>
+      Google認証に遷移します
+    </template>
   </ModalWindow>
 </template>
 <script lang="ts">

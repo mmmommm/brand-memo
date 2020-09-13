@@ -1,8 +1,19 @@
 <template>
-  <v-form ref="form" v-model="valid" lazy-validation>
+  <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
     <Layout>
-      <v-flex xs12 sm12 md6>
-        <v-card :width="cardWidth()" flat>
+      <v-flex
+        xs12
+        sm12
+        md6
+      >
+        <v-card
+          :width="cardWidth()"
+          flat
+        >
           <v-layout>
             <v-card-title> 日付 </v-card-title>
             <v-menu
@@ -14,9 +25,17 @@
               max-width="290"
             >
               <template v-slot:activator="{ on }">
-                <v-text-field v-model="date" class="mt-4 ml-4" v-on="on" />
+                <v-text-field
+                  v-model="date"
+                  class="mt-4 ml-4"
+                  v-on="on"
+                />
               </template>
-              <v-date-picker v-model="date" no-title @input="menu = false" />
+              <v-date-picker
+                v-model="date"
+                no-title
+                @input="menu = false"
+              />
             </v-menu>
           </v-layout>
           <v-layout>
@@ -81,13 +100,21 @@
           </v-layout>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm12 md6>
-        <v-card :width="cardWidth()" flat>
+      <v-flex
+        xs12
+        sm12
+        md6
+      >
+        <v-card
+          :width="cardWidth()"
+          flat
+          class="ml-8"
+        >
           <v-card-title> 理由 </v-card-title>
           <v-textarea
             v-model="reason"
             cols="60"
-            rows="25"
+            rows="35"
             outlined
             placeholder="この会社はどのような会社か、投資をするに値するか、業績等からみてどうか。"
             :rules="reasonRules"
@@ -114,7 +141,7 @@ import { firestore } from '@/firebase/fireStore'
 import * as rules from '@/config/rules'
 import Layout from '@/components/atoms/base-layout.vue'
 interface VForm extends Vue {
-  validate(): boolean
+  validate(): boolean;
 }
 @Component({
   components: {
@@ -135,7 +162,7 @@ export default class MemoAdd extends Vue {
   menu = false
   valid = true
   $refs!: {
-    form: VForm
+    form: VForm;
   }
   get codeRules() {
     return rules.codeRules

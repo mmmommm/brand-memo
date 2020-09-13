@@ -1,5 +1,10 @@
 <template>
-  <BaseButton class="mt-2 filter" @click="filteredList()"> 検索 </BaseButton>
+  <BaseButton
+    class="mt-2 filter"
+    @click="filteredList()"
+  >
+    検索
+  </BaseButton>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
