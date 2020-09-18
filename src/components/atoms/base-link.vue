@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-2">
+  <div>
     <v-btn
       text
       :to="url"

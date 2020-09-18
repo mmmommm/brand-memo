@@ -6,25 +6,15 @@
     >
       <v-container>
         <v-layout>
-          <v-flex
-            row
-            xs0
-            sm4
-            md4
-          >
+          <v-flex row xs0 sm2 md2 lg4>
             <v-toolbar-title
               v-if="$vuetify.breakpoint.smAndUp"
-              class="mt-5 headline text-uppercase"
+              class="mt-4 headline text-uppercase"
             >
               <span> Trade brand memo </span>
             </v-toolbar-title>
           </v-flex>
-          <v-flex
-            row
-            xs12
-            sm10
-            md8
-          >
+          <v-flex row xs8 sm10 md10 lg8>
             <template>
               <BaseLink url="/">
                 Home
@@ -35,9 +25,6 @@
             </template>
             <template v-if="!isAuthenticated()">
               <LoginButton />
-              <v-text class="ml-4 mt-5">
-                匿名
-              </v-text>
             </template>
             <template v-if="isAuthenticated()">
               <BaseLink url="/MemoAdd">
@@ -47,13 +34,22 @@
                 Mypage
               </BaseLink>
               <LogoutButton />
-              <v-text class="ml-4 mt-5">
-                {{ this.$store.state.user }}さん
-              </v-text>
             </template>
           </v-flex>
         </v-layout>
       </v-container>
+      <div class="float-right mr-4">
+        <template v-if="!isAuthenticated()">
+          <v-text class="ml-4 align-center font-weight-thin">
+            匿名
+          </v-text>
+        </template>
+        <template v-if="isAuthenticated()">
+          <v-text class="ml-4 align-center font-weight-thin">
+            {{ this.$store.state.user }}
+          </v-text>
+        </template>
+      </div>
     </v-app-bar>
   </div>
 </template>
