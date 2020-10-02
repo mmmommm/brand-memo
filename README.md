@@ -4,7 +4,10 @@
   
 自分で調べた企業の情報について簡潔にメモしておける物があればいいと思い作成したサイトです。  
 ログイン機能がついており、それぞれログインしていただいた方が自分でメモをつくれるようしてあります。  
+[Vueのスタイルガイド](https://jp.vuejs.org/v2/style-guide/index.html)に沿った命名や  
+Atomic Designに沿ったファイル分割を心がけました。(viewsはpagesです)  
   
+
 ## Using skills  
 - Vue  
 - Vuetify  
