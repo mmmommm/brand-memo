@@ -7,7 +7,7 @@
       Logout
     </template>
     <template #modalTitle>
-      本当にログアウトしてよろしいですか？
+      ログアウトしますか？
     </template>
   </ModalWindow>
 </template>
