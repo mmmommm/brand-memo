@@ -7,7 +7,7 @@
       DeleteMemo ＜
     </template>
     <template #modalTitle>
-      本当に削除してよろしいですか？
+      削除してよろしいですか？
     </template>
   </ModalWindow>
 </template>

@@ -44,7 +44,6 @@ export default new Vuex.Store({
             name: result.user.displayName,
             email: result.user.email,
           }
-          console.log(userData)
           firestore.collection('users').doc(result.user.uid).set(userData)
           router.push('/')
         })

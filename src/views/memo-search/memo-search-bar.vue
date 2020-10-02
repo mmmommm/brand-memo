@@ -6,6 +6,8 @@
     :rules="codeRules"
     @input="inputTerm"
     @keydown.enter="filteredList"
+    counter="4"
+    height="50"
   />
 </template>
 <script lang="ts">

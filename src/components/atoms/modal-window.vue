@@ -7,12 +7,11 @@
           :x-large="$vuetify.breakpoint.smAndUp"
           :small="$vuetify.breakpoint.xsOnly"
           v-on="on"
-          class="mx-2"
         >
           <slot name="buttonTitle"></slot>
         </v-btn>
       </template>
-      <v-card width="290" height="190">
+      <v-card width="290" height="150">
         <v-card-title class="mb-4">
           <slot name="modalTitle"></slot>
         </v-card-title>
