@@ -1,5 +1,7 @@
 # brandmemo  
   
+[![mmmommm](https://circleci.com/gh/mmmommm/brand-memo.svg?style=svg)](https://app.circleci.com/pipelines/github/mmmommm/brand-memo)  
+  
 ## Simply put  
   
 自分で調べた企業の情報について簡潔にメモしておける物があればいいと思い作成したサイトです。  
