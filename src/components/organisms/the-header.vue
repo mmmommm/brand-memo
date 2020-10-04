@@ -6,7 +6,13 @@
     >
       <v-container>
         <v-layout>
-          <v-flex row xs0 sm2 md2 lg4>
+          <v-flex
+            row
+            xs0
+            sm2
+            md2
+            lg4
+          >
             <v-toolbar-title
               v-if="$vuetify.breakpoint.smAndUp"
               class="mt-4 headline text-uppercase"
@@ -14,7 +20,13 @@
               <span> Trade brand memo </span>
             </v-toolbar-title>
           </v-flex>
-          <v-flex row xs8 sm10 md10 lg8>
+          <v-flex
+            row
+            xs8
+            sm10
+            md10
+            lg8
+          >
             <template>
               <BaseLink url="/">
                 Home
@@ -40,12 +52,12 @@
       </v-container>
       <div class="float-right mr-4">
         <template v-if="!isAuthenticated()">
-          <v-text class="ml-4 align-center font-weight-thin">
+          <v-text class="align-center font-weight-thin">
             匿名
           </v-text>
         </template>
         <template v-if="isAuthenticated()">
-          <v-text class="ml-4 align-center font-weight-thin">
+          <v-text class="align-center font-weight-thin">
             {{ this.$store.state.user }}
           </v-text>
         </template>

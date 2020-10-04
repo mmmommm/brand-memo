@@ -4,10 +4,10 @@
     placeholder="search brand by code (ex 9984"
     class="term"
     :rules="codeRules"
-    @input="inputTerm"
-    @keydown.enter="filteredList"
     counter="4"
     height="50"
+    @input="inputTerm"
+    @keydown.enter="filteredList"
   />
 </template>
 <script lang="ts">
