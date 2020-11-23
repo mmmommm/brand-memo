@@ -21,9 +21,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { firestore } from '@/firebase/fireStore'
-import LoadingScreen from '@/components/organisms/loading-screen.vue'
+import LoadingScreen from '@/components/atoms/loading-screen.vue'
 import Layout from '@/components/atoms/base-layout.vue'
-import MemoCard from '@/components/organisms/memo-card.vue'
+import MemoCard from '@/components/molecules/memo-card.vue'
 @Component({
   components: {
     LoadingScreen,

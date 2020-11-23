@@ -20,7 +20,7 @@ import { MemoItem } from '@/interface/memoItem'
 import Layout from '@/components/atoms/base-layout.vue'
 import SearchBar from '@/views/memo-search/memo-search-bar.vue'
 import SearchButton from '@/views/memo-search/memo-search-button.vue'
-import MemoCard from '@/components/organisms/memo-card.vue'
+import MemoCard from '@/components/molecules/memo-card.vue'
 @Component({
   components: {
     Layout,
