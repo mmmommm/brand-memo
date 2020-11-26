@@ -58,7 +58,7 @@
         </template>
         <template v-if="isAuthenticated()">
           <v-text class="align-center font-weight-thin">
-            {{ this.$store.state.user }}
+            {{ user.user }}
           </v-text>
         </template>
       </div>
@@ -66,22 +66,24 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { defineComponent } from '@vue/composition-api'
 import { firebaseauth } from '@/firebase/firebaseAuth'
 import LoginButton from '@/components/molecules/the-header-login-button.vue'
 import LogoutButton from '@/components/molecules/the-header-logout-button.vue'
 import BaseLink from '@/components/atoms/base-link.vue'
-@Component({
+import userStore from '@/stores/user'
+export default defineComponent ({
   components: {
     BaseLink,
     LoginButton,
-    LogoutButton,
+    LogoutButton
   },
-})
-export default class Header extends Vue {
-  isAuthenticated(): boolean {
-    return this.$store.getters.isAuthenticated
-  }
+  setup() {
+    const user = userStore()
+    return {
+      isAuthenticated() { user.isAuthenticated }
+    }
+  },
   mounted() {
     firebaseauth.onAuthStateChanged((user) => {
       if (user) {
@@ -93,8 +95,5 @@ export default class Header extends Vue {
       }
     })
   }
-  googlelogin() {
-    this.$store.dispatch('googleLogin')
-  }
-}
+})
 </script>

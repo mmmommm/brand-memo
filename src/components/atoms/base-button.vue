@@ -8,12 +8,12 @@
   </v-btn>
 </template>
 <script lang="ts">
-import { Component, Vue, Emit } from 'vue-property-decorator'
-@Component
-export default class BaseButton extends Vue {
-  @Emit()
-  click() {
-    return
+import { defineComponent } from '@vue/composition-api'
+export default defineComponent ({
+  setup() {
+    const click = () => {
+      return
+    }
   }
-}
+})
 </script>

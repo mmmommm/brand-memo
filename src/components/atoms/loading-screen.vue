@@ -12,14 +12,13 @@
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import { defineComponent } from '@vue/composition-api'
 import { VueLoading } from 'vue-loading-template'
-@Component({
+export default defineComponent ({
   components: {
-    VueLoading,
-  },
+    VueLoading
+  }
 })
-export default class LoadingScreen extends Vue {}
 </script>
 
 <style scoped>

@@ -12,20 +12,26 @@
   </ModalWindow>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { defineComponent } from '@vue/composition-api'
 import ModalWindow from '@/components/atoms/modal-window.vue'
-@Component({
+import userStore from '@/stores/user'
+import dialogStore from '@/stores/dialog'
+export default defineComponent ({
   components: {
     ModalWindow,
   },
+  setup() {
+    const user = userStore()
+    const dialog = dialogStore()
+    return {
+      login() {
+        dialog.setDialog
+        user.login
+      },
+      cancel() {
+        dialog.setDialog
+      }
+    }
+  }
 })
-export default class LoginButton extends Vue {
-  login() {
-    this.$store.commit('setDialog', false)
-    this.$store.dispatch('login')
-  }
-  cancel() {
-    this.$store.commit('setDialog', false)
-  }
-}
 </script>
