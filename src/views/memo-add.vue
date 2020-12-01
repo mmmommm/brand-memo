@@ -11,7 +11,7 @@
         md6
       >
         <v-card
-          :width="cardWidth()"
+          :width="CardWidth"
           flat
         >
           <v-layout>
@@ -41,61 +41,19 @@
           <v-layout>
             <v-flex class="ml-4">
               <v-card-title> コード </v-card-title>
-              <v-text-field
-                v-model.number="code"
-                type="number"
-                placeholder="7203"
-                class="py-2"
-                :rules="codeRules"
-              />
+              <BaseInput :input="code" :rules="codeRules" placeholder="7203" />
               <v-card-title> 銘柄名 </v-card-title>
-              <v-text-field
-                v-model="name"
-                type="text"
-                placeholder="トヨタ自動車"
-                class="py-2"
-                :rules="nameRules"
-              />
+              <BaseInput :input="name" :rules="nameRules" placeholder="トヨタ自動車" />
               <v-card-title> 時価総額（百万） </v-card-title>
-              <v-text-field
-                v-model.number="capitalization"
-                placeholder="21495773"
-                type="number"
-                class="py-2"
-                :rules="capitalizationRules"
-              />
+              <BaseInput :input="capitalization" :rules="capitalizationRules" placeholder="21495773" />
               <v-card-title> 浮動株式数（株） </v-card-title>
-              <v-text-field
-                v-model.number="floating"
-                placeholder="1000000000"
-                type="number"
-                class="py-2"
-                :rules="floatRules"
-              />
+              <BaseInput :input="floating" :rules="floatRules" placeholder="100000000" />
               <v-card-title> テーマ </v-card-title>
-              <v-text-field
-                v-model="theme"
-                type="text"
-                placeholder="自動運転"
-                class="py-2"
-                :rules="themeRules"
-              />
+              <BaseInput :input="theme" :rules="themeRules" placeholder="自動運転" />
               <v-card-title> 株価（円）</v-card-title>
-              <v-text-field
-                v-model.number="price"
-                type="number"
-                placeholder="6500"
-                class="py-2"
-                :rules="priceRules"
-              />
+              <BaseInput :input="price" :rules="priceRules" placeholder="6500" />
               <v-card-title> 会社URL </v-card-title>
-              <v-text-field
-                v-model="url"
-                text
-                placeholder="https://company.co.jp"
-                class="py-2"
-                :rules="urlRules"
-              />
+              <BaseInput :input="url" :rules="urlRules" placeholder="https://company.co.jp" />
             </v-flex>
           </v-layout>
         </v-card>
@@ -106,7 +64,7 @@
         md6
       >
         <v-card
-          :width="cardWidth()"
+          :width="CardWidth"
           flat
           class="ml-8"
         >
@@ -125,7 +83,7 @@
             class="ml-12 my-12 add"
             outlined
             :disabled="!valid"
-            @click="saveMemo"
+            @click="saveMemo()"
           >
             Addmemo ＜
           </v-btn>
@@ -135,103 +93,45 @@
   </v-form>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-// import { defineComponent, reactive, provide, inject } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 import { firestore } from '@/firebase/fireStore'
 import * as rules from '@/config/rules'
 import Layout from '@/components/atoms/base-layout.vue'
+import BaseInput from '@/components/atoms/base-input.vue'
+import CardWidth from '@/modules/common'
+import AddModule from '@/modules/add/method'
 interface VForm extends Vue {
   validate(): boolean;
 }
-@Component({
+export default defineComponent ({
   components: {
     Layout,
+    BaseInput
   },
+  setup(props, context) {
+    const cardWidth = CardWidth(context)
+    const addModule = AddModule(context)
+
+    const codeRules = () => { return rules.codeRules }
+    const nameRules = () => { return rules.nameRules }
+    const capitalizationRules = () => { return rules.capitalizationRules }
+    const floatRules = () => { return rules.floatRules }
+    const themeRules = () => { return rules.themeRules }
+    const priceRules = () => { return rules.priceRules }
+    const urlRules = () => { return rules.urlRules }
+    const reasonRules = () => { return rules.reasonRules }
+    return {
+      codeRules,
+      nameRules,
+      capitalizationRules,
+      floatRules,
+      themeRules,
+      priceRules,
+      urlRules,
+      reasonRules,
+      cardWidth,
+      ...addModule
+    }
+  }
 })
-export default class MemoAdd extends Vue {
-  capitalization: number | null = null
-  code: number | null = null
-  date: Date | null = null
-  floating: number | null = null
-  name: string | null = ''
-  price: number | null = null
-  reason: string | null = ''
-  theme: string | null = ''
-  url: string | null = ''
-  author: string = this.$store.state.user
-  menu = false
-  valid = true
-  $refs!: {
-    form: VForm;
-  }
-  get codeRules() {
-    return rules.codeRules
-  }
-  get nameRules() {
-    return rules.nameRules
-  }
-  get capitalizationRules() {
-    return rules.capitalizationRules
-  }
-  get floatRules() {
-    return rules.floatRules
-  }
-  get themeRules() {
-    return rules.themeRules
-  }
-  get priceRules() {
-    return rules.priceRules
-  }
-  get urlRules() {
-    return rules.urlRules
-  }
-  get reasonRules() {
-    return rules.reasonRules
-  }
-  saveMemo() {
-    if (this.$refs.form.validate()) {
-      const slug = this.generateUUID()
-      firestore.collection('memos').doc(slug).set({
-        capitalization: this.capitalization,
-        code: this.code,
-        date: this.date,
-        floating: this.floating,
-        name: this.name,
-        price: this.price,
-        reason: this.reason,
-        theme: this.theme,
-        url: this.url,
-        author: this.author,
-        slug: slug,
-      })
-      this.$router.push({ path: '/' })
-    }
-  }
-  generateUUID(): string {
-    let d = new Date().getTime()
-    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-      /[xy]/g,
-      function (c) {
-        const r = (d + Math.random() * 16) % 16 | 0
-        d = Math.floor(d / 16)
-        return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16)
-      }
-    )
-    return uuid
-  }
-  cardWidth(): number {
-    const name = this.$vuetify.breakpoint.name
-    if (name == 'xs') {
-      return 350
-    } else if (name == 'sm') {
-      return 350
-    } else if (name == 'md') {
-      return 600
-    } else if (name == 'lg') {
-      return 600
-    } else {
-      return 600
-    }
-  }
-}
 </script>

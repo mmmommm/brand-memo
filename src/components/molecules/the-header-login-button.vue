@@ -14,23 +14,23 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import ModalWindow from '@/components/atoms/modal-window.vue'
-import userStore from '@/stores/user'
-import dialogStore from '@/stores/dialog'
 export default defineComponent ({
   components: {
     ModalWindow,
   },
-  setup() {
-    const user = userStore()
-    const dialog = dialogStore()
+  setup(props, { root }) {
+    const login = () => {
+      console.log("ログインします")
+      root.$store.commit('setDialog', false)
+      root.$store.dispatch('login')
+    }
+    const cancel = () => {
+      console.log("ログインしません")
+      root.$store.commit('setDialog', false)
+    }
     return {
-      login() {
-        dialog.setDialog
-        user.login
-      },
-      cancel() {
-        dialog.setDialog
-      }
+      login,
+      cancel
     }
   }
 })

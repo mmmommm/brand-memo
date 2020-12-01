@@ -38,38 +38,21 @@
   </v-app>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { firestore } from '@/firebase/fireStore'
+import { defineComponent } from '@vue/composition-api'
 import LoadingScreen from '@/components/atoms/loading-screen.vue'
 import Layout from '@/components/atoms/base-layout.vue'
 import MemoCard from '@/components/molecules/memo-card.vue'
-@Component({
+import MypageModule from '@/modules/mypage/method'
+export default defineComponent ({
   components: {
     LoadingScreen,
     Layout,
-    MemoCard,
+    MemoCard
   },
+  setup(props, context) {
+    const mypageModule = MypageModule(context)
+    //created
+    mypageModule.getMemo()
+  }
 })
-export default class MemoMypage extends Vue {
-  loading = false
-  memos: Array<firebase.firestore.DocumentData> = []
-
-  created() {
-    this.loading = true
-    this.fetchMemo()
-  }
-
-  async fetchMemo() {
-    await firestore
-      .collection('memos')
-      .where('author', '==', this.$store.state.user)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.memos.push(doc.data())
-        })
-      })
-    this.loading = false
-  }
-}
 </script>

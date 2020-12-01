@@ -20,7 +20,7 @@ export default defineComponent ({
     url: {
       type: String,
       default: "",
-      required: true
+      required: true,
     }
   },
   setup(props: Props) {

@@ -8,11 +8,14 @@
   </v-btn>
 </template>
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, SetupContext } from '@vue/composition-api'
 export default defineComponent ({
-  setup() {
+  setup(props, context: SetupContext) {
     const click = () => {
-      return
+      context.emit("click")
+    }
+    return {
+      click
     }
   }
 })

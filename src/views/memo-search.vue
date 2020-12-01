@@ -15,24 +15,28 @@
   </v-container>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { defineComponent } from '@vue/composition-api'
 import { MemoItem } from '@/interface/memoItem'
 import Layout from '@/components/atoms/base-layout.vue'
-import SearchBar from '@/views/memo-search/memo-search-bar.vue'
-import SearchButton from '@/views/memo-search/memo-search-button.vue'
+import SearchBar from '@/components/molecules/memo-search-bar.vue'
+import SearchButton from '@/components/molecules/memo-search-button.vue'
 import MemoCard from '@/components/molecules/memo-card.vue'
-@Component({
+export default defineComponent ({
   components: {
     Layout,
     SearchBar,
     SearchButton,
-    MemoCard,
+    MemoCard
   },
-})
-export default class MemoSearch extends Vue {
-  filteredMemo: MemoItem[] = []
-  passData(filteredData: MemoItem[]) {
-    this.filteredMemo = filteredData
+  setup() {
+    let filteredMemo: MemoItem[] = []
+    const passData = (filteredData: MemoItem[]) => {
+      filteredMemo = filteredData
+    }
+    return {
+      filteredMemo,
+      passData
+    }
   }
-}
+})
 </script>

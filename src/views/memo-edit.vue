@@ -11,7 +11,7 @@
         md5
       >
         <v-card
-          :width="cardWidth()"
+          :width="cardWidth"
           flat
         >
           <v-layout>
@@ -42,61 +42,19 @@
           <v-layout wrap>
             <v-flex class="ml-4">
               <v-card-title> コード </v-card-title>
-              <v-text-field
-                v-model="code"
-                type="text"
-                class="py-2"
-                :value="code"
-                :rules="codeRules"
-              />
+              <BaseTextInput :text="code" :rules="codeRules" :value="code" />
               <v-card-title> 銘柄名 </v-card-title>
-              <v-text-field
-                v-model="name"
-                type="text"
-                class="py-2"
-                :value="name"
-                :rules="nameRules"
-              />
+              <BaseTextInput :text="name" :rules="nameRules" :value="name" />
               <v-card-title> 時価総額 </v-card-title>
-              <v-text-field
-                v-model="capitalization"
-                type="text"
-                class="py-2"
-                :value="capitalization"
-                :rules="capitalizationRules"
-              />
+              <BaseTextInput :text="capitalization" :rules="capitalizationRules" :value="capitalization" />
               <v-card-title> 浮動株式数 </v-card-title>
-              <v-text-field
-                v-model="floating"
-                type="text"
-                class="py-2"
-                :value="floating"
-                :rules="floatRules"
-              />
+              <BaseTextInput :text="floating" :rules="floatRules" :value="floating" />
               <v-card-title> テーマ </v-card-title>
-              <v-text-field
-                v-model="theme"
-                type="text"
-                class="py-2"
-                :value="theme"
-                :rules="themeRules"
-              />
+              <BaseTextInput :text="theme" :rules="themeRules" :value="theme" />
               <v-card-title> 株価 </v-card-title>
-              <v-text-field
-                v-model="price"
-                type="text"
-                class="py-2"
-                :value="price"
-                :rules="priceRules"
-              />
+              <BaseTextInput :text="price" :rules="priceRules" :value="price" />
               <v-card-title> 会社URL </v-card-title>
-              <v-text-field
-                v-model="url"
-                type="text"
-                class="py-2"
-                :value="url"
-                :rules="urlRules"
-              />
+              <BaseTextInput :text="url" :rules="urlRules" :value="url" />
             </v-flex>
           </v-layout>
         </v-card>
@@ -107,7 +65,7 @@
         md6
       >
         <v-card
-          :width="cardWidth()"
+          :width="cardWidth"
           flat
         >
           <v-card-title>
@@ -141,121 +99,49 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { firestore } from '@/firebase/fireStore'
+import { defineComponent } from '@vue/composition-api'
 import Layout from '@/components/atoms/base-layout.vue'
+import BaseTextInput from '@/components/atoms/base-input.vue'
+import CardWidth from '@/modules/common'
+import DetailModule from '@/modules/detail/method'
+import EditModule from '@/modules/edit/computed'
 import * as rules from '@/config/rules'
 interface VForm extends Vue {
   validate(): boolean;
 }
-@Component({
+export default defineComponent ({
   components: {
     Layout,
+    BaseTextInput
   },
-})
-export default class MemoEdit extends Vue {
-  author = ''
-  capitalization: number | null = null
-  code: number | null = null
-  date: string | null = null
-  floating: number | null = null
-  name: string | null = null
-  price: number | null = null
-  reason: string | null = null
-  theme: string | null = null
-  url: string | null = null
-  slug: string | undefined = ''
-  valid = true
-  menu = false
-  $refs!: {
-    form: VForm;
-  }
-
-  get codeRules() {
-    return rules.codeRules
-  }
-  get nameRules() {
-    return rules.nameRules
-  }
-  get capitalizationRules() {
-    return rules.capitalizationRules
-  }
-  get floatRules() {
-    return rules.floatRules
-  }
-  get themeRules() {
-    return rules.themeRules
-  }
-  get priceRules() {
-    return rules.priceRules
-  }
-  get urlRules() {
-    return rules.urlRules
-  }
-  get reasonRules() {
-    return rules.reasonRules
-  }
-
-  created() {
-    firestore
-      .collection('memos')
-      .where('slug', '==', this.$route.params.memo)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.author = doc.data().author
-          this.capitalization = doc.data().capitalization
-          this.code = doc.data().code
-          this.date = doc.data().date
-          this.floating = doc.data().floating
-          this.name = doc.data().name
-          this.price = doc.data().price
-          this.reason = doc.data().reason
-          this.theme = doc.data().theme
-          this.url = doc.data().url
-          this.slug = doc.data().slug
-        })
-      })
-  }
-
-  cardWidth(): number {
-    const name = this.$vuetify.breakpoint.name
-    if (name == 'xs') {
-      return 350
-    } else if (name == 'sm') {
-      return 350
-    } else if (name == 'md') {
-      return 600
-    } else if (name == 'lg') {
-      return 600
-    } else {
-      return 600
+  setup(props, context) {
+    const detailModule = DetailModule(context)
+    const editModule = EditModule(context)
+    const cardWidth = CardWidth(context)
+    //method
+    const codeRules = () => { return rules.codeRules }
+    const nameRules = () => { return rules.nameRules }
+    const capitalizationRules = () => { return rules.capitalizationRules }
+    const floatRules = () => { return rules.floatRules }
+    const themeRules = () => { return rules.themeRules }
+    const priceRules = () => { return rules.priceRules }
+    const urlRules = () => { return rules.urlRules }
+    const reasonRules = () => { return rules.reasonRules }
+    //この関数はmemoDetailのと一緒なのでまとめたい
+    //created
+    detailModule.getSpecificMemo()
+    return {
+      codeRules,
+      nameRules,
+      capitalizationRules,
+      floatRules,
+      themeRules,
+      priceRules,
+      urlRules,
+      reasonRules,
+      cardWidth,
+      ...editModule
     }
   }
-
-  updateMemo() {
-    console.log(this.slug)
-    firestore
-      .collection('memos')
-      .doc(this.slug)
-      .update({
-        capitalization: this.capitalization,
-        code: this.code,
-        date: this.date,
-        floating: this.floating,
-        name: this.name,
-        price: this.price,
-        reason: this.reason,
-        theme: this.theme,
-        url: this.url,
-      })
-      .then(() => {
-        this.$router.push('/')
-      })
-      .catch(() => {
-        alert('エラーが発生しました、少し時間をおいて再実行してください。')
-        this.$router.push('/MemoMyPage')
-      })
-  }
-}
+})
 </script>

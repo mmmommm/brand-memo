@@ -7,27 +7,30 @@
   </BaseButton>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { defineComponent, SetupContext } from '@vue/composition-api'
 import { firestore } from '@/firebase/fireStore'
 import BaseButton from '@/components/atoms/base-button.vue'
-@Component({
+export default defineComponent ({
   components: {
     BaseButton,
   },
-})
-export default class SearchButton extends Vue {
-  filteredData: Array<firebase.firestore.DocumentData> = []
-  filteredList() {
-    firestore
+  setup(context: SetupContext, { root }) {
+    const filteredData: any[] = []
+    const filteredList = () => {
+      firestore
       .collection('memos')
-      .where('code', '==', this.$store.state.searchTerm)
+      .where('code', '==', root.$store.state.searchTerm)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          this.filteredData.push(doc.data())
+          filteredData.push(doc.data())
         })
-        this.$emit('catchData', this.filteredData)
+        context.emit('catchData', filteredData)
       })
+    }
+    return {
+      filteredList
+    }
   }
-}
+})
 </script>

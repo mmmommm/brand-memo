@@ -30,7 +30,7 @@
               text
               :x-large="$vuetify.breakpoint.smAndUp"
               :small="$vuetify.breakpoint.xsOnly"
-              @click="approve()"
+              @click="yes"
             >
               はい
             </v-btn>
@@ -39,7 +39,7 @@
               text
               :x-large="$vuetify.breakpoint.smAndUp"
               :small="$vuetify.breakpoint.xsOnly"
-              @click="cancel()"
+              @click="no"
             >
               いいえ
             </v-btn>
@@ -50,22 +50,26 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import dialogStore from '@/stores/dialog'
+import { defineComponent, SetupContext, computed } from '@vue/composition-api'
 export default defineComponent ({
-  setup() {
-    const dialog = dialogStore()
-    const dialogCondition = computed(() => dialog.isDialog)
+  setup(props, { root }: SetupContext) {
+    const dialogCondition = computed(() => root.$store.getters.isDialog)
+    const setDialog = () => {
+      root.$store.commit('setDialog', true)
+    }
+    const yes = () => {
+      console.log("はい")
+      root.$emit("approve")
+    }
+    const no = () => {
+      console.log("いいえ")
+      root.$emit("cancel")
+    }
     return {
       dialogCondition,
-      setDialog: dialog.setDialog,
-    }
-
-    const approve = () => {
-      return
-    }
-    const cancel = () => {
-      return
+      setDialog,
+      yes,
+      no
     }
   }
 })
