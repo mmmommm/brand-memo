@@ -17,7 +17,7 @@
           <v-layout>
             <v-flex class="ml-4">
               <v-card-title> 日付 </v-card-title>
-              <BaseInput :input="date" :rules="nameRules" placeholder="YYYY/MM/DD" />
+              <BaseText :value="generateDate()" />
               <v-card-title> コード </v-card-title>
               <BaseInput :input="code" :rules="codeRules" placeholder="7203" />
               <v-card-title> 銘柄名 </v-card-title>
@@ -75,6 +75,7 @@ import { defineComponent, ref } from '@vue/composition-api'
 import { firestore } from '@/firebase/fireStore'
 import Layout from '@/components/atoms/base-layout.vue'
 import BaseInput from '@/components/atoms/base-input.vue'
+import BaseText from '@/components/atoms/base-text.vue'
 import CardWidth from '@/modules/common'
 import AddModule from '@/modules/add/method'
 interface VForm extends Vue {
@@ -83,13 +84,13 @@ interface VForm extends Vue {
 export default defineComponent ({
   components: {
     Layout,
-    BaseInput
+    BaseInput,
+    BaseText
   },
   setup(props, context) {
     const form = ref()
     const cardWidth = CardWidth(context)
     const addModule = AddModule(context)
-
     return {
       form,
       cardWidth,

@@ -1,4 +1,4 @@
-import { SetupContext, reactive, toRefs, Ref } from '@vue/composition-api'
+import { SetupContext, reactive, toRefs } from '@vue/composition-api'
 import { firestore } from "@/firebase/fireStore"
 import * as rules from '@/config/rules'
 interface VForm extends Vue {
@@ -28,6 +28,13 @@ export default ({root}: SetupContext) => {
   const priceRules = () => { return rules.priceRules }
   const urlRules = () => { return rules.urlRules }
   const reasonRules = () => { return rules.reasonRules }
+  const generateDate = () => {
+    const date = new Date()
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    return `${year}/${month}/${day}`
+  }
   const generateUUID = (): string => {
     let d = new Date().getTime()
     const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
@@ -67,6 +74,7 @@ export default ({root}: SetupContext) => {
     priceRules,
     urlRules,
     reasonRules,
+    generateDate,
     ...toRefs(state)
   }
 }
