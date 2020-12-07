@@ -1,8 +1,9 @@
 <template>
   <div>
-    <!-- memoEditを押した時にmemoDetailもでてしまうので仕方なく -->
-    <template v-if="!displayEdit">
-      <Layout>
+    <LoadingScreen v-show="isLoading" />
+    <Layout v-show="!isLoading">
+      <!-- memoEditを押した時にmemoDetailもでてしまうので仕方なく -->
+      <template v-if="!display">
         <v-flex
           xs12
           sm12
@@ -65,7 +66,7 @@
               readonly
               outlined
             />
-            <template v-if="isUser()">
+            <template v-if="isUser">
               <v-layout>
                 <v-flex
                   xs12
@@ -77,8 +78,7 @@
                     x-large
                     text
                     class="ml-n16 my-2"
-                    :to="{ name: 'MemoEdit', params: { memo: slug } }"
-                    @click="displayEdit = true"
+                    @click="displayEdit"
                   >
                     Editmemo ＜
                   </v-btn>
@@ -94,34 +94,38 @@
             </template>
           </v-card>
         </v-flex>
-      </Layout>
+      </template>
+    </Layout>
+    <template v-if="display">
+      <MemoEdit :slug="slug" />
     </template>
-    <router-view />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import Layout from '@/components/atoms/base-layout.vue'
+import LoadingScreen from '@/components/atoms/loading-screen.vue'
 import DeleteButton from '@/components/molecules/memo-detail-delete-button.vue'
 import BaseText from '@/components/atoms/base-text.vue'
 import CardWidth from '@/modules/common'
 import DetailModule from '@/modules/detail/method'
+import MemoEdit from '@/views/memo-edit.vue'
 export default defineComponent ({
   components: {
     Layout,
     DeleteButton,
     BaseText,
+    LoadingScreen,
+    MemoEdit
   },
   setup(props, context) {
     const detailModule = DetailModule(context)
     const cardWidth = CardWidth(context)
-    const displayEdit = false
 
     //created
     detailModule.detailInit()
     return {
       ...detailModule,
-      displayEdit,
       cardWidth
     }
   }

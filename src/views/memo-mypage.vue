@@ -1,15 +1,15 @@
 <template>
   <v-app>
-    <LoadingScreen v-show="loading" />
-    <Layout v-show="!loading">
-      <template v-if="memos.length">
+    <LoadingScreen v-show="isLoading" />
+    <Layout v-show="!isLoading">
+      <template v-if="haveMemo">
         <MemoCard
           v-for="(memo, index) in memos"
           :key="index"
           :memo="memo"
         />
       </template>
-      <template v-else>
+      <template v-if="!haveMemo">
         <v-container>
           <v-layout
             align-center
@@ -52,7 +52,10 @@ export default defineComponent ({
   setup(props, context) {
     const mypageModule = MypageModule(context)
     //created
-    mypageModule.getMemo()
+    mypageModule.getMyMemo()
+    return {
+      ...mypageModule
+    }
   }
 })
 </script>

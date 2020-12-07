@@ -15,8 +15,7 @@
   </v-container>
 </template>
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
-import { MemoItem } from '@/interface/memoItem'
+import { defineComponent, reactive, toRefs } from '@vue/composition-api'
 import Layout from '@/components/atoms/base-layout.vue'
 import SearchBar from '@/components/molecules/memo-search-bar.vue'
 import SearchButton from '@/components/molecules/memo-search-button.vue'
@@ -29,12 +28,14 @@ export default defineComponent ({
     MemoCard
   },
   setup() {
-    let filteredMemo: MemoItem[] = []
-    const passData = (filteredData: MemoItem[]) => {
-      filteredMemo = filteredData
+    const state = reactive({
+      filteredMemo: [] as any[]
+    })
+    const passData = (filteredData: any[]) => {
+      state.filteredMemo = filteredData
     }
     return {
-      filteredMemo,
+      ...toRefs(state),
       passData
     }
   }

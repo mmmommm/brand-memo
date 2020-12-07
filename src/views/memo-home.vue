@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <LoadingScreen v-show="loading" />
-    <Layout v-show="!loading">
+    <LoadingScreen v-show="isLoading" />
+    <Layout v-show="!isLoading">
       <MemoCard
         v-for="(memo, index) in memoLists"
         :key="index"
@@ -30,8 +30,8 @@ export default defineComponent ({
     Layout,
     MemoCard,
   },
-  setup() {
-    const homeModule = HomeModule()
+  setup(props, context) {
+    const homeModule = HomeModule(context)
     homeModule.getMemo()
     return {
       ...homeModule
