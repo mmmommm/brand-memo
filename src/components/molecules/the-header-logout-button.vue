@@ -21,7 +21,7 @@ export default defineComponent ({
   setup(props, { root }) {
     const logout = () => {
       root.$store.commit('setDialog', false)
-      root.$store.dispatch('userLogout')
+      root.$store.dispatch('logout')
     }
     const cancel = () => {
       root.$store.commit('setDialog', false)

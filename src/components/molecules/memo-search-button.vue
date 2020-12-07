@@ -1,7 +1,7 @@
 <template>
   <BaseButton
     class="mt-2 filter"
-    @click="filteredList()"
+    @click="filteredList"
   >
     検索
   </BaseButton>
@@ -14,7 +14,7 @@ export default defineComponent ({
   components: {
     BaseButton,
   },
-  setup(context: SetupContext, { root }) {
+  setup(props, { emit, root }) {
     const filteredData: any[] = []
     const filteredList = () => {
       firestore
@@ -25,7 +25,7 @@ export default defineComponent ({
         querySnapshot.forEach((doc) => {
           filteredData.push(doc.data())
         })
-        context.emit('catchData', filteredData)
+        emit('catchData', filteredData)
       })
     }
     return {

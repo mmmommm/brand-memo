@@ -20,12 +20,10 @@ export default defineComponent ({
   },
   setup(props, { root }) {
     const login = () => {
-      console.log("ログインします")
       root.$store.commit('setDialog', false)
       root.$store.dispatch('login')
     }
     const cancel = () => {
-      console.log("ログインしません")
       root.$store.commit('setDialog', false)
     }
     return {

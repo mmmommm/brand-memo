@@ -9,14 +9,11 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 type Props = {
-  value: string;
+  value: string | number | Function;
 }
 export default defineComponent({
   props: {
-    value: {
-      type: String,
-      default: ""
-    }
+    value: null
   },
   setup(props: Props) {
     props.value

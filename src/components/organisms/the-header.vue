@@ -31,10 +31,10 @@
               <BaseLink url="/">Home</BaseLink>
               <BaseLink url="/MemoSearch">Search</BaseLink>
             </template>
-            <template v-if="!isAuthenticated()">
+            <template v-if="!isAuthenticated">
               <LoginButton />
             </template>
-            <template v-if="isAuthenticated()">
+            <template v-if="isAuthenticated">
               <BaseLink url="/MemoAdd">Add</BaseLink>
               <BaseLink url="/MemoMypage">Mypage</BaseLink>
               <LogoutButton />
@@ -43,47 +43,34 @@
         </v-layout>
       </v-container>
       <div class="float-right mr-4">
-        <template v-if="!isAuthenticated()">
+        <template v-if="!isAuthenticated">
           <v-text class="align-center font-weight-thin">匿名</v-text>
         </template>
-        <template v-if="isAuthenticated()">
-          <v-text class="align-center font-weight-thin">{{ user.user }}</v-text>
+        <template v-if="isAuthenticated">
+          <v-text class="align-center font-weight-thin">{{ user }}</v-text>
         </template>
       </div>
     </v-app-bar>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted } from '@vue/composition-api'
+import { defineComponent, onMounted, computed } from '@vue/composition-api'
 import { firebaseauth } from '@/firebase/firebaseAuth'
 import LoginButton from '@/components/molecules/the-header-login-button.vue'
 import LogoutButton from '@/components/molecules/the-header-logout-button.vue'
 import BaseLink from '@/components/atoms/base-link.vue'
+import HeaderModule from '@/modules/header/method'
 export default defineComponent ({
   components: {
     BaseLink,
     LoginButton,
     LogoutButton
   },
-  setup(props, { root }) {
-    const isAuthenticated = () => {
-      return root.$store.getters.isAuthenticated
-    }
-    onMounted(() => {
-      firebaseauth.onAuthStateChanged((user) => {
-        if (user === null) return
-        else {
-          console.log(user)
-          root.$store.commit(
-            'setIsAuthenticated',
-            isAuthenticated() ? true : false
-          )
-          root.$store.commit('setUser', user.displayName)
-        }
-      })
-    })
+  setup(props, context) {
+    const headerModule = HeaderModule(context)
+    headerModule.setUser()
     return {
-      isAuthenticated
+      ...headerModule
     }
   },
 })

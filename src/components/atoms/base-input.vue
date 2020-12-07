@@ -12,8 +12,8 @@
 import { defineComponent } from '@vue/composition-api'
 type Props = {
   input?: string | number;
-  rules?: string;
-  value?: string;
+  rules?: string | Function;
+  value?: string | number;
   placeholder?: string;
 }
 export default defineComponent({
@@ -23,8 +23,8 @@ export default defineComponent({
       default: "",
     },
     rules: {
-      type: String,
-      default: "",
+      type: null,
+      default: null,
     },
     value: {
       type: String,

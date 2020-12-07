@@ -11,13 +11,15 @@
   />
 </template>
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, reactive, toRefs } from '@vue/composition-api'
 import { firestore } from '@/firebase/fireStore'
 import * as rules from '@/config/rules'
 export default defineComponent ({
-  setup(props, { root }) {
-    const searchTerm: number | null = null
-    const filteredData: any[] = []
+  setup(props, { emit, root }) {
+    const state = reactive({
+      searchTerm: null as null | number,
+      filteredData: [] as any[],
+    })
     const codeRules = () => { return rules.codeRules }
     const filteredList = () => {
       firestore
@@ -26,18 +28,17 @@ export default defineComponent ({
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            filteredData.push(doc.data())
+            state.filteredData.push(doc.data())
           })
-          root.$emit('catchData', filteredData)
+          emit('catchData', state.filteredData)
         })
     }
     const inputTerm = () => {
-      root.$store.commit('setSearchTerm', searchTerm)
+      root.$store.commit('setSearchTerm', state.searchTerm)
     }
     return {
-      searchTerm,
+      ...toRefs(state),
       codeRules,
-      filteredData,
       filteredList,
       inputTerm
     }
