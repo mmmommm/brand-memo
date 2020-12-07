@@ -1,8 +1,7 @@
 <template>
   <v-text-field
     class="py-2"
-    type="text"
-    :v-model="input"
+    type="number"
     :rules="rules"
     :value="value"
     :placeholder="placeholder"
@@ -11,17 +10,12 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 type Props = {
-  input?: string | number;
-  rules?: string | Function;
-  value?: string | number;
-  placeholder?: string;
+  rules: string | Function;
+  value: number;
+  placeholder: string;
 }
 export default defineComponent({
   props: {
-    input: {
-      type: [String, Number],
-      default: "",
-    },
     rules: {
       type: null,
       default: null,
@@ -36,7 +30,6 @@ export default defineComponent({
     },
   },
   setup(props: Props) {
-    props.input
     props.rules
     props.value
     props.placeholder
