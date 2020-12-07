@@ -1,33 +1,50 @@
 <template>
   <ModalWindow
-    @approve="logout"
+    @approve="deleteMemo"
     @cancel="cancel"
   >
     <template #buttonTitle>
-      Logout
+      DeleteMemo ＜
     </template>
     <template #modalTitle>
-      ログアウトしますか？
+      削除してよろしいですか？
     </template>
   </ModalWindow>
 </template>
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import { firestore } from '@/firebase/fireStore'
 import ModalWindow from '@/components/atoms/modal-window.vue'
+type Props = {
+  slug: string;
+}
 export default defineComponent ({
   components: {
     ModalWindow,
   },
-  setup(props, { root }) {
-    const logout = () => {
+  props: {
+    slug: {
+      type: String,
+      default: "",
+      required: true,
+    }
+  },
+  setup(props: Props, { root }) {
+    const deleteMemo = () => {
       root.$store.commit('setDialog', false)
-      root.$store.dispatch('logout')
+      firestore
+        .collection('memos')
+        .doc(props.slug)
+        .delete()
+        .then(() => {
+          root.$router.push('/')
+        })
     }
     const cancel = () => {
       root.$store.commit('setDialog', false)
     }
     return {
-      logout,
+      deleteMemo,
       cancel
     }
   }

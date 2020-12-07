@@ -11,10 +11,20 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
-@Component
-export default class BaseLink extends Vue {
-  @Prop()
-  url!: string
-}
+import { defineComponent } from '@vue/composition-api'
+type Props = {
+  url: string;
+};
+export default defineComponent ({
+  props: {
+    url: {
+      type: String,
+      default: "",
+      required: true,
+    }
+  },
+  setup(props: Props) {
+    props.url
+  }
+})
 </script>

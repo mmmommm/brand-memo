@@ -9,11 +9,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    //ユーザー名
     user: null as string | null,
+    //ログインしている人とメモの作者が同一人物であるか
     isUser: false,
+    //ログインしているか
     isAuthenticated: false,
     searchTerm: null as number | null,
     dialog: false,
+    loading: false,
   },
   mutations: {
     setUser(state, payload) {
@@ -31,6 +35,9 @@ export default new Vuex.Store({
     setDialog(state, payload) {
       state.dialog = payload
     },
+    setLoading(state, payload) {
+      state.loading = payload
+    }
   },
   actions: {
     login() {
@@ -51,7 +58,7 @@ export default new Vuex.Store({
           router.push('/')
         })
     },
-    userLogout({ commit }) {
+    logout({ commit }) {
       firebaseauth
         .signOut()
         .then(() => {
@@ -77,5 +84,8 @@ export default new Vuex.Store({
     isDialog(state) {
       return state.dialog
     },
+    isLoading(state){
+      return state.loading
+    }
   },
 })

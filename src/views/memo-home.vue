@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <LoadingScreen v-show="loading" />
-    <Layout v-show="!loading">
+    <LoadingScreen v-show="isLoading" />
+    <Layout v-show="!isLoading">
       <MemoCard
         v-for="(memo, index) in memoLists"
         :key="index"
@@ -19,62 +19,23 @@
   </v-app>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { firestore } from '@/firebase/fireStore'
+import { defineComponent } from '@vue/composition-api'
 import LoadingScreen from '@/components/atoms/loading-screen.vue'
 import Layout from '@/components/atoms/base-layout.vue'
 import MemoCard from '@/components/molecules/memo-card.vue'
-@Component({
+import HomeModule from '@/modules/home/method'
+export default defineComponent ({
   components: {
     LoadingScreen,
     Layout,
     MemoCard,
   },
-})
-export default class MemoHome extends Vue {
-  readonly currentpage = 1
-  readonly pageSize = 9
-  pageLength = 1
-  loading = false
-  memos: Array<firebase.firestore.DocumentData> = []
-  memoLists: Array<firebase.firestore.DocumentData> = []
-
-  //開いた時にfirestoreからmemoデータを取ってくる
-  created() {
-    this.pageLen()
-    this.loading = true
-    this.fetchMemo()
-  }
-
-  async fetchMemo() {
-    await firestore
-      .collection('memos')
-      .get()
-      .then((querySnapshot) => {
-        const array: Array<firebase.firestore.DocumentData> = []
-        querySnapshot.forEach((doc) => {
-          array.push(doc.data())
-        })
-        this.memos = array
-        //pageSizeに分けて取得する
-        this.memoLists = this.memos.slice(0, this.pageSize)
-      })
-    this.loading = false
-  }
-
-  pageLen() {
-    if (this.memos.length < 9) {
-      return
+  setup(props, context) {
+    const homeModule = HomeModule(context)
+    homeModule.getMemo()
+    return {
+      ...homeModule
     }
-    this.pageLength = Math.ceil(this.memos.length / this.pageSize)
   }
-
-  pageChange() {
-    //pageの番号に合わせてmemooListsに入るmemoを変更する
-    this.memoLists = this.memos.slice(
-      this.pageSize * (this.currentpage - 1),
-      this.pageSize * this.currentpage
-    )
-  }
-}
+})
 </script>

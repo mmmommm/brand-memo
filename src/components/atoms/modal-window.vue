@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-dialog
-      v-model="dialog"
+      v-model="dialogCondition"
       max-width="290"
     >
       <template v-slot:activator="{ on }">
@@ -10,6 +10,7 @@
           :x-large="$vuetify.breakpoint.smAndUp"
           :small="$vuetify.breakpoint.xsOnly"
           v-on="on"
+          @click="setDialog"
         >
           <slot name="buttonTitle" />
         </v-btn>
@@ -29,7 +30,7 @@
               text
               :x-large="$vuetify.breakpoint.smAndUp"
               :small="$vuetify.breakpoint.xsOnly"
-              @click="approve"
+              @click="yes"
             >
               はい
             </v-btn>
@@ -38,7 +39,7 @@
               text
               :x-large="$vuetify.breakpoint.smAndUp"
               :small="$vuetify.breakpoint.xsOnly"
-              @click="cancel"
+              @click="no"
             >
               いいえ
             </v-btn>
@@ -49,22 +50,25 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Emit } from 'vue-property-decorator'
-@Component
-export default class ModalWindow extends Vue {
-  get dialog() {
-    return this.$store.getters.isDialog
+import { defineComponent, SetupContext, computed } from '@vue/composition-api'
+export default defineComponent ({
+  setup(props, { emit, root }: SetupContext) {
+    const dialogCondition = computed(() => root.$store.getters.isDialog)
+    const setDialog = () => {
+      root.$store.commit('setDialog', true)
+    }
+    const yes = () => {
+      emit("approve")
+    }
+    const no = () => {
+      emit("cancel")
+    }
+    return {
+      dialogCondition,
+      setDialog,
+      yes,
+      no
+    }
   }
-  set dialog(opened: boolean) {
-    this.$store.commit('setDialog', opened)
-  }
-  @Emit()
-  approve() {
-    return
-  }
-  @Emit()
-  cancel() {
-    return
-  }
-}
+})
 </script>

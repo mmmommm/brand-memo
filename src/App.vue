@@ -7,12 +7,11 @@
   </v-app>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { defineComponent } from '@vue/composition-api'
 import Header from '@/components/organisms/the-header.vue'
-@Component({
+export default defineComponent ({
   components: {
     Header,
-  },
+  }
 })
-export default class App extends Vue {}
 </script>

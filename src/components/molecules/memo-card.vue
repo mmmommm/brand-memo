@@ -26,11 +26,20 @@
   </v-flex>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { defineComponent } from '@vue/composition-api'
 import { MemoItem } from '@/interface/memoItem'
-@Component
-export default class MemoCard extends Vue {
-  @Prop({ default: [] })
-  readonly memo!: MemoItem[]
+type Props = {
+  memo: MemoItem[];
 }
+export default defineComponent ({
+  props: {
+    memo: {
+      default: [],
+      required: true
+    }
+  },
+  setup(props: Props) {
+    props.memo
+  }
+})
 </script>
