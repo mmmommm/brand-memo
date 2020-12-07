@@ -1,11 +1,12 @@
-import { SetupContext, reactive, toRefs } from '@vue/composition-api'
+import { SetupContext, reactive, toRefs, Ref } from '@vue/composition-api'
 import { firestore } from "@/firebase/fireStore"
+import * as rules from '@/config/rules'
 interface VForm extends Vue {
   validate(): boolean;
 }
 export default ({root}: SetupContext) => {
   const state = reactive({
-    capitalization: null as number | null,
+    capitalization: 0 as number | null,
     code: null as number | null,
     date: null as Date | null,
     floating: null as number | null,
@@ -18,9 +19,15 @@ export default ({root}: SetupContext) => {
     menu: false,
     valid: true,
   })
-  let $refs!: {
-    form: VForm;
-  }
+
+  const codeRules = () => { return rules.codeRules }
+  const nameRules = () => { return rules.nameRules }
+  const capitalizationRules = () => { return rules.capitalizationRules }
+  const floatRules = () => { return rules.floatRules }
+  const themeRules = () => { return rules.themeRules }
+  const priceRules = () => { return rules.priceRules }
+  const urlRules = () => { return rules.urlRules }
+  const reasonRules = () => { return rules.reasonRules }
   const generateUUID = (): string => {
     let d = new Date().getTime()
     const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
@@ -34,27 +41,32 @@ export default ({root}: SetupContext) => {
     return uuid
   }
   const saveMemo = () => {
-    if ($refs.form.validate()) {
-      const slug = generateUUID()
-      firestore.collection("memos").doc(slug).set({
-        capitalization: state.capitalization,
-        code: state.code,
-        date: state.date,
-        floating: state.floating,
-        name: state.name,
-        price: state.price,
-        reason: state.reason,
-        theme: state.theme,
-        url: state.url,
-        author: state.author,
-        slug: slug,
-      })
-      root.$router.push({ path: "/" })
-    }
+    const slug = generateUUID()
+    firestore.collection("memos").doc(slug).set({
+      capitalization: state.capitalization,
+      code: state.code,
+      date: state.date,
+      floating: state.floating,
+      name: state.name,
+      price: state.price,
+      reason: state.reason,
+      theme: state.theme,
+      url: state.url,
+      author: state.author,
+      slug: slug,
+    })
+    root.$router.push("/")
   }
   return {
-    generateUUID,
     saveMemo,
+    codeRules,
+    nameRules,
+    capitalizationRules,
+    floatRules,
+    themeRules,
+    priceRules,
+    urlRules,
+    reasonRules,
     ...toRefs(state)
   }
 }

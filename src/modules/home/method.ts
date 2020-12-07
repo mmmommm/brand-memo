@@ -1,26 +1,27 @@
-import { reactive, toRefs } from "@vue/composition-api"
+import { reactive, toRefs, computed, SetupContext } from "@vue/composition-api"
 import { firestore } from "@/firebase/fireStore"
 
-export default () => {
+export default ({root}: SetupContext) => {
   const state = reactive({
     currentpage: 1,
     pageLength: 1,
-    loading: false,
     memos: [] as any[],
     memoLists: [] as any[],
   })
+  const isLoading= computed(() => root.$store.getters.isLoading)
   const pageSize = 9
   const pageLen = () => {
     if (state.memos.length < 9) {
       return
+    } else {
+      state.pageLength = Math.ceil(state.memos.length / pageSize)
     }
-    state.pageLength = Math.ceil(state.memos.length / pageSize)
   }
   const pageChange = () => {
     state.memoLists = state.memos.slice(pageSize * (state.currentpage - 1), pageSize * (state.currentpage))
   }
   async function allMemo() {
-    state.loading = true
+    root.$store.commit('setLoading', true)
     await firestore
       .collection("memos")
       .get()
@@ -33,15 +34,18 @@ export default () => {
         //pageSizeに分けて取得する
         state.memoLists = state.memos.slice(0, pageSize)
       })
-      .finally(() => state.loading = false)
+      .finally(() => {
+        root.$store.commit('setLoading', false)
+      })
+    await pageLen()
   }
   const getMemo = () => {
     allMemo()
-    pageLen()
   }
   return {
     ...toRefs(state),
     pageChange,
     getMemo,
+    isLoading,
   }
 }

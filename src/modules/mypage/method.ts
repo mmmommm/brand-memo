@@ -1,13 +1,19 @@
-import { reactive, SetupContext } from "@vue/composition-api"
+import { reactive, toRefs, SetupContext, computed } from "@vue/composition-api"
 import { firestore } from "@/firebase/fireStore"
 
 export default ({ root }: SetupContext) => {
   const state = reactive({
-    loading: false,
     memos: [] as any[],
+    haveMemo: false,
   })
+  const isLoading = computed(() => root.$store.getters.isLoading)
+
+  const haveMemo = () => {
+    state.memos.length !== 0 ? state.haveMemo = true : state.haveMemo = false
+  }
 
   async function myMemo() {
+    root.$store.commit('setLoading', true)
     await firestore
       .collection("memos")
       .where("author", "==", root.$store.state.user)
@@ -17,12 +23,15 @@ export default ({ root }: SetupContext) => {
           state.memos.push(doc.data())
         })
       })
-      .finally(() => (state.loading = false))
+    await haveMemo()
+    root.$store.commit('setLoading', false)
   }
-  const getMemo = () => {
+  const getMyMemo = () => {
     myMemo()
   }
   return {
-    getMemo,
+    ...toRefs(state),
+    isLoading,
+    getMyMemo,
   }
 }
