@@ -4,17 +4,17 @@ import * as rules from '@/config/rules'
 
 export default ({ root }: SetupContext, slug: string) => {
   const state = reactive({
-    capitalization: null as number | null,
-    code: null as number | null,
-    date: null as string | null,
-    floating: null as number | null,
-    name: null as string | null,
-    price: null as number | null,
-    reason: null as string | null,
-    theme: null as string | null,
-    url: null as string | null,
+    capitalization: 0,
+    code: 0,
+    date: "",
+    floating: 0,
+    name: "",
+    price: 0,
+    reason: "",
+    theme: "",
+    url: "",
     slug: slug,
-    author: null as string | null,
+    author: "",
     valid: true,
   })
   const codeRules = () => { return rules.codeRules }
@@ -80,6 +80,7 @@ export default ({ root }: SetupContext, slug: string) => {
         root.$router.push("/MemoMyPage")
       })
   }
+
   return {
     ...toRefs(state),
     codeRules,

@@ -16,21 +16,21 @@
         >
           <v-flex class="ml-4">
             <v-card-title> 日付 </v-card-title>
-            <BaseTextInput :text="date" :rules="nameRules" :value="date" />
+            <v-text-field class="py-2" type="number" :rules="codeRules" :value="code" v-model.number="code" />
             <v-card-title> コード </v-card-title>
-            <BaseTextInput :text="code" :rules="codeRules" :value="code" />
+            <v-text-field class="py-2" type="number" :rules="codeRules" :value="code" v-model.number="code" />
             <v-card-title> 銘柄名 </v-card-title>
-            <BaseTextInput :text="name" :rules="nameRules" :value="name" />
+            <v-text-field class="py-2" type="text" :rules="nameRules" :value="name" v-model="name" />
             <v-card-title> 時価総額 </v-card-title>
-            <BaseTextInput :text="capitalization" :rules="capitalizationRules" :value="capitalization" />
+            <v-text-field class="py-2" type="number" :rules="capitalizationRules" :value="capitalization" v-model.number="capitalization" />
             <v-card-title> 浮動株式数 </v-card-title>
-            <BaseTextInput :text="floating" :rules="floatRules" :value="floating" />
+            <v-text-field class="py-2" type="number" :rules="floatRules" :value="floating" v-model.number="floating" />
             <v-card-title> テーマ </v-card-title>
-            <BaseTextInput :text="theme" :rules="themeRules" :value="theme" />
+            <v-text-field class="py-2" type="text" :rules="themeRules" :value="theme" v-model="theme" />
             <v-card-title> 株価 </v-card-title>
-            <BaseTextInput :text="price" :rules="priceRules" :value="price" />
+            <v-text-field class="py-2" type="number" :rules="priceRules" :value="price" v-model.number="price" />
             <v-card-title> 会社URL </v-card-title>
-            <BaseTextInput :text="url" :rules="urlRules" :value="url" />
+            <v-text-field class="py-2" type="text" :rules="urlRules" :value="url" v-model="url" />
           </v-flex>
         </v-card>
       </v-flex>
@@ -76,20 +76,18 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import Layout from '@/components/atoms/base-layout.vue'
-import BaseTextInput from '@/components/atoms/base-input.vue'
 import CardWidth from '@/modules/common'
 import DetailModule from '@/modules/detail/method'
 import EditModule from '@/modules/edit/computed'
-interface VForm extends Vue {
-  validate(): boolean;
-}
+// interface VForm extends Vue {
+//   validate(): boolean;
+// }
 type Props = {
   slug: string;
 }
 export default defineComponent ({
   components: {
     Layout,
-    BaseTextInput
   },
   props: {
     slug: {
