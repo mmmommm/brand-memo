@@ -16,7 +16,7 @@
         >
           <v-flex class="ml-4">
             <v-card-title> 日付 </v-card-title>
-            <v-text-field class="py-2" type="number" :rules="codeRules" :value="code" v-model.number="code" />
+            <BaseText :value="date" />
             <v-card-title> コード </v-card-title>
             <v-text-field class="py-2" type="number" :rules="codeRules" :value="code" v-model.number="code" />
             <v-card-title> 銘柄名 </v-card-title>
@@ -76,6 +76,7 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import Layout from '@/components/atoms/base-layout.vue'
+import BaseText from '@/components/atoms/base-text.vue'
 import CardWidth from '@/modules/common'
 import DetailModule from '@/modules/detail/method'
 import EditModule from '@/modules/edit/computed'
@@ -88,6 +89,7 @@ type Props = {
 export default defineComponent ({
   components: {
     Layout,
+    BaseText,
   },
   props: {
     slug: {

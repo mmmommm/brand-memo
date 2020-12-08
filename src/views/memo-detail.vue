@@ -20,17 +20,17 @@
             <v-layout wrap>
               <v-flex class="ml-4">
                 <v-card-text> コード </v-card-text>
-                <BaseText :value="code" />
+                <BaseNumber :value="code" />
                 <v-card-text> 銘柄名 </v-card-text>
                 <BaseText :value="name" />
                 <v-card-text> 時価総額 </v-card-text>
-                <BaseText :value="capitalization" />
+                <BaseNumber :value="capitalization" />
                 <v-card-text> 浮動株式数 </v-card-text>
-                <BaseText :value="floating" />
+                <BaseNumber :value="floating" />
                 <v-card-text> テーマ </v-card-text>
                 <BaseText :value="theme" />
                 <v-card-text> 株価 </v-card-text>
-                <BaseText :value="price" />
+                <BaseNumber :value="price" />
                 <v-card-text> 会社URL </v-card-text>
                 <v-btn
                   text
@@ -107,6 +107,7 @@ import Layout from '@/components/atoms/base-layout.vue'
 import LoadingScreen from '@/components/atoms/loading-screen.vue'
 import DeleteButton from '@/components/molecules/memo-detail-delete-button.vue'
 import BaseText from '@/components/atoms/base-text.vue'
+import BaseNumber from '@/components/atoms/base-number.vue'
 import CardWidth from '@/modules/common'
 import DetailModule from '@/modules/detail/method'
 import MemoEdit from '@/views/memo-edit.vue'
