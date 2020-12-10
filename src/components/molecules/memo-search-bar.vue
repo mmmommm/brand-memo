@@ -3,7 +3,7 @@
     v-model.number="searchTerm"
     placeholder="search brand by code (ex 9984"
     class="term"
-    :rules="codeRules"
+    :rules="codeRules()"
     counter="4"
     height="50"
     @input="inputTerm"

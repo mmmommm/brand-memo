@@ -22,7 +22,7 @@
               v-model.number="code"
               class="py-2"
               type="number"
-              :rules="codeRules"
+              :rules="codeRules()"
               :value="code"
             />
             <v-card-title> 銘柄名 </v-card-title>
@@ -30,7 +30,7 @@
               v-model="name"
               class="py-2"
               type="text"
-              :rules="nameRules"
+              :rules="nameRules()"
               :value="name"
             />
             <v-card-title> 時価総額 </v-card-title>
@@ -38,7 +38,7 @@
               v-model.number="capitalization"
               class="py-2"
               type="number"
-              :rules="capitalizationRules"
+              :rules="capitalizationRules()"
               :value="capitalization"
             />
             <v-card-title> 浮動株式数 </v-card-title>
@@ -46,7 +46,7 @@
               v-model.number="floating"
               class="py-2"
               type="number"
-              :rules="floatRules"
+              :rules="floatRules()"
               :value="floating"
             />
             <v-card-title> テーマ </v-card-title>
@@ -54,7 +54,7 @@
               v-model="theme"
               class="py-2"
               type="text"
-              :rules="themeRules"
+              :rules="themeRules()"
               :value="theme"
             />
             <v-card-title> 株価 </v-card-title>
@@ -62,7 +62,7 @@
               v-model.number="price"
               class="py-2"
               type="number"
-              :rules="priceRules"
+              :rules="priceRules()"
               :value="price"
             />
             <v-card-title> 会社URL </v-card-title>
@@ -70,7 +70,7 @@
               v-model="url"
               class="py-2"
               type="text"
-              :rules="urlRules"
+              :rules="urlRules()"
               :value="url"
             />
           </v-flex>
@@ -97,7 +97,7 @@
             rows="25"
             class="ml-4"
             outlined
-            :rules="reasonRules"
+            :rules="reasonRules()"
           />
           <v-btn
             type="button"
