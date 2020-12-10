@@ -18,19 +18,61 @@
             <v-card-title> 日付 </v-card-title>
             <BaseText :value="date" />
             <v-card-title> コード </v-card-title>
-            <v-text-field class="py-2" type="number" :rules="codeRules" :value="code" v-model.number="code" />
+            <v-text-field
+              v-model.number="code"
+              class="py-2"
+              type="number"
+              :rules="codeRules"
+              :value="code"
+            />
             <v-card-title> 銘柄名 </v-card-title>
-            <v-text-field class="py-2" type="text" :rules="nameRules" :value="name" v-model="name" />
+            <v-text-field
+              v-model="name"
+              class="py-2"
+              type="text"
+              :rules="nameRules"
+              :value="name"
+            />
             <v-card-title> 時価総額 </v-card-title>
-            <v-text-field class="py-2" type="number" :rules="capitalizationRules" :value="capitalization" v-model.number="capitalization" />
+            <v-text-field
+              v-model.number="capitalization"
+              class="py-2"
+              type="number"
+              :rules="capitalizationRules"
+              :value="capitalization"
+            />
             <v-card-title> 浮動株式数 </v-card-title>
-            <v-text-field class="py-2" type="number" :rules="floatRules" :value="floating" v-model.number="floating" />
+            <v-text-field
+              v-model.number="floating"
+              class="py-2"
+              type="number"
+              :rules="floatRules"
+              :value="floating"
+            />
             <v-card-title> テーマ </v-card-title>
-            <v-text-field class="py-2" type="text" :rules="themeRules" :value="theme" v-model="theme" />
+            <v-text-field
+              v-model="theme"
+              class="py-2"
+              type="text"
+              :rules="themeRules"
+              :value="theme"
+            />
             <v-card-title> 株価 </v-card-title>
-            <v-text-field class="py-2" type="number" :rules="priceRules" :value="price" v-model.number="price" />
+            <v-text-field
+              v-model.number="price"
+              class="py-2"
+              type="number"
+              :rules="priceRules"
+              :value="price"
+            />
             <v-card-title> 会社URL </v-card-title>
-            <v-text-field class="py-2" type="text" :rules="urlRules" :value="url" v-model="url" />
+            <v-text-field
+              v-model="url"
+              class="py-2"
+              type="text"
+              :rules="urlRules"
+              :value="url"
+            />
           </v-flex>
         </v-card>
       </v-flex>
@@ -78,7 +120,6 @@ import { defineComponent } from '@vue/composition-api'
 import Layout from '@/components/atoms/base-layout.vue'
 import BaseText from '@/components/atoms/base-text.vue'
 import CardWidth from '@/modules/common'
-import DetailModule from '@/modules/detail/method'
 import EditModule from '@/modules/edit/computed'
 // interface VForm extends Vue {
 //   validate(): boolean;

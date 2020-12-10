@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 type Props = {
-  rules: string | Function;
+  rules: Array<string | Function>;
   value: string | number;
   placeholder: string;
 }

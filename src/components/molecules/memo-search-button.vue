@@ -7,7 +7,7 @@
   </BaseButton>
 </template>
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 import { firestore } from '@/firebase/fireStore'
 import BaseButton from '@/components/atoms/base-button.vue'
 export default defineComponent ({
