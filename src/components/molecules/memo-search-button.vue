@@ -10,12 +10,13 @@
 import { defineComponent } from '@vue/composition-api'
 import { firestore } from '@/firebase/fireStore'
 import BaseButton from '@/components/atoms/base-button.vue'
+import firebase from '@firebase/firestore-types'
 export default defineComponent ({
   components: {
     BaseButton,
   },
   setup(props, { emit, root }) {
-    const filteredData: any[] = []
+    const filteredData: firebase.DocumentData[] = []
     const filteredList = () => {
       firestore
       .collection('memos')

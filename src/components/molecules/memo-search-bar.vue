@@ -3,7 +3,7 @@
     v-model.number="searchTerm"
     placeholder="search brand by code (ex 9984"
     class="term"
-    :rules="codeRules"
+    :rules="codeRules()"
     counter="4"
     height="50"
     @input="inputTerm"
@@ -13,12 +13,13 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
 import { firestore } from '@/firebase/fireStore'
+import firebase from '@firebase/firestore-types'
 import * as rules from '@/config/rules'
 export default defineComponent ({
   setup(props, { emit, root }) {
     const state = reactive({
       searchTerm: null as null | number,
-      filteredData: [] as any[],
+      filteredData: [] as firebase.DocumentData[],
     })
     const codeRules = () => { return rules.codeRules }
     const filteredList = () => {

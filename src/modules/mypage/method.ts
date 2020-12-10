@@ -1,9 +1,10 @@
 import { reactive, toRefs, SetupContext, computed } from "@vue/composition-api"
 import { firestore } from "@/firebase/fireStore"
+import firebase from "@firebase/firestore-types"
 
 export default ({ root }: SetupContext) => {
   const state = reactive({
-    memos: [] as any[],
+    memos: [] as firebase.DocumentData[],
     haveMemo: false,
   })
   const isLoading = computed(() => root.$store.getters.isLoading)

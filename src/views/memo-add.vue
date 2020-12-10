@@ -21,43 +21,43 @@
               <v-card-title> コード </v-card-title>
               <BaseNumberInput
                 :input="code"
-                :rules="codeRules"
+                :rules="codeRules()"
                 placeholder="7203"
               />
               <v-card-title> 銘柄名 </v-card-title>
               <BaseTextInput
                 :input="name"
-                :rules="nameRules"
+                :rules="nameRules()"
                 placeholder="トヨタ自動車"
               />
               <v-card-title> 時価総額（百万） </v-card-title>
               <BaseNumberInput
                 :input="capitalization"
-                :rules="capitalizationRules"
+                :rules="capitalizationRules()"
                 placeholder="21495773"
               />
               <v-card-title> 浮動株式数（株） </v-card-title>
               <BaseNumberInput
                 :input="floating"
-                :rules="floatRules"
+                :rules="floatRules()"
                 placeholder="100000000"
               />
               <v-card-title> テーマ </v-card-title>
               <BaseTextInput
                 :input="theme"
-                :rules="themeRules"
+                :rules="themeRules()"
                 placeholder="自動運転"
               />
               <v-card-title> 株価（円）</v-card-title>
               <BaseNumberInput
                 :input="price"
-                :rules="priceRules"
+                :rules="priceRules()"
                 placeholder="6500"
               />
               <v-card-title> 会社URL </v-card-title>
               <BaseTextInput
                 :input="url"
-                :rules="urlRules"
+                :rules="urlRules()"
                 placeholder="https://company.co.jp"
               />
             </v-flex>
@@ -99,16 +99,13 @@
   </v-form>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 import Layout from '@/components/atoms/base-layout.vue'
 import BaseTextInput from '@/components/atoms/base-textinput.vue'
 import BaseNumberInput from '@/components/atoms/base-numberinput.vue'
 import BaseText from '@/components/atoms/base-text.vue'
 import CardWidth from '@/modules/common'
 import AddModule from '@/modules/add/method'
-interface VForm extends Vue {
-  validate(): boolean;
-}
 export default defineComponent ({
   components: {
     Layout,
@@ -117,11 +114,9 @@ export default defineComponent ({
     BaseText
   },
   setup(props, context) {
-    const form = ref()
     const cardWidth = CardWidth(context)
     const addModule = AddModule(context)
     return {
-      form,
       cardWidth,
       ...addModule
     }

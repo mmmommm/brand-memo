@@ -20,6 +20,7 @@ import Layout from '@/components/atoms/base-layout.vue'
 import SearchBar from '@/components/molecules/memo-search-bar.vue'
 import SearchButton from '@/components/molecules/memo-search-button.vue'
 import MemoCard from '@/components/molecules/memo-card.vue'
+import firebase from '@firebase/firestore-types'
 export default defineComponent ({
   components: {
     Layout,
@@ -29,9 +30,9 @@ export default defineComponent ({
   },
   setup() {
     const state = reactive({
-      filteredMemo: [] as any[]
+      filteredMemo: [] as firebase.DocumentData[]
     })
-    const passData = (filteredData: any[]) => {
+    const passData = (filteredData: firebase.DocumentData[]) => {
       state.filteredMemo = filteredData
     }
     return {
