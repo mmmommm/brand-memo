@@ -1,12 +1,13 @@
 import { reactive, toRefs, computed, SetupContext } from "@vue/composition-api"
 import { firestore } from "@/firebase/fireStore"
+import firebase from "@firebase/firestore-types"
 
 export default ({root}: SetupContext) => {
   const state = reactive({
     currentpage: 1,
     pageLength: 1,
-    memos: [] as any[],
-    memoLists: [] as any[],
+    memos: [] as firebase.DocumentData[],
+    memoLists: [] as firebase.DocumentData[],
   })
   const isLoading= computed(() => root.$store.getters.isLoading)
   const pageSize = 9
@@ -26,7 +27,7 @@ export default ({root}: SetupContext) => {
       .collection("memos")
       .get()
       .then((querySnapshot) => {
-        const array: any[] = []
+        const array: firebase.DocumentData[] = []
         querySnapshot.forEach((doc) => {
           array.push(doc.data())
         })
