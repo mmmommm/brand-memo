@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`memo-home.vue snapshot test 1`] = `
+<v-app-stub
+  id="app"
+>
+  <loadingscreen-stub
+    style="display: none;"
+  />
+   
+  <layout-stub>
+     
+    <v-pagination-stub
+      class="my-4"
+      color="black"
+      length="0"
+      nexticon="$next"
+      previcon="$prev"
+      totalvisible="3"
+      value="0"
+    />
+  </layout-stub>
+</v-app-stub>
+`;
