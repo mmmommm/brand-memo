@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`memo-search.vue snapshot test 1`] = `
+<v-container-stub
+  tag="div"
+>
+  <v-layout-stub
+    tag="div"
+  >
+    <searchbar-stub />
+     
+    <searchbutton-stub />
+  </v-layout-stub>
+   
+  <v-layout-stub
+    tag="div"
+    wrap=""
+  />
+</v-container-stub>
+`;

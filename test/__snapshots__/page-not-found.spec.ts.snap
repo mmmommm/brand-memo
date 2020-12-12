@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`page-not-found.vue snapshot test 1`] = `<pagenotfound-stub />`;

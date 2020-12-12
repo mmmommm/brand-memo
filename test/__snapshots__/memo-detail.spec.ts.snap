@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`memo-detail.vue snapshot test 1`] = `
+<div>
+  <loadingscreen-stub
+    style="display: none;"
+  />
+   
+  <layout-stub>
+    <v-flex-stub
+      md5=""
+      sm12=""
+      tag="div"
+      xs12=""
+    >
+      <v-card-stub
+        flat="true"
+        loaderheight="4"
+        tag="div"
+      >
+        <v-layout-stub
+          tag="div"
+        >
+          <v-card-title-stub>
+             日付 
+          </v-card-title-stub>
+           
+          <basetext-stub />
+        </v-layout-stub>
+         
+        <v-layout-stub
+          tag="div"
+          wrap=""
+        >
+          <v-flex-stub
+            class="ml-4"
+            tag="div"
+          >
+            <v-card-text-stub>
+               コード 
+            </v-card-text-stub>
+             
+            <basenumber />
+             
+            <v-card-text-stub>
+               銘柄名 
+            </v-card-text-stub>
+             
+            <basetext-stub />
+             
+            <v-card-text-stub>
+               時価総額 
+            </v-card-text-stub>
+             
+            <basenumber />
+             
+            <v-card-text-stub>
+               浮動株式数 
+            </v-card-text-stub>
+             
+            <basenumber />
+             
+            <v-card-text-stub>
+               テーマ 
+            </v-card-text-stub>
+             
+            <basetext-stub />
+             
+            <v-card-text-stub>
+               株価 
+            </v-card-text-stub>
+             
+            <basenumber />
+             
+            <v-card-text-stub>
+               会社URL 
+            </v-card-text-stub>
+             
+            <v-btn-stub
+              activeclass=""
+              rel="noopener"
+              tag="button"
+              target="_blank"
+              text="true"
+              type="button"
+            >
+              
+                
+              
+            </v-btn-stub>
+          </v-flex-stub>
+        </v-layout-stub>
+      </v-card-stub>
+    </v-flex-stub>
+     
+    <v-flex-stub
+      md6=""
+      sm12=""
+      tag="div"
+      xs12=""
+    >
+      <v-card-stub
+        flat="true"
+        loaderheight="4"
+        tag="div"
+      >
+        <v-card-title-stub>
+          <p
+            class="ml-2"
+          >
+            
+              理由
+            
+          </p>
+        </v-card-title-stub>
+         
+        <v-textarea-stub
+          backgroundcolor=""
+          class="ml-4"
+          clearicon="$clear"
+          cols="60"
+          errorcount="1"
+          errormessages=""
+          loaderheight="2"
+          messages=""
+          outlined="true"
+          readonly="true"
+          rowheight="24"
+          rows="30"
+          rules=""
+          successmessages=""
+          type="text"
+        />
+         
+        <!---->
+      </v-card-stub>
+    </v-flex-stub>
+  </layout-stub>
+   
+  <!---->
+</div>
+`;
