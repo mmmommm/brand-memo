@@ -9,49 +9,11 @@ exports[`memo-mypage.vue <MemoMypage /> 1`] = `
   />
    
   <layout-stub>
-    <!---->
+    <memocard-stub
+      memo="[object Object]"
+    />
      
-    <v-container-stub
-      tag="div"
-    >
-      <v-layout-stub
-        align-center=""
-        column=""
-        fill-height=""
-        justify-center=""
-        tag="div"
-      >
-        <h1
-          class="display-2 font-weight-thin my-12"
-        >
-          
-            まだメモがありません
-          
-        </h1>
-         
-        <h4
-          class="subheading mt-12"
-        >
-          
-            是非下記のボタンを押下しメモを作成してみてください。
-          
-        </h4>
-         
-        <v-btn-stub
-          activeclass=""
-          class="mt-4"
-          outlined="true"
-          rounded="true"
-          tag="button"
-          to="/MemoAdd"
-          type="button"
-        >
-          
-            メモを作成する
-          
-        </v-btn-stub>
-      </v-layout-stub>
-    </v-container-stub>
+    <!---->
   </layout-stub>
 </v-app-stub>
 `;

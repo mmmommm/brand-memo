@@ -34,6 +34,7 @@ exports[`memo-add.vue <MemoAdd /> 1`] = `
             </v-card-title-stub>
              
             <basenumberinput-stub
+              input="1111"
               placeholder="7203"
               value=""
             />
@@ -43,6 +44,7 @@ exports[`memo-add.vue <MemoAdd /> 1`] = `
             </v-card-title-stub>
              
             <basetextinput-stub
+              input="dummy"
               placeholder="トヨタ自動車"
               value=""
             />
@@ -52,6 +54,7 @@ exports[`memo-add.vue <MemoAdd /> 1`] = `
             </v-card-title-stub>
              
             <basenumberinput-stub
+              input="1"
               placeholder="21495773"
               value=""
             />
@@ -61,6 +64,7 @@ exports[`memo-add.vue <MemoAdd /> 1`] = `
             </v-card-title-stub>
              
             <basenumberinput-stub
+              input="1"
               placeholder="100000000"
               value=""
             />
@@ -70,6 +74,7 @@ exports[`memo-add.vue <MemoAdd /> 1`] = `
             </v-card-title-stub>
              
             <basetextinput-stub
+              input="dummy"
               placeholder="自動運転"
               value=""
             />
@@ -79,6 +84,7 @@ exports[`memo-add.vue <MemoAdd /> 1`] = `
             </v-card-title-stub>
              
             <basenumberinput-stub
+              input="1"
               placeholder="6500"
               value=""
             />
@@ -88,6 +94,7 @@ exports[`memo-add.vue <MemoAdd /> 1`] = `
             </v-card-title-stub>
              
             <basetextinput-stub
+              input="https://dummy.ac.jp"
               placeholder="https://company.co.jp"
               value=""
             />
@@ -127,6 +134,7 @@ exports[`memo-add.vue <MemoAdd /> 1`] = `
           rules=""
           successmessages=""
           type="text"
+          value="dummy"
         />
          
         <v-btn-stub

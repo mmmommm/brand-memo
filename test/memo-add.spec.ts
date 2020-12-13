@@ -22,6 +22,20 @@ describe('memo-add.vue', () => {
   const wrapper = shallowMount(MemoAdd, {
     localVue,
     vuetify,
+    data() {
+      return {
+        code: 1111,
+        slug: "11111111",
+        name: "dummy",
+        capitalization: 1,
+        floating: 1,
+        theme: "dummy",
+        price: 1,
+        url: "https://dummy.ac.jp",
+        reason: "dummy",
+        valid: false,
+      }
+    },
     methods: {
       generateDate,
       codeRules,
