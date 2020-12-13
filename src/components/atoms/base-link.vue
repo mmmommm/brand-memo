@@ -12,9 +12,6 @@
 </template>
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-type Props = {
-  url: string;
-};
 export default defineComponent ({
   props: {
     url: {
@@ -23,7 +20,7 @@ export default defineComponent ({
       required: true,
     }
   },
-  setup(props: Props) {
+  setup(props) {
     props.url
   }
 })
