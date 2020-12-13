@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`memo-detail.vue snapshot test 1`] = `
+exports[`memo-detail.vue <MemoDetail /> 1`] = `
 <div>
   <loadingscreen-stub
     style="display: none;"

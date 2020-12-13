@@ -14,7 +14,7 @@ describe('memo-mypage.vue', () => {
     localVue,
     vuetify,
   })
-  it('snapshot test', () => {
+  it('<MemoMypage />', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 })

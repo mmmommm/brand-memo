@@ -14,7 +14,7 @@ describe('memo-home.vue', () => {
     localVue,
     vuetify,
   })
-  it('snapshot test', () => {
+  it('<MemoHome />', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 })

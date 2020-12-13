@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`memo-card.vue <MemoCard /> 1`] = `
+<v-flex-stub
+  md4=""
+  sm6=""
+  tag="div"
+  xs12=""
+>
+  <v-btn-stub
+    activeclass=""
+    class="my-5"
+    height="140"
+    outlined="true"
+    tag="button"
+    to="[object Object]"
+    type="button"
+    width="350"
+  >
+    <v-card-stub
+      height="140"
+      loaderheight="4"
+      tag="div"
+      width="350"
+    >
+      <v-card-text-stub
+        class="ml-2 code"
+      >
+        
+        
+      
+      </v-card-text-stub>
+       
+      <v-card-title-stub
+        class="ml-2 name"
+      >
+        
+        
+      
+      </v-card-title-stub>
+    </v-card-stub>
+  </v-btn-stub>
+</v-flex-stub>
+`;

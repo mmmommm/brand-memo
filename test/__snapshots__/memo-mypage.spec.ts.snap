@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`memo-mypage.vue snapshot test 1`] = `
+exports[`memo-mypage.vue <MemoMypage /> 1`] = `
 <v-app-stub
   id="app"
 >
