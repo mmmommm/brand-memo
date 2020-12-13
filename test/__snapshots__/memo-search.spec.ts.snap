@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`memo-search.vue snapshot test 1`] = `
+exports[`memo-search.vue <MemoSearch /> 1`] = `
 <v-container-stub
   tag="div"
 >
@@ -15,6 +15,10 @@ exports[`memo-search.vue snapshot test 1`] = `
   <v-layout-stub
     tag="div"
     wrap=""
-  />
+  >
+    <memocard-stub
+      memo="[object Object]"
+    />
+  </v-layout-stub>
 </v-container-stub>
 `;

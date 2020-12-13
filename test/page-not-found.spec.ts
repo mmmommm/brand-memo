@@ -9,12 +9,13 @@ describe('page-not-found.vue', () => {
 
   beforeEach(() => {
     vuetify = new Vuetify()
+    
   })
   const wrapper = shallowMount(PageNotFound, {
     localVue,
     vuetify,
   })
-  it('snapshot test', () => {
+  it('<PageNotFound />', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 })
