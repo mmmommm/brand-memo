@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import { VueLoading } from 'vue-loading-template'
 export default defineComponent ({

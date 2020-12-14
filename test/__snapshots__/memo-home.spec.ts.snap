@@ -9,15 +9,18 @@ exports[`memo-home.vue <MemoHome /> 1`] = `
   />
    
   <layout-stub>
+    <memocard-stub
+      memo="[object Object]"
+    />
      
     <v-pagination-stub
       class="my-4"
       color="black"
-      length="0"
+      length="1"
       nexticon="$next"
       previcon="$prev"
       totalvisible="3"
-      value="0"
+      value="1"
     />
   </layout-stub>
 </v-app-stub>

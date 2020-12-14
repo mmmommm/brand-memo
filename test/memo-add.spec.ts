@@ -10,7 +10,7 @@ describe('memo-add.vue', () => {
   beforeEach(() => {
     vuetify = new Vuetify()
   })
-  const generateDate = jest.fn()
+  const generateDate = jest.fn(() => "2020/01/01")
   const codeRules = jest.fn()
   const nameRules = jest.fn()
   const capitalizationRules = jest.fn()
@@ -22,6 +22,20 @@ describe('memo-add.vue', () => {
   const wrapper = shallowMount(MemoAdd, {
     localVue,
     vuetify,
+    data() {
+      return {
+        code: 1111,
+        slug: "11111111",
+        name: "dummy",
+        capitalization: 1,
+        floating: 1,
+        theme: "dummy",
+        price: 1,
+        url: "https://dummy.ac.jp",
+        reason: "dummy",
+        valid: false,
+      }
+    },
     methods: {
       generateDate,
       codeRules,

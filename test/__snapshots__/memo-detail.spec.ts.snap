@@ -25,7 +25,9 @@ exports[`memo-detail.vue <MemoDetail /> 1`] = `
              日付 
           </v-card-title-stub>
            
-          <basetext-stub />
+          <basetext-stub
+            value="2020/01/01"
+          />
         </v-layout-stub>
          
         <v-layout-stub
@@ -40,37 +42,49 @@ exports[`memo-detail.vue <MemoDetail /> 1`] = `
                コード 
             </v-card-text-stub>
              
-            <basenumber />
+            <basenumber
+              value="1111"
+            />
              
             <v-card-text-stub>
                銘柄名 
             </v-card-text-stub>
              
-            <basetext-stub />
+            <basetext-stub
+              value="dummy"
+            />
              
             <v-card-text-stub>
                時価総額 
             </v-card-text-stub>
              
-            <basenumber />
+            <basenumber
+              value="1"
+            />
              
             <v-card-text-stub>
                浮動株式数 
             </v-card-text-stub>
              
-            <basenumber />
+            <basenumber
+              value="1"
+            />
              
             <v-card-text-stub>
                テーマ 
             </v-card-text-stub>
              
-            <basetext-stub />
+            <basetext-stub
+              value="dummy"
+            />
              
             <v-card-text-stub>
                株価 
             </v-card-text-stub>
              
-            <basenumber />
+            <basenumber
+              value="1"
+            />
              
             <v-card-text-stub>
                会社URL 
@@ -78,6 +92,7 @@ exports[`memo-detail.vue <MemoDetail /> 1`] = `
              
             <v-btn-stub
               activeclass=""
+              href="https://dummy.ac.jp"
               rel="noopener"
               tag="button"
               target="_blank"
@@ -85,7 +100,7 @@ exports[`memo-detail.vue <MemoDetail /> 1`] = `
               type="button"
             >
               
-                
+                https://dummy.ac.jp
               
             </v-btn-stub>
           </v-flex-stub>
@@ -130,6 +145,7 @@ exports[`memo-detail.vue <MemoDetail /> 1`] = `
           rules=""
           successmessages=""
           type="text"
+          value="dummy"
         />
          
         <!---->
