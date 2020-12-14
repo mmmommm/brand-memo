@@ -27,7 +27,9 @@ exports[`memo-add.vue <MemoAdd /> 1`] = `
                日付 
             </v-card-title-stub>
              
-            <basetext-stub />
+            <basetext-stub
+              value="2020/01/01"
+            />
              
             <v-card-title-stub>
                コード 

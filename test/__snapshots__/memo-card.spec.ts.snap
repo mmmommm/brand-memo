@@ -27,7 +27,7 @@ exports[`memo-card.vue <MemoCard /> 1`] = `
         class="ml-2 code"
       >
         
-        
+        1111
       
       </v-card-text-stub>
        
@@ -35,7 +35,7 @@ exports[`memo-card.vue <MemoCard /> 1`] = `
         class="ml-2 name"
       >
         
-        
+        dummy
       
       </v-card-title-stub>
     </v-card-stub>

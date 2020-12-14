@@ -16,7 +16,7 @@ describe('memo-mypage.vue', () => {
     data() {
       return {
         isLoading: false,
-        haveMemo: true,
+        haveMemo: false,
         memos: [
           {
             code: 1111,

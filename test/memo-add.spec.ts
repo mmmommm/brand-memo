@@ -10,7 +10,7 @@ describe('memo-add.vue', () => {
   beforeEach(() => {
     vuetify = new Vuetify()
   })
-  const generateDate = jest.fn()
+  const generateDate = jest.fn(() => "2020/01/01")
   const codeRules = jest.fn()
   const nameRules = jest.fn()
   const capitalizationRules = jest.fn()

@@ -18,6 +18,7 @@ describe('memo-detail.vue', () => {
         isLoading: false,
         display: false,
         code: 1111,
+        date: "2020/01/01",
         slug: "11111111",
         name: "dummy",
         capitalization: 1,

@@ -25,7 +25,9 @@ exports[`memo-detail.vue <MemoDetail /> 1`] = `
              日付 
           </v-card-title-stub>
            
-          <basetext-stub />
+          <basetext-stub
+            value="2020/01/01"
+          />
         </v-layout-stub>
          
         <v-layout-stub
