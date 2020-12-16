@@ -49,7 +49,7 @@ export default defineComponent ({
     Layout,
     MemoCard
   },
-  setup(props, context) {
+  setup(_, context) {
     const mypageModule = MypageModule(context)
     //created
     mypageModule.getMyMemo()

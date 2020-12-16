@@ -113,7 +113,7 @@ export default defineComponent ({
     BaseNumberInput,
     BaseText
   },
-  setup(props, context) {
+  setup(_, context) {
     const cardWidth = CardWidth(context)
     const addModule = AddModule(context)
     return {

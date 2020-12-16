@@ -118,7 +118,7 @@ export default defineComponent ({
     LoadingScreen,
     MemoEdit
   },
-  setup(props, context) {
+  setup(_, context) {
     const detailModule = DetailModule(context)
     const cardWidth = CardWidth(context)
 

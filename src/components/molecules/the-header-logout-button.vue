@@ -18,7 +18,7 @@ export default defineComponent ({
   components: {
     ModalWindow,
   },
-  setup(props, { root }) {
+  setup(_, { root }) {
     const logout = () => {
       root.$store.commit('setDialog', false)
       root.$store.dispatch('logout')

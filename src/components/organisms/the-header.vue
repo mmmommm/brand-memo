@@ -77,7 +77,7 @@ export default defineComponent ({
     LoginButton,
     LogoutButton
   },
-  setup(props, context) {
+  setup(_, context) {
     const headerModule = HeaderModule(context)
     headerModule.setUser()
     return {
