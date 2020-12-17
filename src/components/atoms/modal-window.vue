@@ -52,7 +52,7 @@
 <script lang="ts">
 import { defineComponent, SetupContext, computed } from '@vue/composition-api'
 export default defineComponent ({
-  setup(props, { emit, root }: SetupContext) {
+  setup(_, { emit, root }: SetupContext) {
     const dialogCondition = computed(() => root.$store.getters.isDialog)
     const setDialog = () => {
       root.$store.commit('setDialog', true)

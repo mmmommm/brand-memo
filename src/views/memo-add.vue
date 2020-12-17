@@ -104,7 +104,7 @@ import Layout from '@/components/atoms/base-layout.vue'
 import BaseTextInput from '@/components/atoms/base-textinput.vue'
 import BaseNumberInput from '@/components/atoms/base-numberinput.vue'
 import BaseText from '@/components/atoms/base-text.vue'
-import CardWidth from '@/modules/common'
+import { CardWidth } from '@/modules/common'
 import AddModule from '@/modules/add/method'
 export default defineComponent ({
   components: {
@@ -113,7 +113,7 @@ export default defineComponent ({
     BaseNumberInput,
     BaseText
   },
-  setup(props, context) {
+  setup(_, context) {
     const cardWidth = CardWidth(context)
     const addModule = AddModule(context)
     return {

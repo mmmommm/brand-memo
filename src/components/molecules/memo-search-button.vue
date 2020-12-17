@@ -15,7 +15,7 @@ export default defineComponent ({
   components: {
     BaseButton,
   },
-  setup(props, { emit, root }) {
+  setup(_, { emit, root }) {
     const filteredData: firebase.DocumentData[] = []
     const filteredList = () => {
       firestore

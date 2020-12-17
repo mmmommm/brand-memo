@@ -2,7 +2,7 @@
   <div>
     <v-app-bar
       app
-      height="100"
+      :height="headerHeight"
     >
       <v-container>
         <v-layout>
@@ -14,7 +14,6 @@
             lg4
           >
             <v-toolbar-title
-              v-if="$vuetify.breakpoint.smAndUp"
               class="mt-4 headline text-uppercase"
             >
               <p> brand memo </p>
@@ -26,6 +25,7 @@
             sm10
             md10
             lg8
+            v-if="$vuetify.breakpoint.smAndUp"
           >
             <template>
               <BaseLink url="/">
@@ -48,9 +48,10 @@
               <LogoutButton />
             </template>
           </v-flex>
+          <v-app-bar-nav-icon @click="isDrawer"></v-app-bar-nav-icon>
         </v-layout>
       </v-container>
-      <div class="float-right mr-4">
+      <div class="float-right mr-4" v-if="$vuetify.breakpoint.smAndUp">
         <template v-if="!isAuthenticated">
           <v-text class="align-center font-weight-thin">
             匿名
@@ -63,6 +64,32 @@
         </template>
       </div>
     </v-app-bar>
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+    >
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          v-model="group"
+          active-class="text--accent-4"
+        >
+          <v-list-item href="/">Home</v-list-item>
+          <v-list-item href="/MemoSearch">Search</v-list-item>
+          <template v-if="!isAuthenticated">
+            <v-list-item><LoginButton /></v-list-item>
+          </template>
+          <template v-if="isAuthenticated">
+            <v-list-item href="MemoAdd">Add</v-list-item>
+            <v-list-item href="/MemoMypage">Mypage</v-list-item>
+            <v-list-item><LogoutButton /></v-list-item>
+          </template>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 <script lang="ts">
@@ -71,16 +98,19 @@ import LoginButton from '@/components/molecules/the-header-login-button.vue'
 import LogoutButton from '@/components/molecules/the-header-logout-button.vue'
 import BaseLink from '@/components/atoms/base-link.vue'
 import HeaderModule from '@/modules/header/method'
+import { HeaderHeight } from '@/modules/common'
 export default defineComponent ({
   components: {
     BaseLink,
     LoginButton,
     LogoutButton
   },
-  setup(props, context) {
+  setup(_, context) {
     const headerModule = HeaderModule(context)
+    const headerHeight = HeaderHeight(context)
     headerModule.setUser()
     return {
+      headerHeight,
       ...headerModule
     }
   },

@@ -15,9 +15,6 @@
 import { defineComponent } from '@vue/composition-api'
 import { firestore } from '@/firebase/fireStore'
 import ModalWindow from '@/components/atoms/modal-window.vue'
-type Props = {
-  slug: string;
-}
 export default defineComponent ({
   components: {
     ModalWindow,
@@ -29,7 +26,7 @@ export default defineComponent ({
       required: true,
     }
   },
-  setup(props: Props, { root }) {
+  setup(props, { root }) {
     const deleteMemo = () => {
       root.$store.commit('setDialog', false)
       firestore

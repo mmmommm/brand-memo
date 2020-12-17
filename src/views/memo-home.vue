@@ -30,7 +30,7 @@ export default defineComponent ({
     Layout,
     MemoCard,
   },
-  setup(props, context) {
+  setup(_, context) {
     const homeModule = HomeModule(context)
     homeModule.getMemo()
     return {

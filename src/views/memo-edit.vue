@@ -119,14 +119,8 @@
 import { defineComponent } from '@vue/composition-api'
 import Layout from '@/components/atoms/base-layout.vue'
 import BaseText from '@/components/atoms/base-text.vue'
-import CardWidth from '@/modules/common'
+import { CardWidth } from '@/modules/common'
 import EditModule from '@/modules/edit/computed'
-// interface VForm extends Vue {
-//   validate(): boolean;
-// }
-type Props = {
-  slug: string;
-}
 export default defineComponent ({
   components: {
     Layout,
@@ -139,7 +133,7 @@ export default defineComponent ({
       default: "",
     }
   },
-  setup(props: Props, context) {
+  setup(props, context) {
     const editModule = EditModule(context, props.slug)
     const cardWidth = CardWidth(context)
     //created

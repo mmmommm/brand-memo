@@ -107,7 +107,7 @@ import Layout from '@/components/atoms/base-layout.vue'
 import LoadingScreen from '@/components/atoms/loading-screen.vue'
 import DeleteButton from '@/components/molecules/memo-detail-delete-button.vue'
 import BaseText from '@/components/atoms/base-text.vue'
-import CardWidth from '@/modules/common'
+import { CardWidth } from '@/modules/common'
 import DetailModule from '@/modules/detail/method'
 import MemoEdit from '@/views/memo-edit.vue'
 export default defineComponent ({
@@ -118,7 +118,7 @@ export default defineComponent ({
     LoadingScreen,
     MemoEdit
   },
-  setup(props, context) {
+  setup(_, context) {
     const detailModule = DetailModule(context)
     const cardWidth = CardWidth(context)
 

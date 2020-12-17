@@ -16,7 +16,7 @@ import { firestore } from '@/firebase/fireStore'
 import firebase from '@firebase/firestore-types'
 import * as rules from '@/config/rules'
 export default defineComponent ({
-  setup(props, { emit, root }) {
+  setup(_, { emit, root }) {
     const state = reactive({
       searchTerm: null as null | number,
       filteredData: [] as firebase.DocumentData[],
