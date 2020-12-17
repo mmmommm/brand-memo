@@ -1,4 +1,4 @@
-import { SetupContext, reactive, toRefs } from '@vue/composition-api'
+import { SetupContext, reactive, toRefs, ref } from '@vue/composition-api'
 import { firestore } from "@/firebase/fireStore"
 import * as rules from '@/config/rules'
 interface VForm extends Vue {
@@ -19,6 +19,7 @@ export default ({root}: SetupContext) => {
     menu: false,
     valid: true,
   })
+  const form = ref<VForm>()
 
   const codeRules = () => { return rules.codeRules }
   const nameRules = () => { return rules.nameRules }
@@ -48,21 +49,23 @@ export default ({root}: SetupContext) => {
     return uuid
   }
   const saveMemo = () => {
-    const slug = generateUUID()
-    firestore.collection("memos").doc(slug).set({
-      capitalization: state.capitalization,
-      code: state.code,
-      date: state.date,
-      floating: state.floating,
-      name: state.name,
-      price: state.price,
-      reason: state.reason,
-      theme: state.theme,
-      url: state.url,
-      author: state.author,
-      slug: slug,
-    })
-    root.$router.push("/")
+    if(form.value?.validate()) {
+      const slug = generateUUID()
+      firestore.collection("memos").doc(slug).set({
+        capitalization: state.capitalization,
+        code: state.code,
+        date: state.date,
+        floating: state.floating,
+        name: state.name,
+        price: state.price,
+        reason: state.reason,
+        theme: state.theme,
+        url: state.url,
+        author: state.author,
+        slug: slug,
+      })
+      root.$router.push("/")
+    }
   }
   return {
     saveMemo,
