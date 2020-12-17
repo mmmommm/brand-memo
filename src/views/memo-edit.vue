@@ -119,7 +119,7 @@
 import { defineComponent } from '@vue/composition-api'
 import Layout from '@/components/atoms/base-layout.vue'
 import BaseText from '@/components/atoms/base-text.vue'
-import CardWidth from '@/modules/common'
+import { CardWidth } from '@/modules/common'
 import EditModule from '@/modules/edit/computed'
 export default defineComponent ({
   components: {
