@@ -3,6 +3,8 @@ import { firebaseauth } from '@/firebase/firebaseAuth'
 export default({root}: SetupContext) => {
   const state = reactive({
     user: null as string | null,
+    group: null as string | null,
+    drawer: false
   })
   const isAuthenticated = computed(() => root.$store.getters.isAuthenticated)
   const setUser = () => {
@@ -14,9 +16,13 @@ export default({root}: SetupContext) => {
       }
     })
   }
+  const isDrawer = () => {
+    state.drawer = true
+  }
   return {
     ...toRefs(state),
     isAuthenticated,
-    setUser
+    setUser,
+    isDrawer
   }
 }
