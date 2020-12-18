@@ -20,15 +20,15 @@
             </v-toolbar-title>
           </v-flex>
           <v-flex
+            v-if="$vuetify.breakpoint.smAndUp"
             row
             xs8
             sm10
             md10
             lg8
-            v-if="$vuetify.breakpoint.smAndUp"
           >
             <template>
-              <BaseLink url="/">
+              <BaseLink url="/MemoHome">
                 Home
               </BaseLink>
               <BaseLink url="/MemoSearch">
@@ -48,10 +48,16 @@
               <LogoutButton />
             </template>
           </v-flex>
-          <v-app-bar-nav-icon @click="isDrawer"></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon
+            v-if="$vuetify.breakpoint.xsOnly"
+            @click="isDrawer"
+          />
         </v-layout>
       </v-container>
-      <div class="float-right mr-4" v-if="$vuetify.breakpoint.smAndUp">
+      <div
+        v-if="$vuetify.breakpoint.smAndUp"
+        class="float-right mr-4"
+      >
         <template v-if="!isAuthenticated">
           <v-text class="align-center font-weight-thin">
             匿名
@@ -65,6 +71,7 @@
       </div>
     </v-app-bar>
     <v-navigation-drawer
+      v-if="$vuetify.breakpoint.xsOnly"
       v-model="drawer"
       absolute
       temporary
@@ -77,15 +84,23 @@
           v-model="group"
           active-class="text--accent-4"
         >
-          <v-list-item href="/">Home</v-list-item>
-          <v-list-item href="/MemoSearch">Search</v-list-item>
+          <v-list-item href="/">
+            Home
+          </v-list-item>
+          <v-list-item href="/MemoSearch">
+            Search
+          </v-list-item>
           <template v-if="!isAuthenticated">
-            <v-list-item><LoginButton /></v-list-item>
+            <LoginButton />
           </template>
           <template v-if="isAuthenticated">
-            <v-list-item href="MemoAdd">Add</v-list-item>
-            <v-list-item href="/MemoMypage">Mypage</v-list-item>
-            <v-list-item><LogoutButton /></v-list-item>
+            <v-list-item href="/MemoAdd">
+              Add
+            </v-list-item>
+            <v-list-item href="/MemoMypage">
+              Mypage
+            </v-list-item>
+            <LogoutButton />
           </template>
         </v-list-item-group>
       </v-list>

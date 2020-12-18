@@ -52,10 +52,10 @@ export default new Vuex.Store({
             email: result.user.email,
           }
           firestore.collection('users').doc(result.user.uid).set(userData)
-          router.push('/')
+          router.push('/MemoHome')
         })
         .catch(() => {
-          router.push('/')
+          router.push('/MemoHome')
         })
     },
     logout({ commit }) {
@@ -65,12 +65,12 @@ export default new Vuex.Store({
           commit('setUser', null)
           commit('setIsUser', false)
           commit('setIsAuthenticated', false)
-          router.push('/')
+          router.push('/MemoHome')
         })
         .catch(() => {
           commit('setUser', null)
           commit('setIsAuthenticated', false)
-          router.push('/')
+          router.push('/MemoHome')
         })
     },
   },
