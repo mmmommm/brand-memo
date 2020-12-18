@@ -48,7 +48,7 @@
               <LogoutButton />
             </template>
           </v-flex>
-          <v-app-bar-nav-icon @click="isDrawer"></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon @click="isDrawer" v-if="$vuetify.breakpoint.xsOnly"></v-app-bar-nav-icon>
         </v-layout>
       </v-container>
       <div class="float-right mr-4" v-if="$vuetify.breakpoint.smAndUp">
@@ -68,6 +68,7 @@
       v-model="drawer"
       absolute
       temporary
+      v-if="$vuetify.breakpoint.xsOnly"
     >
       <v-list
         nav
@@ -80,12 +81,12 @@
           <v-list-item href="/">Home</v-list-item>
           <v-list-item href="/MemoSearch">Search</v-list-item>
           <template v-if="!isAuthenticated">
-            <v-list-item><LoginButton /></v-list-item>
+          <LoginButton />
           </template>
           <template v-if="isAuthenticated">
-            <v-list-item href="MemoAdd">Add</v-list-item>
+            <v-list-item href="/MemoAdd">Add</v-list-item>
             <v-list-item href="/MemoMypage">Mypage</v-list-item>
-            <v-list-item><LogoutButton /></v-list-item>
+            <LogoutButton />
           </template>
         </v-list-item-group>
       </v-list>
