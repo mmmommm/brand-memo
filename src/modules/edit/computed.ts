@@ -73,7 +73,7 @@ export default ({ root }: SetupContext, slug: string) => {
         url: state.url,
       })
       .then(() => {
-        root.$router.push("/")
+        root.$router.push("/MemoHome")
       })
       .catch(() => {
         alert("エラーが発生しました、少し時間をおいて再実行してください。")

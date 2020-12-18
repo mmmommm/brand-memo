@@ -64,7 +64,7 @@ export default ({root}: SetupContext) => {
         author: state.author,
         slug: slug,
       })
-      root.$router.push("/")
+      root.$router.push("/MemoHome")
     }
   }
   return {

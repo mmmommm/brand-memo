@@ -34,7 +34,7 @@ export default defineComponent ({
         .doc(props.slug)
         .delete()
         .then(() => {
-          root.$router.push('/')
+          root.$router.push('/MemoHome')
         })
     }
     const cancel = () => {

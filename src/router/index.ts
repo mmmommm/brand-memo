@@ -7,6 +7,7 @@ import MemoDetail from '@/views/memo-detail.vue'
 import PageNotFound from '@/views/page-not-found.vue'
 import MemoSearch from '@/views/memo-search.vue'
 import MemoMypage from '@/views/memo-mypage.vue'
+import MemoDoc from '@/views/memo-doc.vue'
 import store from '@/store/index'
 
 Vue.use(VueRouter)
@@ -14,6 +15,11 @@ const routes: Array<RouteConfig> = [
   //共通で表示するもの
   {
     path: '/',
+    name: 'MemoDoc',
+    component: MemoDoc,
+  },
+  {
+    path: '/MemoHome',
     name: 'MemoHome',
     component: MemoHome,
   },
