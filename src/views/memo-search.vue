@@ -16,14 +16,12 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-import Layout from '@/components/atoms/base-layout.vue'
 import SearchBar from '@/components/molecules/memo-search-bar.vue'
 import SearchButton from '@/components/molecules/memo-search-button.vue'
 import MemoCard from '@/components/molecules/memo-card.vue'
 import firebase from '@firebase/firestore-types'
 export default defineComponent ({
   components: {
-    Layout,
     SearchBar,
     SearchButton,
     MemoCard
